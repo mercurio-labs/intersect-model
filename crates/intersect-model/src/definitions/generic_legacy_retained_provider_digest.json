@@ -1,0 +1,13 @@
+{
+  "contract": "retained_generic_agreement",
+  "complete_canonical_sha256": "86a08c784012f51a05091e3e883282b839452579257a443ce614766f4208bbd0",
+  "complete_raw_sha256": "2010df4c33505fdf8afd104c7cff37167ba368b8c4233a5891b2c6f02b231e84",
+  "work": 20807,
+  "storage": 2272343,
+  "polls": 3697,
+  "events": 46430,
+  "new_polls": 158,
+  "extra_c0": 316,
+  "extra_w0": 158,
+  "production_public_preparation_bytes": 1904
+}

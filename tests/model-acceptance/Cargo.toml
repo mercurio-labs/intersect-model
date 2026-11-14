@@ -1,0 +1,118 @@
+[package]
+name = "intersect-model-acceptance"
+description = "Unpublished model qualification harness."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+autotests = false
+
+[dependencies]
+intersect-model = { workspace = true, features = ["xmi", "sqlite", "codegen"] }
+intersect-model-test-support = { path = "../support" }
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+rusqlite = { version = "0.32.1", features = ["bundled"] }
+
+[features]
+milestone-tests = []
+allocation-profile = ["intersect-model/allocation-profile"]
+
+[[test]]
+name = "core"
+path = "tests/core.rs"
+
+[[test]]
+name = "definitions"
+path = "tests/definitions.rs"
+
+[[test]]
+name = "language"
+path = "tests/language.rs"
+
+[[test]]
+name = "sqlite"
+path = "tests/sqlite.rs"
+
+[[test]]
+name = "xmi"
+path = "tests/xmi.rs"
+
+[[example]]
+name = "bundle_validation_probe"
+path = "examples/bundle_validation_probe.rs"
+test = false
+
+[[example]]
+name = "canonical_source_preparation_probe"
+path = "examples/canonical_source_preparation_probe.rs"
+test = false
+
+[[example]]
+name = "document_preparation_probe"
+path = "examples/document_preparation_probe.rs"
+test = false
+
+[[example]]
+name = "generic_resolver_preparation_probe"
+path = "examples/generic_resolver_preparation_probe.rs"
+test = false
+
+[[example]]
+name = "inspect_ecore_document"
+path = "examples/inspect_ecore_document.rs"
+test = false
+
+[[example]]
+name = "materialization_source_preparation_probe"
+path = "examples/materialization_source_preparation_probe.rs"
+test = false
+
+[[example]]
+name = "rcore_behavior_compilation_probe"
+path = "examples/rcore_behavior_compilation_probe.rs"
+test = false
+
+[[example]]
+name = "rcore_behavior_compiler_observations_probe"
+path = "examples/rcore_behavior_compiler_observations_probe.rs"
+test = false
+
+[[example]]
+name = "rcore_behavior_parser_stack_probe"
+path = "examples/rcore_behavior_parser_stack_probe.rs"
+test = false
+
+[[example]]
+name = "rcore_enum_queries_probe"
+path = "examples/rcore_enum_queries_probe.rs"
+test = false
+
+[[example]]
+name = "rcore_lexical_preparation_probe"
+path = "examples/rcore_lexical_preparation_probe.rs"
+test = false
+
+[[example]]
+name = "rcore_model_feature_queries_probe"
+path = "examples/rcore_model_feature_queries_probe.rs"
+test = false
+
+[[example]]
+name = "rcore_module_preparation_probe"
+path = "examples/rcore_module_preparation_probe.rs"
+test = false
+
+[[example]]
+name = "rcore_structural_preparation_probe"
+path = "examples/rcore_structural_preparation_probe.rs"
+test = false
+
+[[example]]
+name = "resource_preparation_probe"
+path = "examples/resource_preparation_probe.rs"
+test = false

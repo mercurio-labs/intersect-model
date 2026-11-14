@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "status": "fresh-history evaluation-alpha baseline; release qualification tracked separately",
+  "source_repository": "intersect-model",
+  "develop_revision": "9834ca87c7a139146a5172f7d0654efe3e8d0437",
+  "release_revision": "dd8681a6c01fd26e144372f553ca9a08511be751",
+  "selection": "Release source blobs, retained review-needed inputs; approved historical omissions and refreshed maintained documentation.",
+  "history": "Earlier development history, omitted historical files and uncommitted designs are preserved separately in private pre-dev repositories and verified local backups.",
+  "working_tree": "Only committed, reviewed integrated sources were exported. Component-design working changes are excluded.",
+  "qualification": "New root identities require coordinated Model/Text and downstream checks. Earlier artifact hashes and minimum-tested fields remain historical evidence, not qualification of this baseline.",
+  "integrated_revision": "72d41ee63e2fb8f83d4315f4b79b464c944cf746",
+  "integrated_tree": "ba80deab61abc6fe60a6f325f3a5c52a95b4a89d"
+}

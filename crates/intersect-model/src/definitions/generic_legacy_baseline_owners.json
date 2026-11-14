@@ -1,0 +1,52 @@
+[
+  {
+    "id": "owner_ecore_generic",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-owner-generic.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' ><eGenericType eTypeParameter='#//Box/T'/></eStructuralFeatures></eClassifiers><eClassifiers x:type='e:EClass' name='Child' ><eGenericSuperTypes eClassifier='#//Box'><eTypeArguments eClassifier='#//Leaf'/></eGenericSuperTypes></eClassifiers></e:EPackage>",
+    "receiver": "#//Child",
+    "signature": "#//Box/value",
+    "parameter": "#//Box/T",
+    "argument": "#//Leaf"
+  },
+  {
+    "id": "owner_ecore_raw",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-owner-raw.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' ><eGenericType eTypeParameter='#//Box/T'/></eStructuralFeatures></eClassifiers><eClassifiers x:type='e:EClass' name='Child' eSuperTypes='#//Box'></eClassifiers></e:EPackage>",
+    "receiver": "#//Child",
+    "signature": "#//Box/value",
+    "parameter": "#//Box/T",
+    "argument": "#//Leaf"
+  },
+  {
+    "id": "owner_ecore_qualified",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-owner-qualified.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' eType='e:EClass #//Leaf'><eGenericType eTypeParameter='#//Box/T'/></eStructuralFeatures></eClassifiers><eClassifiers x:type='e:EClass' name='Child' ><eGenericSuperTypes eClassifier='#//Box'><eTypeArguments eClassifier='#//Leaf'/></eGenericSuperTypes></eClassifiers></e:EPackage>",
+    "receiver": "#//Child",
+    "signature": "#//Box/value",
+    "parameter": "#//Box/T",
+    "argument": "#//Leaf"
+  },
+  {
+    "id": "owner_ecore_method_bounds",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-owner-method_bounds.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' ><eGenericType eTypeParameter='#//Box/T'/></eStructuralFeatures><eOperations name='pick'><eTypeParameters name='U'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eGenericType eTypeParameter='#//Box/T'/><eParameters name='input'><eGenericType eTypeParameter='#//Box/pick/U'/></eParameters></eOperations></eClassifiers><eClassifiers x:type='e:EClass' name='Child' ><eGenericSuperTypes eClassifier='#//Box'><eTypeArguments eClassifier='#//Leaf'/></eGenericSuperTypes></eClassifiers></e:EPackage>",
+    "receiver": "#//Child",
+    "signature": "#//Box/pick",
+    "parameter": "#//Box/T",
+    "argument": "#//Leaf"
+  },
+  {
+    "id": "owner_rcore_generic",
+    "source_kind": "rcore",
+    "uri": "memory:legacy-owner.rcore",
+    "text": "rcore 1;package legacy version \"1\";metamodel \"urn:legacy-freeze\" prefix l {class Leaf {}class Box<T> {ref value:T [0,1];}class Child extends Box<Leaf> {}}",
+    "receiver": "#//Child",
+    "signature": "#//Box/value",
+    "parameter": "#//Box/T",
+    "argument": "#//Leaf"
+  }
+]

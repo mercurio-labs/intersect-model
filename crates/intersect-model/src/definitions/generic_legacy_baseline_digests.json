@@ -1,0 +1,4855 @@
+{
+  "checkpoint_commit": "535d19b3f2566e982c869ef5f4b223ac5e417fed",
+  "hash_contract": "Each main SHA pins exact complete deterministic serialized row. Controls SHA pins the entire complete original JSONL stream including every output/error and ordered callback in original row order, with LF terminators. No semantic projections or candidate-derived expected values.",
+  "main_rows": [
+    {
+      "id": "absent",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e462010db898f1455a02244cccf681c6764bb59c669fe94dc42972dea013d73c"
+    },
+    {
+      "id": "absent",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "67b6b718ca0e8c613726a63d6ae12074299e87bbf91af9ba2d3dc1a97ce1a58f"
+    },
+    {
+      "id": "absent",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "ae1be463264a3d5dfbf6dc72fe13fbd6bd02d469930a0ddfcd0dabf5cec4a02b"
+    },
+    {
+      "id": "empty_single",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "8a37d999d4b1c436c0deb6310b935409ff3e70fb0fefc9ee0d25288f06a71c2a"
+    },
+    {
+      "id": "empty_single",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "8eb640920a3c7fecf9f9c0daa58a345b157f66ad1ba3ea0dcdc96939add9774f"
+    },
+    {
+      "id": "empty_single",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "28234a7935b535350b44378a5700890279d97d532a639a7dc0e7a64ecda67dac"
+    },
+    {
+      "id": "space_single",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "15d4458958b316379361992e43606f50fcacbc4c80b5a1480bc444a0684e2f14"
+    },
+    {
+      "id": "space_single",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "ea51e82303d765d08fdf84480657338ef4c0d67857c768daaf9846d3080a72e3"
+    },
+    {
+      "id": "space_single",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "4fd54e8cd8c063d6f374dd2c8749b9f962cc38e7135025c2eed7d79605536db4"
+    },
+    {
+      "id": "empty_many",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "371206e9f45c9ee6e86c2155d076dcb882d8af80458b6ee27ece82f763d5e590"
+    },
+    {
+      "id": "empty_many",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f181f120d9785f8a708ac0524da69e0965abab5573384413d8bf39c8c81f0e0a"
+    },
+    {
+      "id": "empty_many",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "49d177c87819eba5770f8ac2c06d045f17dccd9a0c6079de32052009cdd8fefd"
+    },
+    {
+      "id": "space_many",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e81966037a2de54711db7a23fa1a439eae89e86066df64888589473121537db1"
+    },
+    {
+      "id": "space_many",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a6baa49369ec7cf1776d1c0030cf61717d6e1277e2dadc259559cbe73665b968"
+    },
+    {
+      "id": "space_many",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "37d04d711122ee86844f8977aa62b271b125d4003d75ee318be59d6112a4dc71"
+    },
+    {
+      "id": "plain_attribute",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a690c8b81c77ddf6c561835485553c3981895249cfa9d660f949981483ee3311"
+    },
+    {
+      "id": "plain_attribute",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "70d56aedc7489b4df6baccadcfdd7a3e5835ef8dcabed1fc5f5f849409ad9173"
+    },
+    {
+      "id": "plain_attribute",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8230d418a9cced7e7573476b40fb3d8406f92ade32746751b6b43b582bb420f0"
+    },
+    {
+      "id": "multi_single",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "6ce7ae6e9e4c8d95fbd932e8050d86d07fa9f544221dcd9e1ae625e0348e2f61"
+    },
+    {
+      "id": "multi_single",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "7dcf743ea77a4d57aea08928c7a54537088e569c4b56d134783e135d6691a283"
+    },
+    {
+      "id": "multi_single",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "fa6e3ae9208e5bf8b7dc49d60daf68c1c9de654997b9037c864c78e025d6665a"
+    },
+    {
+      "id": "hint_EClass",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0d0805a7681f4e5e03d243cd2080c91e2499849c90ab7db81094c3431033210a"
+    },
+    {
+      "id": "hint_EClass",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f4d07d4e22f642cfe9910add203615fdd05120f490f837d48ad81912c7cae1a1"
+    },
+    {
+      "id": "hint_EClass",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "201aecb56726dc668221cafaa2872807f54337b1322dcbc93874e5e0f2448c51"
+    },
+    {
+      "id": "hint_EClassifier",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "98208b265aabd56377475b2290d55288c4d920ae3848c90b558ab40dd51fb937"
+    },
+    {
+      "id": "hint_EClassifier",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e65f5f640e04e69b5ed914ef39635d67e3e5c113dc4f0dc8fe80103e5f58218c"
+    },
+    {
+      "id": "hint_EClassifier",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "34978b267dd6378f4aea09bf09a7edf19e30c37c6610d2be78d1e9d0dd406706"
+    },
+    {
+      "id": "hint_EDataType",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a93de76d6da230d3f8795a4d2058d6bd05165a85deabf1fd1da8684a355cf4ef"
+    },
+    {
+      "id": "hint_EDataType",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "11dbef409e8c76c22d5bb24341a25f2e15ca63c28b5ed0c0365ec84f801e0bc7"
+    },
+    {
+      "id": "hint_EDataType",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "433b0b4a5db1328873ef86fad1fb4503d74f2debe4b8e7192954f6abc773e437"
+    },
+    {
+      "id": "hint_EEnum",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0de1846b067c8b56772f4fd5204a254cf64afeb3655c2a386541c1860e62882c"
+    },
+    {
+      "id": "hint_EEnum",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "5a4569b180a57e7ba77f0d7044f937cd5a48fbd68442ab629c376ab386805e87"
+    },
+    {
+      "id": "hint_EEnum",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "c6e0defd9c0ba560f717238611203379409542f421b1a4a25caeb9e96cdb99fd"
+    },
+    {
+      "id": "kind_hint_mismatch",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "230437de47e88af7c9d1dd63961e6a58f1bb384126df67fadad69c9733a15cb1"
+    },
+    {
+      "id": "kind_hint_mismatch",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "03f4eecb04605380bdac9ab245b3f0323a83caeaede16abb4a81209c00b589f8"
+    },
+    {
+      "id": "kind_hint_mismatch",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "d252d9857216abedb0e21a0b2e320a361b56456b35712b300e69bdbad6040bbe"
+    },
+    {
+      "id": "unbound_hint",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "aaaa32f73436c610c427d5cd34ca02dd6e0bf6e30dc4e139b4d28179e5ee67d2"
+    },
+    {
+      "id": "unbound_hint",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "136d1c1ab50f4103c24283a6500b386d5d1160b6ed96723d4907e1cd9671f348"
+    },
+    {
+      "id": "unbound_hint",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "88184fff8cd61145bd1cc3fda24eba61b47c391950f89e32271508812f1291ea"
+    },
+    {
+      "id": "unqualified_hint",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "647b0b7b3a91b4f0ec7112cc8d5222e2b4f6d56f93bd0a6b24229c5621f6fc19"
+    },
+    {
+      "id": "unqualified_hint",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "22c1e112cc9e1455268f3f0bb70c639bc2937a9cebb34ef4b63c9bf358da7bc9"
+    },
+    {
+      "id": "unqualified_hint",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "a9cb5b6035a2d149777215cc0823239a6c8a78f201b5aac300f9b7dfa40bf2a9"
+    },
+    {
+      "id": "missing_hint_href",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "ab85405106ff7a62d8b3ed9b0843fab7d36a117055d2c31f9cd3eb81dccdacc5"
+    },
+    {
+      "id": "missing_hint_href",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "7ff979ab556d3f355ed974184af3cc03eafb6e736125880bf36fecf7089f2a7c"
+    },
+    {
+      "id": "missing_hint_href",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "143369c9df79636075ec431c48e2b23ac37cc38b4a458831d274141a0a649183"
+    },
+    {
+      "id": "shadowed_good",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5c7ca7d12739329ade407354a9c77b54963ba7048fdf91232cf09166528d0b32"
+    },
+    {
+      "id": "shadowed_good",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "c68f4378caf2dcda43423e86d64493bbe6b91cb79d9af2cdc77d84210c832bd3"
+    },
+    {
+      "id": "shadowed_good",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "10009625af9c09e8b9eedea622d909a1460df3b4cdf12336893e96d1b46f6b14"
+    },
+    {
+      "id": "shadowed_wrong",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "5cb594f8c0cd5d7d3af4c7c9360e5f85613b47f31be2ed390729b66b3487fb0f"
+    },
+    {
+      "id": "shadowed_wrong",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "8041ccc51c502e2f18eb5b52e161d614313494b19b5dbac04419b706facae1a3"
+    },
+    {
+      "id": "shadowed_wrong",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "9eaaa00c563283c4dc9cd357a1fb1b44079ee3c95b864900be9e6f1ce8eb25a6"
+    },
+    {
+      "id": "child_href",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "da2317bf8d4d68d09558d575a79c5b3fb0395706db91e74e127042a7e2ed13b0"
+    },
+    {
+      "id": "child_href",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "592b490101762489d3e76de6dc9f03a118229357904f80badb85d1e6a5596199"
+    },
+    {
+      "id": "child_href",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "38f92fdfd474a704cc5f199a5cd13edebfb14b90b9f33d2e098980ad66fec92f"
+    },
+    {
+      "id": "child_hint",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "88d58d9ef5537880a6b1f17ddadd4d0454078f301dc9a0e5b540b74a015c649f"
+    },
+    {
+      "id": "child_hint",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0a6f70de63b238eb9d09d8c6d46c0b7591ec1202fea2d6e61ddd534ce129138a"
+    },
+    {
+      "id": "child_hint",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "112e37dd97d91d375b514eb88080992147b843883a8be6337cba36f1cfee312c"
+    },
+    {
+      "id": "child_wrong_hint",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7839a4dc3cd279ef8fbecd78a048c09611ca04c8aeda054bb0ad8ca45be432dd"
+    },
+    {
+      "id": "child_wrong_hint",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "a122d390fdaa69d8cbc696b75574cdbef08c8ceaa88eef544191b915e411871d"
+    },
+    {
+      "id": "child_wrong_hint",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "93b1f57c0cea4464138c63cf5979c7b3207af7f3f19b5507e0a209d69fec5d94"
+    },
+    {
+      "id": "child_wrong_namespace",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "a705761ad236a32099f22874eda9a701d2e357238f14eb1ef7d861e2abdc3609"
+    },
+    {
+      "id": "child_wrong_namespace",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "41783bd7fd6e6ff41b0db003268c2dcd91040ce344f0e289980fa0f442844640"
+    },
+    {
+      "id": "child_wrong_namespace",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "0525efa9166486bfb55f5beb15f0525a50f1ca82db97a8b3fa561b69e8765282"
+    },
+    {
+      "id": "attribute_child_duplicate",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "ac179c4b73f02c6e677315d67942125c9d82d8f91e69efc73c36cc2e72483dc1"
+    },
+    {
+      "id": "attribute_child_duplicate",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "bb27ed0aa76a1651062687aa2a0ab5c8566e6167bd365b6f3eff15aaae0972aa"
+    },
+    {
+      "id": "attribute_child_duplicate",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "6b5733cf2b8aad9b355570277162e648d424b226993e754af6a592c3e4d57c9f"
+    },
+    {
+      "id": "duplicate_children",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "769f1e783506369c4157802cc693ff75ad1b48d6e67e9539bd95c9337beb2e38"
+    },
+    {
+      "id": "duplicate_children",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "801c34adff602c6bc48ce663c07bbec52189d398adc7929f95c539a130612526"
+    },
+    {
+      "id": "duplicate_children",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "b46c6b4681f19e87e827372c2f3a562221fc6d57c15092747800b4cdcfd56b09"
+    },
+    {
+      "id": "missing_href",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "a933731dff9203c42e84cdceacb70beb81fdb9f0c6edbefa1b335315179d61ec"
+    },
+    {
+      "id": "missing_href",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "fea87eb6ae3b0ee8a38f50f4bdcf171a6ef93894177c0d1e23392ca33b19506a"
+    },
+    {
+      "id": "missing_href",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "bc5c3de66ace56f55888c2bc5975e85ba28d96f7578a0d06b3ede1b9fd8801fc"
+    },
+    {
+      "id": "empty_href",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "ddbad57982e43e86eb6132efb5af206b2ddc049e57d364032a95085c21999fa5"
+    },
+    {
+      "id": "empty_href",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "6a05dc46e3f2474712fb0c4ec299945f207ff8e1d63251f9ed809caaf6218bda"
+    },
+    {
+      "id": "empty_href",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "e36da0524707229a9eec196694d595062563d94355edaaca226197e85d6a801f"
+    },
+    {
+      "id": "space_href",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "6fc35cfb9e819476b46ddfd5064054f5b31f23013b677c01ea204805af195fe6"
+    },
+    {
+      "id": "space_href",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "9beffd621db8289e648990a8b651b5feb87b545520cb60a3335765f41833529d"
+    },
+    {
+      "id": "space_href",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "2b3fd9c0b4f45725bc74e28db87ca49e622d8ed4e9a3e7960a510eafd0dfe5d7"
+    },
+    {
+      "id": "multi_href",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "077dc4cf392f88e15beeed3ca8f4af83bc6763af979a3fafbfebd13f2a752acd"
+    },
+    {
+      "id": "multi_href",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "9c78b602f0b390d01efae94629a4e5cee8bb010c100eb642f4a84771a08b9b65"
+    },
+    {
+      "id": "multi_href",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "88f33aa8c7fc57714ee987eb11eaefda49f374869d27bdd81fe79510f4539c08"
+    },
+    {
+      "id": "unsupported_attribute",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "0d7ac96ca7e7d1c6219d69e9da08d0444f8800b21d8987cb35073dd1c9da4bca"
+    },
+    {
+      "id": "unsupported_attribute",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "a30cea04cad63fdbcbdec5c306f2130052e24be50adcc1af05cd60966fe7ae7d"
+    },
+    {
+      "id": "unsupported_attribute",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "76c848647ccb63dd0c2b12d0f688c3b26134af3598547b60b4870ccce8ccb73c"
+    },
+    {
+      "id": "unsupported_namespace_attribute",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "94ab8373d4d5bbdf60719af0528d41d3f9f1011dedb79e9f5044fcfe273f1989"
+    },
+    {
+      "id": "unsupported_namespace_attribute",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "fc7ed23f0b4867a7e1298325c05554f800484f53f01c5be380bb5aad6f3fcd97"
+    },
+    {
+      "id": "unsupported_namespace_attribute",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "097d55743d247d65d888d474d32828ef9703dcae9b1eb5c5507d31b643fd756a"
+    },
+    {
+      "id": "inline_child",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "f6520ff9356a002105bf47ff690deff14832aa58c0fab69f9f6e34a0ead76ea1"
+    },
+    {
+      "id": "inline_child",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "61040fec6b21be9ea2b56b7e2490e3cbeb025d3b363f60231f9141aa96e955ee"
+    },
+    {
+      "id": "inline_child",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "4d513a3611b75b340e0df4bd1756078985216c2b7760f40b778e1321e7525805"
+    },
+    {
+      "id": "comments_whitespace",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9be6e4b822752d168cfb39f2a73c223e9ae08727601628d1f6a0e48c93db0861"
+    },
+    {
+      "id": "comments_whitespace",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7d6b29b428d4bbd61f6a00d7f9fd6b41e242153b73dbbc8d0d2d62b6abb63d68"
+    },
+    {
+      "id": "comments_whitespace",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0273004927e9d2a4c3d57d4c4314db48cf6d6b791a3bca25151c705725090b7a"
+    },
+    {
+      "id": "text_payload",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "939446b1f9621b64c5c4a3a463f1f044783915271ade81b92823235c1945c500"
+    },
+    {
+      "id": "text_payload",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "db8257f0cf438e10001b4dbd69eb4ebf33dc8248f647f7ef0da814e825a5c815"
+    },
+    {
+      "id": "text_payload",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "be7d6448bbe737698228fab3c246d7b799650716cda9a7a2ba719e868dacefd2"
+    },
+    {
+      "id": "cdata_whitespace",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "267bcf9645e6ad7e0e5cc09501b8c1f57149b009d6a5379910333c7edb74ab53"
+    },
+    {
+      "id": "cdata_whitespace",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "a19ef722bc13d62b58adec988821e9122f753a438f4046051f089e5547e0843b"
+    },
+    {
+      "id": "cdata_whitespace",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "0a1ee68a55fa3fb07fe516d2383040bab0da3d868662ac70a62bd9c8a8784a43"
+    },
+    {
+      "id": "processing_instruction",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "6869a0b12e34dc8d632b63d207d77cb24d05c5a05281717e4dbec18d6f6c2cfb"
+    },
+    {
+      "id": "processing_instruction",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "fc566237a95c857a31deea81ed87e76a138760b6ebba74f05ffbb5783ffd766e"
+    },
+    {
+      "id": "processing_instruction",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "0d72eec032a186ab4d91e4d6295843a188ddb88d2d80701e3fa03c756ad3d3e4"
+    },
+    {
+      "id": "duplicate_xml_attribute",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "12cf0e4f4566e73f51c0e077c51fb596e93f4ae0cb787c7ddc7b28cdae1c2d5b"
+    },
+    {
+      "id": "duplicate_xml_attribute",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "2fabe48a9b7073c77bce065e30b7c64d6b2c90661e68b0e171636c5222aea2a5"
+    },
+    {
+      "id": "duplicate_xml_attribute",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": null,
+      "state": "resolver_setup",
+      "complete_sha256": "10bbb26faf81759ed6cc28f7f65380d763d89e79079952a39069f1bb2dfd67bc"
+    },
+    {
+      "id": "agreement_exact",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7e9ad94f82ba29a95d84ed2df41a1ffe1e719c08ae7eb1d637be8b17d8bb43a9"
+    },
+    {
+      "id": "agreement_exact",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3d5dcb6ac87b3e670d3a5e39896e918e2eb1e5ecc6c9bcf21b765965460cbfe3"
+    },
+    {
+      "id": "agreement_exact",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3f0558cf3fd9499eb76db260d5478cd8ac5f429e23cd967f9c19aa9e17888114"
+    },
+    {
+      "id": "agreement_exact",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "4a07f3492ddb313e2dc7df34d4bcaa7b8e6fdad3d8cb0ee0500fad572f8f881e"
+    },
+    {
+      "id": "agreement_mismatch",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "6ab9482b1351a5ace0ae1665620d61e6761027562fcd5220b521bb818e7b1e4e"
+    },
+    {
+      "id": "agreement_mismatch",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "60d52777449983e4249883218a8c063499852a5a97fd4115e90505163ffacca4"
+    },
+    {
+      "id": "agreement_mismatch",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "f6b905c1168d4498ba5f22dcaaac984b7469763eb018f1a71c713f9583f59ee1"
+    },
+    {
+      "id": "agreement_mismatch",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "47aa8019a50e9be0ea6f0d5e3e0f55b401b1ac21c0431cabdc019ef026ed77d3"
+    },
+    {
+      "id": "ordered_exact",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a8d6d84a42d98b98962933dda110ce92dfeb16b8d5acb157d4f0cf01c94109b0"
+    },
+    {
+      "id": "ordered_exact",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f1b94e4e315baa0d098d7f1a6e629709d7f4078d3a581f3d858f9d69110fa272"
+    },
+    {
+      "id": "ordered_exact",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b189c2e217365a42ee8dde47b0545e620ca4529231a37b1a62ac677be8b8e3ac"
+    },
+    {
+      "id": "ordered_mismatch",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "cf6488de93776c276ec838ef2d87cff3d50652569c29c85983d5ddae14ba6c1b"
+    },
+    {
+      "id": "ordered_mismatch",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "5cc8507e74bcb97d2a3bdc565cf23f53dfe84ae5e43f1b382a6a3cd2be666eb8"
+    },
+    {
+      "id": "ordered_mismatch",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "7d1f1d027317b1a41aa898559152ceef61b072c03d7af634bfe1378c81e77af5"
+    },
+    {
+      "id": "wrong_super_kind",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1e398fa43a0f47bc00e28f0fcd456603d846d7fd596b9c10bea7ded07668cb58"
+    },
+    {
+      "id": "wrong_super_kind",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "44f491783e4855efdf916c1ec7179385932c855baf8734e71488c45abf62b637"
+    },
+    {
+      "id": "wrong_super_kind",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "2d6fb49b9be0818f32a536e03ded2caec482ba9c29dac64a55e4f0dd615db7ac"
+    },
+    {
+      "id": "raw_generic",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "03ab0239e7d4b66f2f4647acdd327e4ae38ea7ac9a791f6436de0acf39338d16"
+    },
+    {
+      "id": "raw_generic",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8228c14d8495192325cf12ee2a8e4112796d5ecf286026dc3157f13e3517be5f"
+    },
+    {
+      "id": "raw_generic",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b73869831762ec4d835a7703cd55ea342f392697422805789b5cfd0a24dd6820"
+    },
+    {
+      "id": "raw_generic",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "364b6ef0e70d2b98a4c1e42bfe4954fa4510266543907fea43c8176f19f7c198"
+    },
+    {
+      "id": "applied_generic",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2ed8faf7e16d6adfcf9f15fde2592f61652b6d8ea095c8ce2c3266bdd8451779"
+    },
+    {
+      "id": "applied_generic",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "6bc04889baada62c6dd488373ce29515f5f588acb51f354543d61c9563c90fcf"
+    },
+    {
+      "id": "applied_generic",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "cd3ecdef837b72ed8334933311cf869453dd10a005ab4e5b0e1091c4bf679552"
+    },
+    {
+      "id": "applied_generic",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b55757d70f220df147c8bf529c63f4d213c8da6c50dffce0af2a6efa6c10ef8d"
+    },
+    {
+      "id": "parameter_erasure",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2553db2244d9b6a8504918a08371de2c91b5aecf5a0f11cee654b02a2055a1ba"
+    },
+    {
+      "id": "parameter_erasure",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7ef15ae3f9ac8e045207ae2bbd86af23d85b67a9a59865a54b63f5b647906f82"
+    },
+    {
+      "id": "parameter_erasure",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "25a14f3bed8b6632fbc00a1421b0c06b40a059825ef3355f081a9e81e1527631"
+    },
+    {
+      "id": "parameter_erasure",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3b197654d2657ca1ca3b1ab4e1d4f5e5ca28220bb58576bd6e04b6da038945ec"
+    },
+    {
+      "id": "bound_kind_order",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "c7f2e24f4e4c9fb031ad023967c5e4b6442033faf53114777162f65a8efa00bd"
+    },
+    {
+      "id": "bound_kind_order",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "48e7709353250ed2c291743c8bd2f6a2627e4ed57a8166ded9d9a000375f5ad7"
+    },
+    {
+      "id": "bound_kind_order",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "64107b124302267cf29d077fe96978c8527c063ca6dace190efa264d5454c7d1"
+    },
+    {
+      "id": "bound_kind_order",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5a7605ba184bb348cb50ae6d881ec9c924819f30f246f515aa1dcb5ffddc1a7b"
+    },
+    {
+      "id": "unknown_legacy",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "44580d2f6b7a9d9135b5c4c8e03acfdd721f0eb0a641e6fb04764ad898e323dd"
+    },
+    {
+      "id": "unknown_legacy",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "fc786b62a9cac98c7af3608ab7386d43fc2d9ba637f903417d84e7f2adf19c47"
+    },
+    {
+      "id": "unknown_legacy",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "38cdad4bbd360a887a3b2fda005d743d0551715159403105de3434fae2cd2397"
+    },
+    {
+      "id": "unknown_generic",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1655eca14d499a4c592f902ad631111183130295cd2694680a0e2962bb270981"
+    },
+    {
+      "id": "unknown_generic",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "4c03bcb9b73564ed22b76af09b768bdf4b3ba34b269cbbc1d4dd55b494644171"
+    },
+    {
+      "id": "unknown_generic",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "431a69eb1ce81f44d630180c62a9ed117ac5f2e3ebf6b964035808f3cf0d90ad"
+    },
+    {
+      "id": "unknown_generic",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "6ab140d273a49a7d9aadae9283dce2dff39e79ffa923e6e51f2ec252227b9005"
+    },
+    {
+      "id": "unrelated_annotation",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f0a5074a663c200ca90f0d8e854b7fc67cebd9402b801e8d14c0d4009cfc808f"
+    },
+    {
+      "id": "unrelated_annotation",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9db87dd2f72b55d53992753a5914c727b04502e80204105fd9c59e92b4571f10"
+    },
+    {
+      "id": "unrelated_annotation",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "ff6ed0487ef93b502c157e4de2bb2d40c1533cf33fdf813193a6d823e978d77d"
+    },
+    {
+      "id": "exception_order",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "be02e46e1c46214308df0814bfd17ca86eae68a789205b5fa8e113d89bb7284d"
+    },
+    {
+      "id": "exception_order",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9fead60ef1ac71600fde7656f65491746b4d94970d17dadcf7693bc3273bed68"
+    },
+    {
+      "id": "exception_order",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "6d978ec59db22e1f09ea30e0f6c951d451e02b815cc080c299ede0d0f8b56858"
+    },
+    {
+      "id": "cross_resource",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e844f3e50cb3d00ab0e109e4372218fb818c4aeddefd5c50ab49ee1e9b91179c"
+    },
+    {
+      "id": "cross_resource",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "e775ddf69ad3e653917bf88570bfecc1f3f57aa18e7336d5f285888f63325773"
+    },
+    {
+      "id": "cross_resource",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "error",
+      "complete_sha256": "d0956490384b619121fed5a7bfe7630c0a5d701b518ebad642c338828fa4be81"
+    },
+    {
+      "id": "literal_556",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "81797f67019d22c594db1e53929f88788956047c1105c801c8f933cc142a822d"
+    },
+    {
+      "id": "literal_556",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b33d6d17bac916de81025d2c23ecc4d238e0e8232e9d05f2a046af88c5f81a0d"
+    },
+    {
+      "id": "literal_556",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f225d3926ed84f337ff2d56b14f1dd679a94b28276e48734063a49037029ba40"
+    },
+    {
+      "id": "literal_259",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "88779a40ba998c98dac4625ed5c46a9f7f1fa8aedf7b3cc0b1c64884a3fd0ed4"
+    },
+    {
+      "id": "literal_259",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "673cc6b6cf1b86e3d6c581e99388c0595f74cc8e7e8419dd31243b6fdeb33edb"
+    },
+    {
+      "id": "literal_259",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9d41f47048777523859693b4e405e417ba4bbd3baa880ee210697493baad2437"
+    },
+    {
+      "id": "literal_259",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f2cd976600eb989b4e9332b78e7f1f017c9d945c24aa8667d89f74ae10448f02"
+    },
+    {
+      "id": "literal_390",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8544f2179d765f5c371ee4fadc75fb41d8a2034431f5842e9a6b9d9b8855cee9"
+    },
+    {
+      "id": "literal_390",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1d6a92847caa61cb4ea2dfbc161a214c1d75883de7eb0dc220fe19922d779b81"
+    },
+    {
+      "id": "literal_390",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "36af9af78ed149b6d9c0c8594d98b3e75288b1f5ff577d66d73e6e973f472a27"
+    },
+    {
+      "id": "literal_390",
+      "operation": "normalization",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e160bc0ef72b473458824b320f94f6c5e50ea0b846d0eaa68866e2f905beab9d"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "37f17f50c118af9a8722d6548494bed71e23bbe2c36187ee6b8d177b8f7f2801"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7e39eec1bfb78808bc53a6ea76fc92b907e527772d76eebd7263a8cb920e81cc"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b1893a98031be7a91822399be38867529d20c87b77cdb4141078fbf58562776e"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f3d031893665511d6293651b8d6cb6928a27459e61f7b2bc93e6c924e4709a4f"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "bc39d90ced06b01fa55393c0fd40591deee1dc49d33611f4f9d1e36928df510f"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0c0511f2715260b5d08987dad65a91de12f26e087cee217fca44aec5309f48e7"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2a47871b512a53805f037cb0fc29efea9ad61b2806d4190fc72b8f14da3de53b"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "887b1fd608d4a36acea6033499479df6baa6b89c80c2e37bfd0ef18bab3c857c"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0826ae84b3438401ff30d5f889161ff0f720da38f06455e7d8496cfcdcf87686"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "68177ca8132c0903d00f1c5633bcdbe6398ef1122f037fc81b50318c172123a8"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "caf8ae8aeb9b76ab16f33f99f2970b05a5519a7a7927bff0a0c0412b4eabeb56"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "51102ca69adcab69364f4db281abefab11e04aa8e9033cf8613683e8db2cea5b"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "legacy",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7c1cec124b2cb1f2a51449eb65c2b4d36f3edb7353480e599af6b3ea3ced1d6d"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "agreement",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "48ce48daa6e1064a6daeb180475b8ec3f95ec346eab8934ad97fd4e1681a4095"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "inventory",
+      "profile": null,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b7dc235d90e15bc37da149149a9d773375e1d24edef3762ea57c7e6eef5a5a45"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "parents",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9b5cedf37a2f8fbf81e2775b803954da9f1c9e8cf0a4eb0ab14a4697f9bac0e7"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8e14f1b7308813277f42c80bbef4cd7c001fea8645110e0c86b88acaea3d7482"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "compiled_signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "55c65d2bef1b4b4e66f9e9a58c3041e988e8d228e8106670dd160e2a2609455c"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9a583880fa5b9e904de1a54a953aa2564d57e6f65e16de27c7b637ffdc4147d9"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_views",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e7b256d3f9f02311191349af60cbac7172b3342a6aa7f6bc674c97d11838f6df"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5cb1e0381fe2e4829cbc6a89a349f25d6bf5d948f0fd7091914a879e44a2302a"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_materialization",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "ac65e2b56c69f885a217473cd5a5d5724f9c9602d1d6a87fa3eb7e4613990ff5"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "parents",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7323225b39752addb5f78e216929b48ee2017c767da2d1c84764482ffff8dbcc"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "efd1ce6a192ced822f54b50832cf2d385926e8ba9ee5575b11e60c8cee924b2d"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "compiled_signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "4392e34db3762f1bfdde9605a60a224887d99aa59b1a9503105474edb3589a05"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "788dbbab91b023486324915a622fdf7d2dce201a0c3290859e38e2d01a908684"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_views",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2a991e742e81c23906fc9bfe9aa236feb9a2e8379e48d104176b53c7e4c17adc"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "cebfd050f2302e169d4a9c4fcb6c2b5a811a1adb7562d5bee59afc999755cd5a"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_materialization",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "039da73df669a43f37ab0c6fce737de7db3d25d2e125a34186aa048a4ea1bfa0"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "parents",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "42a6b039454e180527c23fcc7462366581f206241fe9593566decbd5e18776d3"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "6a08dc91410cc817ab01dc3b22b2e2d0be0058690e4d7012d4890d1b807b23c4"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "compiled_signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8a1856fb1278b42d3f1f3fdb525927b2605b0c7a2e0ed6df24de7a3598e3a105"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "06bdf2a1137287702db947ee0fb5cd2e40c7efb093792e846af5105dde61b39e"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_views",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f862b31bc53fc6c6ae98e08ce92fd5df78871ac56616a72c06a7af30b785c91b"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "794b3960272d0a38e639281b0dfff7a16c541466ba4a9cf52406d545432e2e15"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_materialization",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5500cdcbe2c185b75af02b350c7c7f8a6face20edfed31598823b13a5b386a5c"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "parents",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "efc27b037745126569cbd25ac643118dd7a7894d707744a725873956d0a85bca"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "728fe44bb064a2975f3ebcd631c49693885aea67aeafd203d1c12a654d84d8bc"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "compiled_signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "6f5e7b1f29e85a41bec510b86cccdb9b6564d3c4c071fee51180c59b585dbddc"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "fc313689beb971c412632fef970076e91dc9efcc135df1c8e35595c7779acdc0"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_views",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9b6b9cfb95cd8c0cc26f54befb3e48288621e94f0a87eb590c4a746993e464da"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "4c45bf80035a6122554df5b71af5b3bcd0c877b64e601a509beee30b495f88a8"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_materialization",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "75073f8c326d2be71d6b4faf7f1b35e097702118f7072152b85884696279b40a"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "parents",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "25194d5c1e1f6dd1c489ba5b262c917d65e4ef36ae33d68d9f9c5076d1634438"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e7ef28fd4742c436eb0f753aff917f692575057c83190573f0369e6dbe409db5"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "compiled_signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1f729728ea83e26c3c0fc7c3fe17c7c70034f68baa865d689b3d723f0e73036c"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "13013947ad4a37881a864380a32c9a388f3780840f76f59c69d0fba8c5f0bdec"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "sources_views",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "33fe27a1e9450c9eea69b63d926eca9deeabb9543450e496bb85404d3265c1d5"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "12b53cf4432742b2c2d44fc13c9042a178b4502a6133558cbc6833e4d8750235"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "runtime_materialization",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "6d0f886013c98b80a44bec82fe468fc243f123d8b2cc93ad313bd058fb6b6fb5"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "parents",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "d977efa2621444024c71fdc5f5edeb738c5c13b865f9260e8f016452ddb128ea"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a52c88353aaee0e59893c6af7aef88d1dbd1963b4bf40baba0258d38d8ffac1a"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "compiled_signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e2196dc80cddb17e6528c6085dc682a97e1cbb177a75cda769cdbcbad408dc67"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0114407226da91b4037eae51ee52995e63bd6e3bdbd3f204de7eceef30a7c5dd"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_views",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5989de76fde570bdb58a573dbff2252f47600a9b5ffc9287875cc96c2fd1b4cb"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1b5a15beba154cfd91175b31c7dc0b4961c4050ae1b34047c8b9f4cc4f98f17a"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_materialization",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3a0700a8e1ae97589f10e67395fc55070b4692487131744f8275413040f83569"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "parents",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f3eb0e784ff04a8c1f107b08f0e271740cf9845558e0434566201a3aef34b080"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a39d7642490765421d78f406748e1a7b308d5af136bf65e5ace5f68e13771a26"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "compiled_signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "fb743a0a8e8b32b504cccc79a6d962fe2d87725bb2d8fb4cadff3b21719751af"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a3e4a73a8bb258e107e418c8c7fef0517b7d86f51d4ec92064b6e56e605c60e0"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_views",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1fdf267c4cea78fef33a051ab6af0f21862889caba9b08a35a5a8a4da911f93c"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "c8be94bed336cb9796e4612742a929d7737009d83a2327f01f619181284b54a9"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_materialization",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "d27677c74b332ba06790194d3f6278744c5dbd085269e142efed70e811129359"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "parents",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "6d557bab9327ab043cb9515a42a02f0d9c68b790251e68bf5e8cca8510990356"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "397d7a366ffdc18b910eca6bbf579d3301692d27a0cd3dd1a785fc4629baeb96"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "compiled_signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a2554445ed708f593e2d5aa82a1318c024f0e752c5b1ce07eb5f6350b752c332"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1cf9b6bb41a05c2a5d416e7a0d9a7bed57804bdd94dac63e22e2ac7c1a1fa43f"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_views",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "21f3c8eb740c994d234cd955beb773ffedc43f2a20c209ea4be24e54b5ba0cd7"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3ec8db06a6e7f8ec9caeac9e00f783159d4d43309a22cb4fdcf146f0b99a70b1"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_materialization",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0f264b3a72ce45e0c471f895541e7519d62bbe26327c0717cb012407615c0411"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "parents",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8a6af419cc698df0c4dfdc9e18e94dc75c51ef5fb1ce08effa58271cb6ca4f1f"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "eb530ceac50597481fefd3ac4545b0242f42e90ccddecb363f124bd404825315"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "compiled_signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "fd871a0ed2d7de2a7846d33076bf3670b6da2e08c07973eff4cf923947427af2"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "60674663b0d67d93db33a7b7e2607ad2f683008eba1f809c539a8f9039dab991"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_views",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "ca5761b96f6c013efac869586255b29fccb08e5f9563704e27dfa14afb0c0ee3"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "da5d4b366381faaaedf90f353856ca2c7279ec8c12a33c33fb68ad4e31a33625"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_materialization",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2b4406421909c1a5438825d14dd8fcf47cf4785b60a8ea64885eaa2c4a268a8f"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "parents",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "4b47a256fd09f0d651560c72df5a59f482aaab5b9668f1e5dfd80acb886583db"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "68c09067828fad73969c9b74591bb06f7142e64028f2a05e9d8e7b26b47b1f97"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "compiled_signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b00b193949c4a5e9e5cc210c4eab31cd465e0154e7004c37e8bf573921233fa6"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "ed56b6849c0b7e783b1f3585783883fd4e8e7c22767092bd0c7326b114172024"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "sources_views",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "354f93c4ad838867eaa7fb202424c5908e57f0d485779989a3362bb0e6e291df"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5108959844ae43a19e445998ca31af2d266081cf2085f1bf60b82f7ad594d930"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "runtime_materialization",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "51159ed85031fa2df607f3b1873c5d642cc8311358ede9d34d5e11601fb405be"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "parents",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3f0e9e351192a2a70435349669d3825a9cc97e9b969e33b358b6571cbe3431c7"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8cc685cc6ac47592459a5654b5df03ed46dfaa5a34df4c94053a8189e570c58e"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "compiled_signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "6a3b02a6c928f3cd589bd1c5e71fc757e691daca8b9e3ccb6c43520c5d327f5e"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "bdebbf4785ce8003261a071867399f560420ea10cf13f1df1b781389aae7e6d0"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_views",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a939aab3a24787de7571659708c15896fb2754fe831f8a99bbac0e8935a9fcdd"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f6177e6b71e098fe477d95dd1948c1832bb1b78e1fdfc529babfde8bb82e642a"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_materialization",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "cae70023c44fc462a467ec95c68b54ca799fecd479b17d2a6aa02cf6bd94a4bb"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "parents",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "427d44a4b047d1929181ff1218bee19f6a6e6f608c0d4c6ce90ec0471fbed4a5"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a10efd9f35bf923f41aa719700e887c52895776510cce5c842265249f0423344"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "compiled_signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "561c7725eabb43db2e34b9476a158f18e5379efb9a133088ff0196a57e7edab2"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "c06775af3ffd31a8cfd858a58f6548e42ada9920d266445a8c52b1afb2f08663"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_views",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0e65047223a655ab3198680d16a2baa591ebf268719a9afee12b6b8ae3455918"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "284dbb106dee5faaa003298333a2182178efc998eb9dc0a22cf52d30459e40c4"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_materialization",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "14d630affbc1912ed1363526d2c5ae7d532a3f1d3c4b9520c3887ab740ced3cf"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "parents",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "c8ae7da5fcdcb1b5fe8f0fa59543e114c1a5626892e3401e88b1f54a32f7df6c"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f8a4083c99e6966e311739200394ddfd67759aadba71ed7e8e65bed23edfc61c"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "compiled_signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "cfb914ac84ccdc12f6d0ba9f37460b696c6f4974481234c086d76d30d2943ad5"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "55ebf9f6eecaf184cf17a09d25d58ce7281a8ad0c1f082a141583e614408c5f1"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_views",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "d1f29554e40f0b0f976f0e2ae0c6372b925bcb86b983bc7b332d69ef415fbb05"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9e2204a3b12836f3b2d11559c8347b0584aaaf33d96d95b9c1e120c698aecb17"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_materialization",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "22a1a45bdc12f0629d7da2034a7366e25410db6e4fb663fba3030bb869ea6639"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "parents",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3835e723ce37af5378670102f9deffe78d8246244a13e53c32d21f08d600656a"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "209591ccf9e29e4820a34b846669d9b86a4e41cf9a55c8ef586a7f757b510a09"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "compiled_signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7b5372901d96386e307e9939f58378e05cf101a2a84a4a378699acaa8011639d"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "21f466b18395b97a50f66d067941b6a13932b4afdb4498b9a3174ecd6dfe0b43"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_views",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "c867123011e7a447f369bfc107819dde02e524822b2fa115f939e86e6128381f"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "cc59cae999ad2113049684ae2d432a6b940eeee5d71f7b4f61c18a9807e422e7"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_materialization",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "258cb087add659e0d2abebc698555788c49e20c645782a86b213222128c7ef71"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "parents",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3df3abd5987cbd85e1475008f80345aa5d772bffacb77b0cc3ac8599be157cf6"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "caad86431a585e05f241ff428d64266416c41cc37d895d003e70cee320015e99"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "compiled_signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "afe6f82192ea01a9043558be05f66fd8cdd8f2dae096a7c8d128ac511d109e3d"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "27c193bdee615e6909f93cbe0365f02a921146ef00af3d03b9d585e0142993a6"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "sources_views",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "04b01b7c35b5b2a84e356020a3e2611a700a0fd79012c0b1038c4a76dc78b2f8"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3e3bd57959df638b32279f235d7504d306493403bdf46416eed9f7656698e666"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "runtime_materialization",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "4677158203ae4af2ceb1c2eb70add3f0fb1feef1bcbe75aa05c4eadcb75590db"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "parents",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "efea9f3080e92f8fcb202935d2806df3e0dc21b3b8cc6101827fe200d7f91ed2"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "c9916ee1b3869bad51efa3ee153ec3c8c430adfc1e2f1cfe6621b808ab62c3c4"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "compiled_signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "418921ca706b3957048c32e5fec3c426ae9409fd57022f469e2dfd4ac92940af"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f88da2d051c8fcb13937d9a666db6624a7605143577ebf8eca56c77fb17f2765"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_views",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1410489b0dabd347071ed91b790f2a577bf0f558c55162b25f88efa4908679ed"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7cad8a04cc172464be26a133c379001dbbd71a90be24f74429f9c4662c58db6b"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_materialization",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2a1657a439a9ab36e83d2e7a9a75ebf03cf92640b3cae5665ac566ae9a6f7419"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "parents",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "aa7e88224e8757b3f0e004c1c2049585ab7c143f1b405de9badd1d07775fa855"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "17873fdc1dca276aa77dd1d5d858c16ebda010cee33f87046d46118da6514c31"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "compiled_signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5630694b1652c1f585ef4799752d1f3b2611f1f7f996f0c9e633cc3536e192f2"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "06e0f714fbcf678a643b3ab0f4a3a4415cdb34a85b15bcbceac99801a8161c6e"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_views",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "da6b4faf44c2f6a075bd1cceca9e88b3b560c99bb8818d6786d1a7a6287baef1"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "124c285f7c03c4714346def47dd749e8933c5841677c3a08d1a31a38a489b77c"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_materialization",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "70a57383bec44f54e2d69b9cf0ebdca3a063c76678ecde37b9c3438a5275c9f3"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "parents",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "45690488123f7e8b1cc37ece710493c2bb219f602fdf7438cc7e57c7a0c81e11"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3d58b2e252f0b4c1aacc7031bcdf33ade5db9aebd60f21be8b3a216d51c638db"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "compiled_signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "24bc5550854412ca13abd4e73e66da252e45e2bb257caf6c0a1d728d5cb3b4a4"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0fe8f60466e9afa0b038ca340d2b13774aca6e99ee8823a7268689aafc48ff83"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_views",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "26d91a0c659ba0a5de7a041f6155cb51b11aaa14a21dab5daf3ab31c88307a9f"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "96671164d4e0206b4f164405f295b8ee9da6ec225932ee347dd139dc69c8dd6f"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_materialization",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "e60054a64f7041d41bb4d4629ce4c2c76f7fad6de590df4572aaabb9d7f6e7f8"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "parents",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0e8a17095a03c2d0d0e29a5b8d06e4e0993099a735449b09d5420e8842c4eb06"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5de07c7002f4e5ae4b01abe63fc10e6f1a60495ba21adeb4190336d16ddf4c60"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "compiled_signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "bec371162e05365090e558b8ac0628da68629f8f7e6d579164dd1e396910a5db"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "3f53b3bdb4cb7a391691173050ff83cf52b5b51a4b04fe50df15ebd07a0b3a05"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_views",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "48448a2c7dbaed7f9a8772f717e8d5a1194d0ecdd98d679eee6a0414a57bbd9c"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9d4647aea0d6e8b28939fee6e0bd5db555760be9cda54b6d23ca78b19442238b"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_materialization",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5c273722506c0f8ae44632ed3a906569cde5f0ed42825f2b16af23b5c611980a"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "parents",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b757eb67e29e89a1389f11b486ca54cbf30e239ac19001547ee64e3e1dce51fe"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "061145735183d9b6e255b3f7dd6373e6b2b60f6843d04215e20609e98ca3552b"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "compiled_signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "dee09abf6304453fc94fc455ebe718f2ebd5851dc309173b5d860614f472e70b"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "b14489daaf2fb705c605d4ced938d589a9c944775af5c1be1612813dc74c55fb"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "sources_views",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "81e022acf02a9526adcb0f3fa67e0be27174180d41bad37ab2311acbf2e9394e"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "356f622bf02a1af90bdd10b75eef6816203474b234b4df9d8dda31d9cb4fae8c"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "runtime_materialization",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2202e0cf77f581dfe4a2385df4afd8f75527c570c4bb3e14b677948714772ff2"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "parents",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8d46814f997ce9e576567a4f375a7bcce23cd8025bd06a8352f66a70a71ce7f9"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "098b833e0eadb4bd78d2f70f6a940a74f51b389f624305b4a5ca3c220148c5cf"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "compiled_signatures",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7ad0be3e9ce9c3e0cf21d50c17f6c4fff4856d82d8361c6606b2e68d86ca9831"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "227dc93526a2c941073e0a7de556768c8d77de30ed83d2c7b8b5c18af996c958"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_views",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9eeb570d9b32b80059b40bef29c9c37ddaa6e0ce5ccede658188ff9ca258f959"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_owned",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "aff71db001c09cc9bc0b4c0f754c399b6647f6a67f871a1a1b156e17197f1896"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_materialization",
+      "profile": 0,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "cbb084f81ffd37a98d6aa34c8c844978bae9f29d9606b046fdedc2be81bbf9cc"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "parents",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "00dfa5440ca52250719cc73135641bc3cbf4a4285e659462c7d0cdf11c87e02e"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f7737be1317ed86ee0b7cb9381ed85d01bf315d60d0a2b95d290f444eab5c976"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "compiled_signatures",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f884e8c9671ca5bca6db276037f296747c0b97d8668c8578442ab6045821ba9f"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0cb92da259fce4882eed41cdbef0ea4d2bd3ba38427bbcec072dd07f36b40273"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_views",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "9b4d017a9c8da3017355437efc26b22917df6227fee50e62ee5cb6d2c8404fc2"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_owned",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "593610ac8d17289b73c9dff5653d5ff8ac6483dd7b08c537a8aff04c0ff99003"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_materialization",
+      "profile": 1,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "5feb479dcc078cc8d51a337f716b5671bff69f86bf7321703f25f8cc6eb6ea36"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "parents",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "234667a997fa633647a3c80e06fbdadc45e5e1f51801ac8758e717ace114f6e9"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "7aee86dcd6d2aefca4893eee29fdc3d16bcf7a42f7ad728b69635c6e4188c001"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "compiled_signatures",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0ef0131e85826031c707adc09177235668b9d5d6d15a6a4d5403c477c50e2cbe"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "acf6ed67b08437d036cb225124e651313b732a52fff6823cb2f916f756ecaf0b"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_views",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "bcaac5e478501d9702d6e7e15d550da63bbb643f8735d6d4eff7450d236db6c1"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_owned",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "f839fb3b4ca298affa2c2435d153b801d6a468cd30b132f2053b27671f75d402"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_materialization",
+      "profile": 2,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2b76594625745ad253ae93028c7a22f66eb46aea32ef79a0537827a4fefb3ff2"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "parents",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "118862cb510f995b5272d454de526037478f208ebf0020632f85ac54edf17309"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "2674e104a65cabd8cd6ce82361bcd385bb5ccf6e3fc2e5d08ea919a1b3fc1da7"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "compiled_signatures",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "563023e05bf7b403df4a25c11f4ecb11950e7a7121b329fcfcf43312acb370e4"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "74786bf245d8a2c5c4e25d8b17a6d0899732b031fb6ea324336ab95eecb8583b"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_views",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "20be5dbdecdaf72e7f19c3aaa4104395b7fc6f94a616d70b2dbbef0a8e26dc66"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_owned",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "887b2808e41ce99baeb53474bab270cd89d00ca5c88847f71695ee435f6a01de"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_materialization",
+      "profile": 3,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "776912d90ef28c1302200c47d97716102194a27b26453d2f57fcbe6cdf1d224e"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "parents",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "8d6f511677f53a06da4e89e1e1aadedbcfece1d5e8982dea23bd6cfc452d9318"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "d909038b0a802cf6527070f225bd54466c6e4cbffda708b83fe14753dc987633"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "compiled_signatures",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "227e3aab844acbfa34e326b50164263d4bff9649fb6336a92cfe2ba7dba42f19"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "a9d443a5c6724bb77200b57a3065b25be645fe66234df7483692f1261a924a00"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "sources_views",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "1d558a9f007593758b678dda5c0734c62f2294e87b50eb1f81f95db29f23bb95"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_owned",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "95c86dd9f1ba3e05794873fda6f4c84a60c194e3ac528eb34b51c5c5f26bc941"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "runtime_materialization",
+      "profile": 4,
+      "quantum": null,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "ok",
+      "complete_sha256": "0156fabf3bc14b8e907f21c6df6907b25d8acaa0a361866e1642af89c7499ad8"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 1,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "c2a9afadf2d870d592630bf0a9e4f5cd59fd9a1088823db758e6a61d3d8a5420"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 3,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "5d656130c2287da1b27c867b1f29db4144c311f68a3201060a668ae6185de023"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 256,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "b0d58fa563f19c63ef38e5212db048b8698c2b68caf3c9fa1def14f02a6325ea"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 1,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "2547f8149a61b09e02a57463e11efe05698e38baebfca5c863334c2b4a7ef4b7"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 3,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "1411a3395a0582de7a6d7f4018fe12eb3a604a1ae92047a0f692f90a29ecac9c"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 256,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "733adbaf5276a1e38942bf23088add0d8058ed510567ba5e2e33ea703365412d"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 1,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "984422ac4305980af8f6ac1a6e65c8856f3d75e225fc75176cc833e0ee59c67c"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 3,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "324a03dcaad652b5bd97cace7b110893df57041e2b13b9b21c09f1b6c7f87652"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 256,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "29b143e516915bf03ad6f518988ccbdbd005ea5452280e1c837e7d7bbea78df3"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 1,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "925aa60bc757ced5d1126802663092b80272fd77f191c1e83f23ec949e7a9068"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 3,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "e57eaa1937215dae7837d70aa5b1d3713c68ff27a5156e4b6e0f7d213ba71b7a"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 256,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_error",
+      "complete_sha256": "e6d804dd8f7489aa71248122e842cd563d845bd13fd226e10077e1cdcbceb3f2"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 1,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_ok",
+      "complete_sha256": "3fbea478c6949e8f9da2ccab26d7cd98947660ce4cd8ab0a0dee889adf6c39ca"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 3,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_ok",
+      "complete_sha256": "63a1062cb424c8f062f2b9a3c7645c2ec3141357fe1dab5078006a26fff948b7"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "operation": "public_materialization",
+      "profile": null,
+      "quantum": 256,
+      "control": {
+        "deny": null,
+        "max_storage": null,
+        "max_work": null
+      },
+      "state": "public_ok",
+      "complete_sha256": "aaf684fcbc0cc20be050af220f2261ab68ee93cb3f6d913632100a895b54cb4c"
+    }
+  ],
+  "main_jsonl_sha256": "96e7df3ba553f6c7592f483c334f57f858766cb33651baefadf38a40d6541c37",
+  "controls_rows": 9779,
+  "controls_jsonl_sha256": "a190d10ddd73045069b69b81019114fdd45fc3fe9280c7450b9de2c04611a891",
+  "original_full_artifact_required_for_audit": true,
+  "source_setup_rejections_no_award": [
+    "duplicate_xml_attribute",
+    "multi_single",
+    "space_single",
+    "unbound_hint"
+  ],
+  "public_results": [
+    {
+      "id": "owner_ecore_generic",
+      "quantum": 1,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "quantum": 3,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_generic",
+      "quantum": 256,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "quantum": 1,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "quantum": 3,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_raw",
+      "quantum": 256,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "quantum": 1,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "quantum": 3,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_qualified",
+      "quantum": 256,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "quantum": 1,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "quantum": 3,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_ecore_method_bounds",
+      "quantum": 256,
+      "state": "public_error"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "quantum": 1,
+      "state": "public_ok"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "quantum": 3,
+      "state": "public_ok"
+    },
+    {
+      "id": "owner_rcore_generic",
+      "quantum": 256,
+      "state": "public_ok"
+    }
+  ]
+}

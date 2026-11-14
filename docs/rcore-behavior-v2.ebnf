@@ -1,0 +1,56 @@
+(* Rcore syntax version 2. Lexical rules and limits: rcore-behavior-v2-syntax.md.
+   Braces mean repetition, brackets mean optionality, quoted text is literal.
+   Reserved words require backtick escaping when used as identifiers. *)
+document = "rcore_behavior", "2", ";", "module", path, "version", string, ";", { declaration } ;
+declaration = import | [ visibility ], ( function | derive | validate ) ;
+visibility = "pub" | "private" ;
+import = "import", ( "model", string | "module", path, "version", string ), "as", name, ";" ;
+function = "fn", name, [ "<", generic, { ",", generic }, ">" ],
+           "(", [ parameters ], ")", "->", type, "=", expression, ";" ;
+generic = name, [ ":", type ] ;
+parameters = parameter, { ",", parameter }, [ "," ] ;
+parameter = name, ":", type ;
+derive = "derive", path, "(", name, ")", "->", type, "=", expression, ";" ;
+validate = "validate", path, "(", name, ")", "{", { requirement }, "}" ;
+requirement = "require", expression, "code", string, "message", expression, ";" ;
+path = name, { ".", name } ;
+type = type_atom, { "?" } ;
+type_atom = path, [ "<", types, ">" ]
+          | "(", [ types ], ")", [ "->", type ]
+          | "{", [ type_fields ], "}" ;
+types = type, { ",", type }, [ "," ] ;
+type_fields = name, ":", type, { ",", name, ":", type }, [ "," ] ;
+expression = coalesce ;
+coalesce = disjunction, [ "??", coalesce ] ;
+disjunction = conjunction, { "||", conjunction } ;
+conjunction = equality, { "&&", equality } ;
+equality = comparison, { ( "==" | "!=" ), comparison } ;
+comparison = additive, { ( "<" | ">" | "<=" | ">=" ), additive } ;
+additive = multiplicative, { ( "+" | "-" ), multiplicative } ;
+multiplicative = unary, { ( "*" | "/" | "%" ), unary } ;
+unary = ( "!" | "+" | "-" ), unary | postfix ;
+postfix = primary, { ( "." | "?." ), name
+                  | [ "::", "<", types, ">" ], "(", [ expressions ], ")"
+                  | "[", expression, "]" } ;
+expressions = expression, { ",", expression }, [ "," ] ;
+primary = literal | name | "(", expression, ")"
+        | "(", ")" | "(", expression, ",", [ expressions ], ")"
+        | "[", [ expressions ], "]" | "{", [ fields ], "}"
+        | block | conditional | matching | lambda ;
+fields = name, ":", expression, { ",", name, ":", expression }, [ "," ] ;
+block = "{", { binding }, expression, "}" ;
+binding = "let", name, [ ":", type ], "=", expression, ";" ;
+conditional = "if", expression, block, "else", block ;
+matching = "match", expression, "{", [ arms ], "}" ;
+arms = pattern, "=>", expression, { ",", pattern, "=>", expression }, [ "," ] ;
+lambda = "|", [ parameters ], "|", expression | "||", expression ;
+pattern = "_" | literal | "-", number | name | path, "(", [ patterns ], ")" ;
+patterns = pattern, { ",", pattern }, [ "," ] ;
+literal = number | string | "true" | "false" | "none" ;
+(* name, number and string are lexical tokens described in the syntax contract.
+   A type parenthesis is always a tuple (or function parameter list), including
+   one-member tuples. An expression parenthesis without comma is a group.
+   Empty braces are a record; blocks require a result expression.
+   Lambda bodies extend through the following expression at precedence zero.
+   Semantic restrictions (arity, duplicates, exhaustive match, types) are later
+   stages and are not silently inferred by this syntax grammar. *)

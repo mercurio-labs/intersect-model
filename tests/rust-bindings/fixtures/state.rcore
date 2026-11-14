@@ -1,0 +1,17 @@
+rcore 1;
+package `state` version "1";
+metamodel "urn:test:generated-state" prefix `state` {
+  abstract class `Base` {
+    attr `ordinary`: String [0,1] default "seed";
+    attr `history`: String [0,1] unsettable default "seed";
+  }
+  class `Item` extends `Base` {
+    attr `lockedComputed`: String [0,1] derived readonly;
+    attr `computedHistory`: String [0,1] derived unsettable default "seed";
+    attr `computedBag`: String [0,*] nonunique derived unsettable;
+    ref `computedLinks`: `Item` [0,*] derived unsettable;
+    attr `tags`: String [0,2] readonly transient volatile unsettable;
+    attr `bag`: String [0,*] unordered nonunique unsettable;
+    ref `links`: `Item` [0,*] unsettable;
+  }
+}

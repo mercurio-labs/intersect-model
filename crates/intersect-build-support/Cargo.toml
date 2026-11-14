@@ -1,0 +1,11 @@
+[package]
+name = "intersect-build-support"
+version = "0.1.0-alpha.1"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT"
+publish = false
+description = "Host-only deterministic source identity support for Intersect packages."
+
+[dependencies]
+sha2 = "0.10.9"

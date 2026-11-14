@@ -1,0 +1,1322 @@
+[
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 0,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 15,
+    "case": 0,
+    "error": null,
+    "mode": 1,
+    "sha256": "1f76fc48aca13f9c63208a9ed16868a4bbe35eb3c6526166cde052a1c8a97312",
+    "storage": 1596,
+    "work": 12
+  },
+  {
+    "borrowed": null,
+    "callbacks": 15,
+    "case": 0,
+    "error": null,
+    "mode": 2,
+    "sha256": "1f76fc48aca13f9c63208a9ed16868a4bbe35eb3c6526166cde052a1c8a97312",
+    "storage": 1596,
+    "work": 12
+  },
+  {
+    "borrowed": true,
+    "callbacks": 3,
+    "case": 0,
+    "error": null,
+    "mode": 3,
+    "sha256": "4721a6d97ce77abe1d284110f7c41df247ad31f20f51e4b7eedbaca3b5f83cb4",
+    "storage": 32,
+    "work": 2
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 1,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 19,
+    "case": 1,
+    "error": null,
+    "mode": 1,
+    "sha256": "bd8524ed3e563ee667bfa1ec1e9de020703792f5077aee27b81aa41e28c19b1d",
+    "storage": 2185,
+    "work": 17
+  },
+  {
+    "borrowed": null,
+    "callbacks": 19,
+    "case": 1,
+    "error": null,
+    "mode": 2,
+    "sha256": "bd8524ed3e563ee667bfa1ec1e9de020703792f5077aee27b81aa41e28c19b1d",
+    "storage": 2185,
+    "work": 17
+  },
+  {
+    "borrowed": true,
+    "callbacks": 3,
+    "case": 1,
+    "error": null,
+    "mode": 3,
+    "sha256": "5649e79e2bab5e464391cbd092392e367dfc6e359e23f0feb2588bd1c180fe65",
+    "storage": 32,
+    "work": 2
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 2,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 18,
+    "case": 2,
+    "error": null,
+    "mode": 1,
+    "sha256": "4cb59a093559e366a6aa4192233ad57c4eda4f3e7346620612976504a63f0678",
+    "storage": 2008,
+    "work": 16
+  },
+  {
+    "borrowed": null,
+    "callbacks": 18,
+    "case": 2,
+    "error": null,
+    "mode": 2,
+    "sha256": "4cb59a093559e366a6aa4192233ad57c4eda4f3e7346620612976504a63f0678",
+    "storage": 2008,
+    "work": 16
+  },
+  {
+    "borrowed": true,
+    "callbacks": 3,
+    "case": 2,
+    "error": null,
+    "mode": 3,
+    "sha256": "dec2bb3d8d39f612caf8984700fccbabecc04ce5acc90dcf8a00086da8fd3ce7",
+    "storage": 32,
+    "work": 2
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 3,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 4,
+    "case": 3,
+    "error": null,
+    "mode": 1,
+    "sha256": "7fee214ccf3285c11856bb4e9596d517a8171fa1d93002167a3615d7df85f399",
+    "storage": 160,
+    "work": 2
+  },
+  {
+    "borrowed": null,
+    "callbacks": 4,
+    "case": 3,
+    "error": null,
+    "mode": 2,
+    "sha256": "7fee214ccf3285c11856bb4e9596d517a8171fa1d93002167a3615d7df85f399",
+    "storage": 160,
+    "work": 2
+  },
+  {
+    "borrowed": true,
+    "callbacks": 3,
+    "case": 3,
+    "error": null,
+    "mode": 3,
+    "sha256": "066ca98582b428e630a56fee0d28846cf43c0a246e76a7c9bbd9e3c6badc3076",
+    "storage": 32,
+    "work": 2
+  },
+  {
+    "borrowed": null,
+    "callbacks": 5,
+    "case": 4,
+    "error": null,
+    "mode": 0,
+    "sha256": "dd375868fe22a217e89b21f048e3061995cd6bc529753eb4a45d466eeac6ac95",
+    "storage": 64,
+    "work": 3
+  },
+  {
+    "borrowed": null,
+    "callbacks": 25,
+    "case": 4,
+    "error": null,
+    "mode": 1,
+    "sha256": "c63b3a9133c1138c3dfcc5a201906f48fe47eea135e16dcd8a758589c9f5c16b",
+    "storage": 2296,
+    "work": 20
+  },
+  {
+    "borrowed": null,
+    "callbacks": 25,
+    "case": 4,
+    "error": null,
+    "mode": 2,
+    "sha256": "c63b3a9133c1138c3dfcc5a201906f48fe47eea135e16dcd8a758589c9f5c16b",
+    "storage": 2296,
+    "work": 20
+  },
+  {
+    "borrowed": true,
+    "callbacks": 6,
+    "case": 4,
+    "error": null,
+    "mode": 3,
+    "sha256": "52a2cc160ee9936e36a3096427a163e47b357dfdfa44af3de68662300dc796b7",
+    "storage": 64,
+    "work": 4
+  },
+  {
+    "borrowed": null,
+    "callbacks": 5,
+    "case": 5,
+    "error": null,
+    "mode": 0,
+    "sha256": "dd375868fe22a217e89b21f048e3061995cd6bc529753eb4a45d466eeac6ac95",
+    "storage": 64,
+    "work": 3
+  },
+  {
+    "borrowed": null,
+    "callbacks": 25,
+    "case": 5,
+    "error": null,
+    "mode": 1,
+    "sha256": "2e93002a5f1e69461613139f0e0564b88cbb453b5e435bed71c10ff6f87bbedc",
+    "storage": 2296,
+    "work": 20
+  },
+  {
+    "borrowed": null,
+    "callbacks": 25,
+    "case": 5,
+    "error": null,
+    "mode": 2,
+    "sha256": "2e93002a5f1e69461613139f0e0564b88cbb453b5e435bed71c10ff6f87bbedc",
+    "storage": 2296,
+    "work": 20
+  },
+  {
+    "borrowed": true,
+    "callbacks": 6,
+    "case": 5,
+    "error": null,
+    "mode": 3,
+    "sha256": "fb40dae7689bfdf3d7190c0b98f5d84dfaac18f20bfc757f28666c3192422c6c",
+    "storage": 64,
+    "work": 4
+  },
+  {
+    "borrowed": null,
+    "callbacks": 14,
+    "case": 6,
+    "error": null,
+    "mode": 0,
+    "sha256": "d7737f0f39c5e0f779ddcb93167c88ebba0d271b223818702dbee5321b3992be",
+    "storage": 160,
+    "work": 9
+  },
+  {
+    "borrowed": null,
+    "callbacks": 141,
+    "case": 6,
+    "error": null,
+    "mode": 1,
+    "sha256": "38abc11b672c7566b0fa6d037e8d9c3ce255d969a5b14392b682e4da537bdfdf",
+    "storage": 14588,
+    "work": 113
+  },
+  {
+    "borrowed": null,
+    "callbacks": 85,
+    "case": 6,
+    "error": null,
+    "mode": 2,
+    "sha256": "69ad1c5a9054c6609a16b0293aa7d8a585168db0e1256518775f85c404d6bc16",
+    "storage": 7592,
+    "work": 69
+  },
+  {
+    "borrowed": false,
+    "callbacks": 157,
+    "case": 6,
+    "error": null,
+    "mode": 3,
+    "sha256": "fdd60159f42508775398170cc58fa8eb58c3c7ea2292a7b36d552b0010398544",
+    "storage": 14748,
+    "work": 124
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 7,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 28,
+    "case": 7,
+    "error": null,
+    "mode": 1,
+    "sha256": "d7686914edde75b5e39a5e8e6c209f7a3b654310e2b1b22535267c3922dbebda",
+    "storage": 3160,
+    "work": 23
+  },
+  {
+    "borrowed": null,
+    "callbacks": 16,
+    "case": 7,
+    "error": null,
+    "mode": 2,
+    "sha256": "776d50b8dfe372d80fa6fcfa3a9eef3057f1906c0cbfc6431e535cbe24b44948",
+    "storage": 1596,
+    "work": 13
+  },
+  {
+    "borrowed": false,
+    "callbacks": 31,
+    "case": 7,
+    "error": null,
+    "mode": 3,
+    "sha256": "f9fb87577b1ea7b28bccd0a8ba28f98f4d6e674653ff9b11a4a07d54a3283af1",
+    "storage": 3192,
+    "work": 25
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 8,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 18,
+    "case": 8,
+    "error": null,
+    "mode": 1,
+    "sha256": "4cb59a093559e366a6aa4192233ad57c4eda4f3e7346620612976504a63f0678",
+    "storage": 2008,
+    "work": 16
+  },
+  {
+    "borrowed": null,
+    "callbacks": 19,
+    "case": 8,
+    "error": null,
+    "mode": 2,
+    "sha256": "49ba7ab48421209d7b95b1b2b6fac4814a61818200474d53a6737f702820c797",
+    "storage": 2008,
+    "work": 17
+  },
+  {
+    "borrowed": false,
+    "callbacks": 21,
+    "case": 8,
+    "error": null,
+    "mode": 3,
+    "sha256": "854457d167ab78d3fa13870e81f558e6214d75cc4b34d4273506c632e8cf23b0",
+    "storage": 2040,
+    "work": 18
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 9,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 41,
+    "case": 9,
+    "error": null,
+    "mode": 1,
+    "sha256": "b20b80580f0e468616ba7cb81fbdd273529f92dae01dababfa90d0608f86ff72",
+    "storage": 4724,
+    "work": 34
+  },
+  {
+    "borrowed": null,
+    "callbacks": 19,
+    "case": 9,
+    "error": null,
+    "mode": 2,
+    "sha256": "b4e77e882e1c5a033b09db3ecc601d3f5c5d38a18783de7b51eba3af2e4f8668",
+    "storage": 2008,
+    "work": 17
+  },
+  {
+    "borrowed": false,
+    "callbacks": 44,
+    "case": 9,
+    "error": null,
+    "mode": 3,
+    "sha256": "131944339e45f41b3c042c196dac86ccbc8147eb87d542648823e8458dc03d04",
+    "storage": 4756,
+    "work": 36
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 10,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 29,
+    "case": 10,
+    "error": "Schema(\"Cyclic generic substitution at memory:substitution-preparation [0]\")",
+    "mode": 1,
+    "sha256": "2e7eaafb327f1c0d27e3bc7da0720884fcbfb03659d16f56c3e636f839295195",
+    "storage": 3160,
+    "work": 24
+  },
+  {
+    "borrowed": null,
+    "callbacks": 19,
+    "case": 10,
+    "error": null,
+    "mode": 2,
+    "sha256": "b4e77e882e1c5a033b09db3ecc601d3f5c5d38a18783de7b51eba3af2e4f8668",
+    "storage": 2008,
+    "work": 17
+  },
+  {
+    "borrowed": null,
+    "callbacks": 32,
+    "case": 10,
+    "error": "Schema(\"Cyclic generic substitution at memory:substitution-preparation [0]\")",
+    "mode": 3,
+    "sha256": "40f25eddfb7212fcd71dacbef578cd55c19d915d1e8da154d3c72a9d4d72b05c",
+    "storage": 3192,
+    "work": 26
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 11,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 31,
+    "case": 11,
+    "error": "Schema(\"Cyclic generic substitution at memory:substitution-preparation [0]\")",
+    "mode": 1,
+    "sha256": "8d50f393e5ee1e5dec0c1fa33a4e696e47515b30bc019837f061a993fc9773af",
+    "storage": 3192,
+    "work": 25
+  },
+  {
+    "borrowed": null,
+    "callbacks": 34,
+    "case": 11,
+    "error": null,
+    "mode": 2,
+    "sha256": "19f1b7f5da59592c702a4bec8dde17335febce4a31a1a9950382d2d3252f00ae",
+    "storage": 3604,
+    "work": 29
+  },
+  {
+    "borrowed": null,
+    "callbacks": 34,
+    "case": 11,
+    "error": "Schema(\"Cyclic generic substitution at memory:substitution-preparation [0]\")",
+    "mode": 3,
+    "sha256": "8638ef9f6d107934ef9c64ffe506c6840e49b100f55d36f10e4e0b1843181023",
+    "storage": 3224,
+    "work": 27
+  },
+  {
+    "borrowed": null,
+    "callbacks": 8,
+    "case": 12,
+    "error": null,
+    "mode": 0,
+    "sha256": "cce89796d30da8d4d0e98fbf8350af4e25b245400700a14a05a82cf32db4fb5a",
+    "storage": 96,
+    "work": 5
+  },
+  {
+    "borrowed": null,
+    "callbacks": 90,
+    "case": 12,
+    "error": null,
+    "mode": 1,
+    "sha256": "cb5a5de50af5f07d962458cb65164f79a8932d57d42a4c3bef6ab8d306aa9356",
+    "storage": 9544,
+    "work": 73
+  },
+  {
+    "borrowed": null,
+    "callbacks": 56,
+    "case": 12,
+    "error": null,
+    "mode": 2,
+    "sha256": "06f69545b3fa5cb0c768130d822f7f7baa584e98f3c3437fa74a2a9db06c7624",
+    "storage": 5264,
+    "work": 46
+  },
+  {
+    "borrowed": false,
+    "callbacks": 100,
+    "case": 12,
+    "error": null,
+    "mode": 3,
+    "sha256": "f1169b97f353462aa0d8e9f8350f0fdc32c33db6e7f312832a4bb8af9eb4f3d8",
+    "storage": 9640,
+    "work": 80
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 13,
+    "error": "Schema(\"Wildcard cannot have both upper and lower bounds\")",
+    "mode": 0,
+    "sha256": "462a37d1b3519f4d724e5e2e1930d41a7ddf032f3f150ac12b97102d3ec15613",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 13,
+    "error": "Schema(\"Wildcard cannot have both upper and lower bounds\")",
+    "mode": 1,
+    "sha256": "462a37d1b3519f4d724e5e2e1930d41a7ddf032f3f150ac12b97102d3ec15613",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 13,
+    "error": "Schema(\"Wildcard cannot have both upper and lower bounds\")",
+    "mode": 2,
+    "sha256": "462a37d1b3519f4d724e5e2e1930d41a7ddf032f3f150ac12b97102d3ec15613",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 13,
+    "error": "Schema(\"Wildcard cannot have both upper and lower bounds\")",
+    "mode": 3,
+    "sha256": "462a37d1b3519f4d724e5e2e1930d41a7ddf032f3f150ac12b97102d3ec15613",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 14,
+    "error": "Schema(\"Raw classifier cannot carry actual arguments\")",
+    "mode": 0,
+    "sha256": "f6f0711b2787935ccc416281874c39524761da5de4efcd24518933705afcf1a8",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 14,
+    "error": "Schema(\"Raw classifier cannot carry actual arguments\")",
+    "mode": 1,
+    "sha256": "f6f0711b2787935ccc416281874c39524761da5de4efcd24518933705afcf1a8",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 14,
+    "error": "Schema(\"Raw classifier cannot carry actual arguments\")",
+    "mode": 2,
+    "sha256": "f6f0711b2787935ccc416281874c39524761da5de4efcd24518933705afcf1a8",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 14,
+    "error": "Schema(\"Raw classifier cannot carry actual arguments\")",
+    "mode": 3,
+    "sha256": "f6f0711b2787935ccc416281874c39524761da5de4efcd24518933705afcf1a8",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 7,
+    "case": 15,
+    "error": "Schema(\"Wildcard cannot have both upper and lower bounds\")",
+    "mode": 0,
+    "sha256": "eba661adef78db0af9ae3e592012679031a62d89d9b1e4d340cded3acbc9b2a4",
+    "storage": 96,
+    "work": 4
+  },
+  {
+    "borrowed": null,
+    "callbacks": 7,
+    "case": 15,
+    "error": "Schema(\"Wildcard cannot have both upper and lower bounds\")",
+    "mode": 1,
+    "sha256": "eba661adef78db0af9ae3e592012679031a62d89d9b1e4d340cded3acbc9b2a4",
+    "storage": 96,
+    "work": 4
+  },
+  {
+    "borrowed": null,
+    "callbacks": 7,
+    "case": 15,
+    "error": "Schema(\"Wildcard cannot have both upper and lower bounds\")",
+    "mode": 2,
+    "sha256": "eba661adef78db0af9ae3e592012679031a62d89d9b1e4d340cded3acbc9b2a4",
+    "storage": 96,
+    "work": 4
+  },
+  {
+    "borrowed": null,
+    "callbacks": 7,
+    "case": 15,
+    "error": "Schema(\"Wildcard cannot have both upper and lower bounds\")",
+    "mode": 3,
+    "sha256": "eba661adef78db0af9ae3e592012679031a62d89d9b1e4d340cded3acbc9b2a4",
+    "storage": 96,
+    "work": 4
+  },
+  {
+    "borrowed": null,
+    "callbacks": 386,
+    "case": 16,
+    "error": null,
+    "mode": 0,
+    "sha256": "98cb7233d8b996c05a7a4b651ae03fa40c8ffdda777c27dd2b8472c7ba7ab869",
+    "storage": 4128,
+    "work": 257
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2308,
+    "case": 16,
+    "error": null,
+    "mode": 1,
+    "sha256": "dc5835639348516428bf7c859924d86cf233a1b6e187998da7b53a47349967bc",
+    "storage": 208544,
+    "work": 1794
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2308,
+    "case": 16,
+    "error": null,
+    "mode": 2,
+    "sha256": "dc5835639348516428bf7c859924d86cf233a1b6e187998da7b53a47349967bc",
+    "storage": 208544,
+    "work": 1794
+  },
+  {
+    "borrowed": true,
+    "callbacks": 387,
+    "case": 16,
+    "error": null,
+    "mode": 3,
+    "sha256": "32be9ea836be44f754b0070836aa219dcff17c5cd09f9c3e7c4150524069bd63",
+    "storage": 4128,
+    "work": 258
+  },
+  {
+    "borrowed": null,
+    "callbacks": 389,
+    "case": 17,
+    "error": "Schema(\"Generic expression size/depth budget exceeded\")",
+    "mode": 0,
+    "sha256": "dc7377f050bc1ba1fad08e00815f203de7f606c362340da70426b0ee46932d1a",
+    "storage": 4160,
+    "work": 259
+  },
+  {
+    "borrowed": null,
+    "callbacks": 389,
+    "case": 17,
+    "error": "Schema(\"Generic expression size/depth budget exceeded\")",
+    "mode": 1,
+    "sha256": "dc7377f050bc1ba1fad08e00815f203de7f606c362340da70426b0ee46932d1a",
+    "storage": 4160,
+    "work": 259
+  },
+  {
+    "borrowed": null,
+    "callbacks": 389,
+    "case": 17,
+    "error": "Schema(\"Generic expression size/depth budget exceeded\")",
+    "mode": 2,
+    "sha256": "dc7377f050bc1ba1fad08e00815f203de7f606c362340da70426b0ee46932d1a",
+    "storage": 4160,
+    "work": 259
+  },
+  {
+    "borrowed": null,
+    "callbacks": 389,
+    "case": 17,
+    "error": "Schema(\"Generic expression size/depth budget exceeded\")",
+    "mode": 3,
+    "sha256": "dc7377f050bc1ba1fad08e00815f203de7f606c362340da70426b0ee46932d1a",
+    "storage": 4160,
+    "work": 259
+  },
+  {
+    "borrowed": null,
+    "callbacks": 49151,
+    "case": 18,
+    "error": null,
+    "mode": 0,
+    "sha256": "1d20faed3eb0bc38ac34d1189b002068bbd98d192e9fe7c9f59a21d7c0344720",
+    "storage": 524288,
+    "work": 32767
+  },
+  {
+    "borrowed": null,
+    "callbacks": 114696,
+    "case": 18,
+    "error": null,
+    "mode": 1,
+    "sha256": "4cc4367f30794231dca5853791cf030158a8c79e8d6fc8bb5e1ffe311f90febe",
+    "storage": 3147132,
+    "work": 65544
+  },
+  {
+    "borrowed": null,
+    "callbacks": 114696,
+    "case": 18,
+    "error": null,
+    "mode": 2,
+    "sha256": "4cc4367f30794231dca5853791cf030158a8c79e8d6fc8bb5e1ffe311f90febe",
+    "storage": 3147132,
+    "work": 65544
+  },
+  {
+    "borrowed": true,
+    "callbacks": 49152,
+    "case": 18,
+    "error": null,
+    "mode": 3,
+    "sha256": "38d8ca2b7adb86f77c19eaccefb22b69901463b8457eb6caf4351aa055d572a5",
+    "storage": 524288,
+    "work": 32768
+  },
+  {
+    "borrowed": null,
+    "callbacks": 49154,
+    "case": 19,
+    "error": "Schema(\"Generic expression size/depth budget exceeded\")",
+    "mode": 0,
+    "sha256": "95cae99530e16b4f46ccfe6f244f8e04ba3022efc6cc79f3d19c96667ac8b8f7",
+    "storage": 524320,
+    "work": 32769
+  },
+  {
+    "borrowed": null,
+    "callbacks": 49154,
+    "case": 19,
+    "error": "Schema(\"Generic expression size/depth budget exceeded\")",
+    "mode": 1,
+    "sha256": "95cae99530e16b4f46ccfe6f244f8e04ba3022efc6cc79f3d19c96667ac8b8f7",
+    "storage": 524320,
+    "work": 32769
+  },
+  {
+    "borrowed": null,
+    "callbacks": 49154,
+    "case": 19,
+    "error": "Schema(\"Generic expression size/depth budget exceeded\")",
+    "mode": 2,
+    "sha256": "95cae99530e16b4f46ccfe6f244f8e04ba3022efc6cc79f3d19c96667ac8b8f7",
+    "storage": 524320,
+    "work": 32769
+  },
+  {
+    "borrowed": null,
+    "callbacks": 49154,
+    "case": 19,
+    "error": "Schema(\"Generic expression size/depth budget exceeded\")",
+    "mode": 3,
+    "sha256": "95cae99530e16b4f46ccfe6f244f8e04ba3022efc6cc79f3d19c96667ac8b8f7",
+    "storage": 524320,
+    "work": 32769
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 20,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 1936,
+    "case": 20,
+    "error": "Schema(\"Generic substitution size/depth budget exceeded\")",
+    "mode": 1,
+    "sha256": "a1fc6520f23eed6e319c69d52aa3eff4f8601d16446d539ec84f2c10d52657b5",
+    "storage": 205884,
+    "work": 1549
+  },
+  {
+    "borrowed": null,
+    "callbacks": 1924,
+    "case": 20,
+    "error": "Schema(\"Generic substitution size/depth budget exceeded\")",
+    "mode": 2,
+    "sha256": "ae0df370272ea5626e2919f771eb440309bc1c9864fa244374add40b6058feb9",
+    "storage": 204320,
+    "work": 1539
+  },
+  {
+    "borrowed": null,
+    "callbacks": 1939,
+    "case": 20,
+    "error": "Schema(\"Generic substitution size/depth budget exceeded\")",
+    "mode": 3,
+    "sha256": "3cb7c266e9965c63876f21bc282315b4b3353cc4a6f2ba49569eff33b8e221de",
+    "storage": 205916,
+    "work": 1551
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 21,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 1922,
+    "case": 21,
+    "error": null,
+    "mode": 1,
+    "sha256": "de78657b13807b1f6363adca3c6479f1788c29fb4e586cbcf44049430651dd7e",
+    "storage": 204416,
+    "work": 1537
+  },
+  {
+    "borrowed": null,
+    "callbacks": 1910,
+    "case": 21,
+    "error": null,
+    "mode": 2,
+    "sha256": "f2a1e3a16232bca52e2b5ed3b7a1cc18e24b7b10d20a43b27f95be47be8396e5",
+    "storage": 202852,
+    "work": 1527
+  },
+  {
+    "borrowed": false,
+    "callbacks": 1925,
+    "case": 21,
+    "error": null,
+    "mode": 3,
+    "sha256": "924d7bf587da98313b7ccc0dd8d6948a07df04de7066772d7c99c4841db42498",
+    "storage": 204448,
+    "work": 1539
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 22,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 65556,
+    "case": 22,
+    "error": null,
+    "mode": 1,
+    "sha256": "6ceaf0400976a8a5ded9114c1e6a57c3dc62e532c47d07c75d741f2d4a2818fa",
+    "storage": 2624280,
+    "work": 32787
+  },
+  {
+    "borrowed": null,
+    "callbacks": 65544,
+    "case": 22,
+    "error": null,
+    "mode": 2,
+    "sha256": "9f51e938a4f1520aaba0d8e95778a39171ca28861cc8d3bcb61ab9abcd67ed83",
+    "storage": 2622716,
+    "work": 32777
+  },
+  {
+    "borrowed": false,
+    "callbacks": 65559,
+    "case": 22,
+    "error": null,
+    "mode": 3,
+    "sha256": "bcdde58442f6779dd99e8d409f9b9d4ca15c7d08f34e7dafdeec817fd242bdc9",
+    "storage": 2624312,
+    "work": 32789
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 23,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 65559,
+    "case": 23,
+    "error": "Schema(\"Generic substitution size/depth budget exceeded\")",
+    "mode": 1,
+    "sha256": "36aa5bc35a535f19d44c22ff324858038c14d27d53e7ceca61a551d7896bf807",
+    "storage": 2624312,
+    "work": 32789
+  },
+  {
+    "borrowed": null,
+    "callbacks": 65547,
+    "case": 23,
+    "error": "Schema(\"Generic substitution size/depth budget exceeded\")",
+    "mode": 2,
+    "sha256": "6694c211ef9487fab9228df040dc412e0edd8969c171b3dedd2b46de4c46232e",
+    "storage": 2622748,
+    "work": 32779
+  },
+  {
+    "borrowed": null,
+    "callbacks": 65562,
+    "case": 23,
+    "error": "Schema(\"Generic substitution size/depth budget exceeded\")",
+    "mode": 3,
+    "sha256": "3fdd954602b727add6191ace0bd88a19f9d56d9934b632ba6578a6e7ce76ab37",
+    "storage": 2624344,
+    "work": 32791
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 24,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 28,
+    "case": 24,
+    "error": null,
+    "mode": 1,
+    "sha256": "978db619dd6f59c2775ac068d65068070aaa1906d9f1a76374bb862ec6c4a83a",
+    "storage": 6554,
+    "work": 23
+  },
+  {
+    "borrowed": null,
+    "callbacks": 16,
+    "case": 24,
+    "error": null,
+    "mode": 2,
+    "sha256": "e1873aa3e24d7b72717be8545f60618b60ed4e03b568291326e67e661d744925",
+    "storage": 3293,
+    "work": 13
+  },
+  {
+    "borrowed": false,
+    "callbacks": 31,
+    "case": 24,
+    "error": null,
+    "mode": 3,
+    "sha256": "08e77db9064e07af8ef57b277e6c8af427ba7ede328cf369a1b551932ffa7fbf",
+    "storage": 6586,
+    "work": 25
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 25,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 28,
+    "case": 25,
+    "error": null,
+    "mode": 1,
+    "sha256": "d211b7dca9afe77730966aa922fca23968f129b5a09f5bff79d1926cdd5eadf8",
+    "storage": 3160,
+    "work": 23
+  },
+  {
+    "borrowed": null,
+    "callbacks": 16,
+    "case": 25,
+    "error": null,
+    "mode": 2,
+    "sha256": "77f72871979d1c4e56250d8c67896bd7c84b6cc725f0a433a6a8e2d18f267e42",
+    "storage": 1596,
+    "work": 13
+  },
+  {
+    "borrowed": false,
+    "callbacks": 31,
+    "case": 25,
+    "error": null,
+    "mode": 3,
+    "sha256": "6704cacb25b15295f97f65a38137900e5be8c897bace8955a9ab4e8366351c4c",
+    "storage": 3192,
+    "work": 25
+  },
+  {
+    "borrowed": null,
+    "callbacks": 5,
+    "case": 26,
+    "error": null,
+    "mode": 0,
+    "sha256": "dd375868fe22a217e89b21f048e3061995cd6bc529753eb4a45d466eeac6ac95",
+    "storage": 64,
+    "work": 3
+  },
+  {
+    "borrowed": null,
+    "callbacks": 36,
+    "case": 26,
+    "error": null,
+    "mode": 1,
+    "sha256": "540170865d89ddf0b6e1f71b1d3af9d8786c737bc7218f68d10fd8442aadd145",
+    "storage": 3636,
+    "work": 30
+  },
+  {
+    "borrowed": null,
+    "callbacks": 36,
+    "case": 26,
+    "error": null,
+    "mode": 2,
+    "sha256": "540170865d89ddf0b6e1f71b1d3af9d8786c737bc7218f68d10fd8442aadd145",
+    "storage": 3636,
+    "work": 30
+  },
+  {
+    "borrowed": true,
+    "callbacks": 7,
+    "case": 26,
+    "error": null,
+    "mode": 3,
+    "sha256": "2b54a82fe757560cfa5bebb06651b847af89391203eb70d24917335fa4ac816f",
+    "storage": 64,
+    "work": 5
+  },
+  {
+    "borrowed": null,
+    "callbacks": 5,
+    "case": 27,
+    "error": null,
+    "mode": 0,
+    "sha256": "dd375868fe22a217e89b21f048e3061995cd6bc529753eb4a45d466eeac6ac95",
+    "storage": 64,
+    "work": 3
+  },
+  {
+    "borrowed": null,
+    "callbacks": 36,
+    "case": 27,
+    "error": null,
+    "mode": 1,
+    "sha256": "1ce6b1d941fd217e57d0689dc2d1244422a4e49a52c72758e7adc1710c0e3538",
+    "storage": 3636,
+    "work": 30
+  },
+  {
+    "borrowed": null,
+    "callbacks": 37,
+    "case": 27,
+    "error": null,
+    "mode": 2,
+    "sha256": "22a519afa8675d512ea0ded0a90d5558301ccd2f5a6041c0c7640d0bccb5e649",
+    "storage": 3636,
+    "work": 31
+  },
+  {
+    "borrowed": false,
+    "callbacks": 43,
+    "case": 27,
+    "error": null,
+    "mode": 3,
+    "sha256": "182481af0a636792de3cdab32690a70988f6b3e4d8d75eb533d889a4d225f6be",
+    "storage": 3700,
+    "work": 35
+  },
+  {
+    "borrowed": null,
+    "callbacks": 5,
+    "case": 28,
+    "error": null,
+    "mode": 0,
+    "sha256": "dd375868fe22a217e89b21f048e3061995cd6bc529753eb4a45d466eeac6ac95",
+    "storage": 64,
+    "work": 3
+  },
+  {
+    "borrowed": null,
+    "callbacks": 22,
+    "case": 28,
+    "error": null,
+    "mode": 1,
+    "sha256": "f09e44add14015bcc30c9099fb6c372998ff01751eb74f76b218cb829637031b",
+    "storage": 1884,
+    "work": 16
+  },
+  {
+    "borrowed": null,
+    "callbacks": 22,
+    "case": 28,
+    "error": null,
+    "mode": 2,
+    "sha256": "f09e44add14015bcc30c9099fb6c372998ff01751eb74f76b218cb829637031b",
+    "storage": 1884,
+    "work": 16
+  },
+  {
+    "borrowed": true,
+    "callbacks": 7,
+    "case": 28,
+    "error": null,
+    "mode": 3,
+    "sha256": "8d132dc33f506c688c03ec849a30268681e401bbcc6cbd4c44eea1cdfadbbbc7",
+    "storage": 64,
+    "work": 5
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 29,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 1667,
+    "case": 29,
+    "error": "Schema(\"Cyclic generic substitution at memory:substitution-preparation [0]\")",
+    "mode": 1,
+    "sha256": "9a2572e16e16b5a2d757ff22242c7efad08645dfb20f74f4cc21e0a9353a4a81",
+    "storage": 200224,
+    "work": 1410
+  },
+  {
+    "borrowed": null,
+    "callbacks": 19,
+    "case": 29,
+    "error": null,
+    "mode": 2,
+    "sha256": "b4e77e882e1c5a033b09db3ecc601d3f5c5d38a18783de7b51eba3af2e4f8668",
+    "storage": 2008,
+    "work": 17
+  },
+  {
+    "borrowed": null,
+    "callbacks": 1670,
+    "case": 29,
+    "error": "Schema(\"Cyclic generic substitution at memory:substitution-preparation [0]\")",
+    "mode": 3,
+    "sha256": "76d13ee0db22414e7a4b5bc51e95378d220770ccafd77b002deb4ef6dfaff457",
+    "storage": 200256,
+    "work": 1412
+  },
+  {
+    "borrowed": null,
+    "callbacks": 8,
+    "case": 30,
+    "error": null,
+    "mode": 0,
+    "sha256": "328485a2159e67407df1d862cc9bd398eae7aaf1454538219a19082cded85a9b",
+    "storage": 96,
+    "work": 5
+  },
+  {
+    "borrowed": null,
+    "callbacks": 57,
+    "case": 30,
+    "error": null,
+    "mode": 1,
+    "sha256": "8c01a31c456a7d70f1bfecb02ed11cb269e782fead651e21999804ace7893910",
+    "storage": 5332,
+    "work": 43
+  },
+  {
+    "borrowed": null,
+    "callbacks": 45,
+    "case": 30,
+    "error": null,
+    "mode": 2,
+    "sha256": "5bc3f11431c4ce902151670415ce418cf4785460b1734aaeb9b6d90f336ef1b3",
+    "storage": 3768,
+    "work": 33
+  },
+  {
+    "borrowed": false,
+    "callbacks": 68,
+    "case": 30,
+    "error": null,
+    "mode": 3,
+    "sha256": "e6c5ad27c16aa6d3ff10dda1004ec8e119a5c18773cf876941515b37165d42a8",
+    "storage": 5428,
+    "work": 51
+  },
+  {
+    "borrowed": null,
+    "callbacks": 2,
+    "case": 31,
+    "error": null,
+    "mode": 0,
+    "sha256": "a2815facac1cc09912728113dfdb03edaaf900aac656ca5095ba9dcd0e88555e",
+    "storage": 32,
+    "work": 1
+  },
+  {
+    "borrowed": null,
+    "callbacks": 15,
+    "case": 31,
+    "error": null,
+    "mode": 1,
+    "sha256": "45e843e9bcd27b9f95271e9a0e3eb895124e98f4c3d95bfb0d2c140439b7e130",
+    "storage": 1596,
+    "work": 12
+  },
+  {
+    "borrowed": null,
+    "callbacks": 15,
+    "case": 31,
+    "error": null,
+    "mode": 2,
+    "sha256": "45e843e9bcd27b9f95271e9a0e3eb895124e98f4c3d95bfb0d2c140439b7e130",
+    "storage": 1596,
+    "work": 12
+  },
+  {
+    "borrowed": true,
+    "callbacks": 3,
+    "case": 31,
+    "error": null,
+    "mode": 3,
+    "sha256": "bd2f98956941449566051364663b8556e8a2ec420f42dfcf8fbf16d117ed208d",
+    "storage": 32,
+    "work": 2
+  },
+  {
+    "borrowed": null,
+    "callbacks": 8,
+    "case": 32,
+    "error": null,
+    "mode": 0,
+    "sha256": "cce89796d30da8d4d0e98fbf8350af4e25b245400700a14a05a82cf32db4fb5a",
+    "storage": 96,
+    "work": 5
+  },
+  {
+    "borrowed": null,
+    "callbacks": 105,
+    "case": 32,
+    "error": null,
+    "mode": 1,
+    "sha256": "a63b5fe604311e5f558d6289bee23e045653de3da3c7ea707255590a0912a5cf",
+    "storage": 11140,
+    "work": 85
+  },
+  {
+    "borrowed": null,
+    "callbacks": 71,
+    "case": 32,
+    "error": null,
+    "mode": 2,
+    "sha256": "7fed006573e3386563307b66fb702fb04cbd340c20cb3964ead61c07743b37b7",
+    "storage": 6860,
+    "work": 58
+  },
+  {
+    "borrowed": false,
+    "callbacks": 115,
+    "case": 32,
+    "error": null,
+    "mode": 3,
+    "sha256": "63a78d6f94d81fd758ddd593aae02288280d5afb583cb206dd2e23a6af9507fe",
+    "storage": 11236,
+    "work": 92
+  }
+]

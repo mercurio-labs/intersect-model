@@ -1,0 +1,10 @@
+{
+  "capture_sha256": "79e9ab84f2741a25cc882820eaac23c0cac117a0feffbc3f3a0d453268673725",
+  "events_sha256": "2d2d7c1df79e23b6bd41c04cc284ecd0270a4db2aad893db48294d4f74a2c660",
+  "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+  "checkpoints": 13945,
+  "fresh_leases_released": true,
+  "polls": 3813,
+  "storage": 2519299,
+  "work": 29804
+}

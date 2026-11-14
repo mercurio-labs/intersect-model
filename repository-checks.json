@@ -1,0 +1,38 @@
+{
+  "repository": "model",
+  "scoped_packages": {
+    "model": [
+      "intersect-model"
+    ],
+    "host": [
+      "intersect-run",
+      "intersect-project-host"
+    ]
+  },
+  "feature_controls": [
+    {
+      "package": "intersect-semantic-bindings-tests",
+      "features": "rhai"
+    }
+  ],
+  "examples": [
+    [
+      "intersect-model",
+      "library"
+    ],
+    [
+      "intersect-model",
+      "dynamic_library"
+    ],
+    [
+      "intersect-model",
+      "rcore_model"
+    ],
+    [
+      "intersect-rust-bindings-tests",
+      "generated_library"
+    ]
+  ],
+  "definition_ledger": "definition_ledger.py",
+  "host_wasm_controls": []
+}

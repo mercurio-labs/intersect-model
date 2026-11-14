@@ -1,0 +1,37 @@
+{
+  "original_main": {
+    "rows": 518,
+    "complete_jsonl_sha256": "a52f90eea89ad0962cae7f280404a2fc095154d15ff0475feaddf4202330a8fe"
+  },
+  "original_controls": {
+    "rows": 12701,
+    "complete_jsonl_sha256": "8f9cdc5d6cb3108d428144180f6884b8ab32168ee5a9f330d4efbad40b213984"
+  },
+  "c_main": {
+    "rows": 444,
+    "complete_jsonl_sha256": "ceb652ea037846384dbe0b75c1c0af0064ad928b19a58b4fb6a4cc8cc772f207"
+  },
+  "c_controls": {
+    "rows": 14429,
+    "complete_jsonl_sha256": "9206a319e05c71c96f63217ebcd62c7a5ba473976148f6ea377e60218c0db02a"
+  },
+  "provider_c_controls": {
+    "rows": 429,
+    "complete_jsonl_sha256": "dba9b2f0ca50e9dd75e7a11f98353f3b1469e0f8bba675ea9f6d75039a8240ec"
+  },
+  "original_public_owners": {
+    "rows": 36,
+    "complete_jsonl_sha256": "8f97bff594f6d9b4d4c929f7eee0426dbbfcc74921a10d0c49290dfac2b8e04a"
+  },
+  "original_public_provider": {
+    "rows": 54,
+    "complete_jsonl_sha256": "54335f232072f15df9e442dc9598b2ddd696849236c19ecb0052556170294a0d"
+  },
+  "provenance": {
+    "original_commit": "97b32e54fae28e37611f8181804f2430814f2e6f",
+    "before_receipt_sha256": "1d9d881b3c6a27e9565e031a3a1e880394173dec0ba7b68158dfb97db84cff7c",
+    "candidate_capture_receipt_sha256": "53de098b0644970d97be897beb27ded6e76ca2031869536639ffdb07642f3880",
+    "scope": "SHA256 covers every complete serde_json Value byte and LF in original capture order; no reduced output/event projection."
+  },
+  "provider_c_main_sha256": "4a93f8e1b74e379bfd08dd2619fd02286cd9b54e55e8ee32f90fdd067ff1e558"
+}

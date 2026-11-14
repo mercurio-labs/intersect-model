@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "scope": "Additive first-observed public C callbacks, not a rebaseline of A/B. Verification fixture only.",
+  "first_complete_native_raw_sha256": "877776f824704fd40400a12463436d80490fb8e1176f8cbeb580267f1be197ac",
+  "first_raw_receipt_sha256": "c1f14165557326e1e49a803b1946e49cfd54fa66446ff13bee28d5e637931354",
+  "rows": [
+    {
+      "quantum": 1,
+      "row_sha256": "862698a3fec6f437cb64563d09e1d1b0d448594613e9e223a5cf672d95dfcd55",
+      "observation_sha256": "1e0dbda81481d3594f8a3c225d170554cc6bf2a7600e092c5b94bd9f7836aced",
+      "events_sha256": "805f54317eb4ebc71c67b3c0c82b6e2e11e95c7a738335407d7639dd033acb21",
+      "poll_segments_sha256": "4ec468f16d4b743b6f364ec02d93be973b52084bdeb46cb863db3db216880a47",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 4091,
+      "work": 29804,
+      "storage": 2519299,
+      "checkpoints": 14693
+    },
+    {
+      "quantum": 3,
+      "row_sha256": "1771cdf644a72d9e1e3a015fa63672510f8aa2616585a2d89337155445dccc6a",
+      "observation_sha256": "1e0dbda81481d3594f8a3c225d170554cc6bf2a7600e092c5b94bd9f7836aced",
+      "events_sha256": "805f54317eb4ebc71c67b3c0c82b6e2e11e95c7a738335407d7639dd033acb21",
+      "poll_segments_sha256": "4ec468f16d4b743b6f364ec02d93be973b52084bdeb46cb863db3db216880a47",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 4091,
+      "work": 29804,
+      "storage": 2519299,
+      "checkpoints": 14693
+    },
+    {
+      "quantum": 256,
+      "row_sha256": "27360dd52774a04acf173e43ae0522f65d0b17501be5bedbaadb5b011cd9744d",
+      "observation_sha256": "1e0dbda81481d3594f8a3c225d170554cc6bf2a7600e092c5b94bd9f7836aced",
+      "events_sha256": "805f54317eb4ebc71c67b3c0c82b6e2e11e95c7a738335407d7639dd033acb21",
+      "poll_segments_sha256": "4ec468f16d4b743b6f364ec02d93be973b52084bdeb46cb863db3db216880a47",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 4091,
+      "work": 29804,
+      "storage": 2519299,
+      "checkpoints": 14693
+    }
+  ]
+}

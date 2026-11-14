@@ -1,0 +1,24 @@
+[package]
+name = "intersect-semantic-bindings-tests"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[lib]
+crate-type = ["rlib", "cdylib"]
+
+[dependencies]
+intersect-model-test-support = { path = "../support" }
+intersect-model = { workspace = true, features = ["codegen"] }
+serde_json.workspace = true
+
+[build-dependencies]
+intersect-model-test-support = { path = "../support" }
+intersect-model = { workspace = true, features = ["codegen"] }
+
+[features]
+rhai = ["intersect-model/rhai"]
+
+[[example]]
+name = "transaction_qualification"
+required-features = ["rhai"]

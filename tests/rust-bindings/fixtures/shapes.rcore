@@ -1,0 +1,19 @@
+rcore 1;
+package `shapes` version "1";
+metamodel "urn:intersect:test:rust-shapes" prefix `shapes` {
+  abstract class `Base` {
+    attr `type`: String [0,1];
+  }
+  abstract class `Middle` extends `Base` {
+  }
+  class `Thing` extends `Middle` {
+    attr `ready`: Bool [1,1];
+    attr `number`: Int32 [1,1];
+    attr `URLValue`: String [0,1];
+    attr `tags`: String [0,2];
+    attr `scores`: Int32 [0,*] nonunique;
+    attr `switches`: Bool [0,*];
+    ref `peer`: `Base` [0,1];
+    ref `peers`: `Base` [0,*];
+  }
+}

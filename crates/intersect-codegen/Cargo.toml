@@ -1,0 +1,13 @@
+[package]
+name = "intersect-codegen"
+description = "Native Rcore to Rust binding generation for the Intersect model runtime."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+intersect-model = { workspace = true, features = ["codegen"] }
+serde_json.workspace = true

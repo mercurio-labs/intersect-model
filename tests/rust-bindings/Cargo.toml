@@ -1,0 +1,18 @@
+[package]
+name = "intersect-rust-bindings-tests"
+description = "Build-time generated Rust binding consumer and qualification controls."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+intersect-model.workspace = true
+serde_json.workspace = true
+
+[build-dependencies]
+intersect-model = { workspace = true, features = ["codegen"] }
+
+[dev-dependencies]
+intersect-model = { workspace = true, features = ["codegen", "xmi", "sqlite"] }

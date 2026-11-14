@@ -1,0 +1,11 @@
+{
+  "complete_canonical_sha256": "1e6e39fb663c6d66b9e80531a5b96963438f74b971a76ca4ab616f4d99634c4a",
+  "raw_capture_sha256": "6b870e0873c233e420a696476fc90afb9ea9cef3470ffbe842eb18f59c87a350",
+  "admitted_work": 20807,
+  "admitted_storage": 2272343,
+  "events": 45956,
+  "polls": 3539,
+  "fixture_source_uri": "memory:legacy-provider-original.rcore",
+  "fixture_source_text": "rcore 1;package legacy version \"1\";metamodel \"urn:legacy-freeze\" prefix l {class Leaf {}class Box<T> {ref value:T [0,1];}class Child extends Box<Leaf> {}datatype Token instanceClass \"example.Token\" {}}",
+  "observer_provider_invocations": 0
+}

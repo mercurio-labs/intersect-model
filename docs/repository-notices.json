@@ -1,0 +1,115 @@
+{
+  "scope": "Reviewed third-party families in the curated source tree. Historical benchmark results, the portable-parser experiment and KerML runtime audit are omitted; retained fixture/oracle/trace inputs and their attribution remain. Selectors are review scope, not blanket license assignments.",
+  "components": [
+    {
+      "id": "unicode",
+      "scope": "Unicode data and generated tables retain the Unicode notice.",
+      "inputs": [
+        "fixtures/unicode-13/",
+        "crates/intersect-model/src/definitions/scalar_unicode.rs",
+        "crates/intersect-model/src/definitions/ecore_identifier.rs"
+      ],
+      "notices": [
+        {
+          "path": "fixtures/unicode-13/LICENSE.txt",
+          "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+        },
+        {
+          "path": "fixtures/unicode-13/README.md",
+          "sha256": "924a65ceb5d4df7fa084b4deda0a38f064387bbe6683749e474a794abf61c886"
+        }
+      ]
+    },
+    {
+      "id": "eclipse-definitions",
+      "scope": "Imported EMF/Xtext sources and their copied Ecore assets; authored surrounding code remains MIT.",
+      "inputs": [
+        "fixtures/definition-conformance/upstream/",
+        "crates/intersect-model/assets/fixtures/definition-conformance/"
+      ],
+      "notices": [
+        {
+          "path": "fixtures/definition-conformance/upstream/ecore/about.html",
+          "sha256": "6c9bb853edb62bb9281cd2daab3cc450c248d177a2e5cb38f203ece27ebb7e16"
+        },
+        {
+          "path": "fixtures/definition-conformance/upstream/xtext/about.html",
+          "sha256": "ee66d2fb3b4c0d2ed2e7f698bc9ed4e3d6cf77fa5caf40ad03296125db1ac5f0"
+        },
+        {
+          "path": "fixtures/definition-conformance/upstream/artifacts.json",
+          "sha256": "e47736e25acf14ca6ae8aa1dc361203645fcf949028b65827e68d220f333395a"
+        },
+        {
+          "path": "fixtures/definition-conformance/mercurio/LICENSE-Pilot",
+          "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303"
+        }
+      ]
+    },
+    {
+      "id": "pilot-and-mercurio",
+      "scope": "Imported Pilot inputs and Mercurio observations/projections; original headers, source identity and separate EPL/MIT notices remain authoritative.",
+      "inputs": [
+        "fixtures/definition-conformance/mercurio/",
+        "fixtures/rcore/day01/",
+        "fixtures/xtext/pinned-kerml-operands/",
+        "fixtures/ecore-navigation/mercurio-closure-source.rs.txt"
+      ],
+      "notices": [
+        {
+          "path": "fixtures/definition-conformance/mercurio/LICENSE-Pilot",
+          "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303"
+        },
+        {
+          "path": "fixtures/definition-conformance/mercurio/LICENSE-Mercurio",
+          "sha256": "0116848ce040047dbde186062a21df6a1a5031fb8548c42d00e71e841e7eda2f"
+        },
+        {
+          "path": "fixtures/definition-conformance/mercurio/artifacts.json",
+          "sha256": "c49544d8ec8ab323940ee5179d8ca9c769b65ff240aeedbcc1d178f8ff8fd91d"
+        },
+        {
+          "path": "fixtures/rcore/day01/upstream/LICENSE",
+          "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303"
+        },
+        {
+          "path": "fixtures/rcore/day01/kerml-provenance.json",
+          "sha256": "d10a645b3ef7b6507c3e416df762f4e847dfffdfdc9cbce2db0a7c740cb73b98"
+        },
+        {
+          "path": "fixtures/xtext/pinned-kerml-operands/LICENSE-UPSTREAM",
+          "sha256": "22b203a3f2bfa35ff272ed57702d154aed8966ea0978c44ceca6658f2c60bc51"
+        },
+        {
+          "path": "fixtures/xtext/pinned-kerml-operands/LICENSE-MERCURIO",
+          "sha256": "0116848ce040047dbde186062a21df6a1a5031fb8548c42d00e71e841e7eda2f"
+        },
+        {
+          "path": "fixtures/xtext/pinned-kerml-operands/provenance.json",
+          "sha256": "bd60c510993d942f2a4615ff4f4fd2577b64169cff2a6cb0bca06c2013038b02"
+        }
+      ]
+    },
+    {
+      "id": "rhai-codegen-notice-supplement",
+      "scope": "Pinned upstream notice text for a registry crate whose tarball omits it; vendor source is not changed.",
+      "inputs": [
+        "tools/release-notices/rhai_codegen-3.2.0/"
+      ],
+      "notices": [
+        {
+          "path": "tools/release-notices/rhai_codegen-3.2.0/LICENSE-MIT.txt",
+          "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3"
+        },
+        {
+          "path": "tools/release-notices/rhai_codegen-3.2.0/LICENSE-APACHE.txt",
+          "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9"
+        },
+        {
+          "path": "tools/release-notices/rhai_codegen-3.2.0/provenance.json",
+          "sha256": "7585c5e5e5b73476b64943530f6d7bc594b3c1681be83da96bed195dd0043804"
+        }
+      ]
+    }
+  ]
+}

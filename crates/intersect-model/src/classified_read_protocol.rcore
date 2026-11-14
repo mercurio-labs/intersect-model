@@ -1,0 +1,10 @@
+rcore 1;
+package intersect.classifiedReadProtocol version "1";
+metamodel "urn:intersect:classified-read-protocol" prefix p {
+  class Cursor { ref head: Observation [0,1]; }
+  class Observation {
+    attr matches: Bool [1,1];
+    attr position: Int64 [1,1];
+    ref next: Observation [0,1];
+  }
+}

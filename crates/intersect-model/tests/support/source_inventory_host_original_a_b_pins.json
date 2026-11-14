@@ -1,0 +1,87 @@
+{
+  "original_complete_rows": {
+    "path": "D:\\dev\\repos\\mercurio-labs\\intersect\\target\\source-inventory-preedit-97b32e54-20261018\\public-host-original-1\\complete-public-host.jsonl",
+    "bytes": 3336745,
+    "sha256": "d9e1a33c3c032f121b1fca43067c9cb76810790f3a40ffbe536eaba47553338b"
+  },
+  "rows": [
+    {
+      "quantum": 1,
+      "retained_current_b": false,
+      "row_sha256": "d3ee496eb3188c5bc31eab77db052a6d07dc621b5bf74887ae7e5666e92d6123",
+      "observation_sha256": "79e9ab84f2741a25cc882820eaac23c0cac117a0feffbc3f3a0d453268673725",
+      "events_sha256": "2d2d7c1df79e23b6bd41c04cc284ecd0270a4db2aad893db48294d4f74a2c660",
+      "poll_segments_sha256": "c24621ed4c49a029252ec4582baae1bf168b5ad1bc922c35d215a7ca5d63a5b4",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 3813,
+      "work": 29804,
+      "storage": 2519299
+    },
+    {
+      "quantum": 3,
+      "retained_current_b": false,
+      "row_sha256": "430dee78da7da158499c4045dc1e7966bbe9b556aba7748363f2528825c28873",
+      "observation_sha256": "79e9ab84f2741a25cc882820eaac23c0cac117a0feffbc3f3a0d453268673725",
+      "events_sha256": "2d2d7c1df79e23b6bd41c04cc284ecd0270a4db2aad893db48294d4f74a2c660",
+      "poll_segments_sha256": "c24621ed4c49a029252ec4582baae1bf168b5ad1bc922c35d215a7ca5d63a5b4",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 3813,
+      "work": 29804,
+      "storage": 2519299
+    },
+    {
+      "quantum": 256,
+      "retained_current_b": false,
+      "row_sha256": "a0430aa0dd26802ed0dcdd5bc145a06e7925d4a54577ac82eebb44455c11cb22",
+      "observation_sha256": "79e9ab84f2741a25cc882820eaac23c0cac117a0feffbc3f3a0d453268673725",
+      "events_sha256": "2d2d7c1df79e23b6bd41c04cc284ecd0270a4db2aad893db48294d4f74a2c660",
+      "poll_segments_sha256": "c24621ed4c49a029252ec4582baae1bf168b5ad1bc922c35d215a7ca5d63a5b4",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 3813,
+      "work": 29804,
+      "storage": 2519299
+    },
+    {
+      "quantum": 1,
+      "retained_current_b": true,
+      "row_sha256": "48f453a911b8461c3198607a3c9ecf6bc1666f397b8a9630ed90f7042408c361",
+      "observation_sha256": "3432ae702d7bf31632122bcda14f336a8455c1c775123396ea84d3231cf7a48e",
+      "events_sha256": "9b2caf94583cacbd81952804d5d8eb66209ed0ffb06348434009b83a77613ffd",
+      "poll_segments_sha256": "e8fa72c2d796e734e51337ed794fb60915a0f31523b3cedff54f33e03926fdc4",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 4005,
+      "work": 29804,
+      "storage": 2519299
+    },
+    {
+      "quantum": 3,
+      "retained_current_b": true,
+      "row_sha256": "3e1ecb802152cde45b749c528384d8cd596affa56dfbea1675bf8cb099760cfc",
+      "observation_sha256": "3432ae702d7bf31632122bcda14f336a8455c1c775123396ea84d3231cf7a48e",
+      "events_sha256": "9b2caf94583cacbd81952804d5d8eb66209ed0ffb06348434009b83a77613ffd",
+      "poll_segments_sha256": "e8fa72c2d796e734e51337ed794fb60915a0f31523b3cedff54f33e03926fdc4",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 4005,
+      "work": 29804,
+      "storage": 2519299
+    },
+    {
+      "quantum": 256,
+      "retained_current_b": true,
+      "row_sha256": "7b16f3f5211dec00852759f1beda3b2f1d408d9a19269278666d447f48850ef0",
+      "observation_sha256": "3432ae702d7bf31632122bcda14f336a8455c1c775123396ea84d3231cf7a48e",
+      "events_sha256": "9b2caf94583cacbd81952804d5d8eb66209ed0ffb06348434009b83a77613ffd",
+      "poll_segments_sha256": "e8fa72c2d796e734e51337ed794fb60915a0f31523b3cedff54f33e03926fdc4",
+      "output_sha256": "82ca87bbe24ed6235084b8df17ca1e9a28f4ce487822a08f019a569e23b5b182",
+      "source_sha256": "1c0421f529e3d8e8dbc61248028b97170c59b7359e8237a13c71a463f7891076",
+      "polls": 4005,
+      "work": 29804,
+      "storage": 2519299
+    }
+  ]
+}

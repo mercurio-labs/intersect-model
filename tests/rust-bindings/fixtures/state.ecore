@@ -1,0 +1,15 @@
+<e:EPackage xmlns:e="http://www.eclipse.org/emf/2002/Ecore" xmlns:x="http://www.w3.org/2001/XMLSchema-instance" name="state" nsURI="urn:test:generated-state">
+<eClassifiers x:type="e:EClass" name="Base" abstract="true">
+<eStructuralFeatures x:type="e:EAttribute" name="ordinary" defaultValueLiteral="seed" eType="e:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+<eStructuralFeatures x:type="e:EAttribute" name="history" unsettable="true" defaultValueLiteral="seed" eType="e:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+</eClassifiers>
+<eClassifiers x:type="e:EClass" name="Item" eSuperTypes="#//Base">
+<eStructuralFeatures x:type="e:EAttribute" name="lockedComputed" derived="true" changeable="false" eType="e:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+<eStructuralFeatures x:type="e:EAttribute" name="computedHistory" derived="true" unsettable="true" defaultValueLiteral="seed" eType="e:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+<eStructuralFeatures x:type="e:EAttribute" name="computedBag" derived="true" unsettable="true" upperBound="-1" unique="false" eType="e:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+<eStructuralFeatures x:type="e:EReference" name="computedLinks" derived="true" unsettable="true" upperBound="-1" eType="#//Item"/>
+<eStructuralFeatures x:type="e:EAttribute" name="tags" upperBound="2" changeable="false" unsettable="true" transient="true" volatile="true" eType="e:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+<eStructuralFeatures x:type="e:EAttribute" name="bag" upperBound="-1" ordered="false" unique="false" unsettable="true" eType="e:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+<eStructuralFeatures x:type="e:EReference" name="links" upperBound="-1" unsettable="true" eType="#//Item"/>
+</eClassifiers>
+</e:EPackage>

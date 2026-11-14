@@ -1,0 +1,665 @@
+[
+  {
+    "id": "absent",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-absent.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "empty_single",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-empty_single.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType=''></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "space_single",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-space_single.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType=' &#x9; '></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "empty_many",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-empty_many.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' eSuperTypes=''><eStructuralFeatures x:type='e:EReference' name='value' ></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes",
+    "generic_fragment": null
+  },
+  {
+    "id": "space_many",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-space_many.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' eSuperTypes=' &#x9; '><eStructuralFeatures x:type='e:EReference' name='value' ></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes",
+    "generic_fragment": null
+  },
+  {
+    "id": "plain_attribute",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-plain_attribute.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "multi_single",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-multi_single.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf #//Other'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "hint_EClass",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-hint_EClass.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='e:EClass #//Leaf'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "hint_EClassifier",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-hint_EClassifier.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='e:EClassifier #//Leaf'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "hint_EDataType",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-hint_EDataType.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='e:EDataType #//Scalar'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "hint_EEnum",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-hint_EEnum.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='e:EEnum #//Choice'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "kind_hint_mismatch",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-kind_hint_mismatch.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='e:EDataType #//Leaf'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "unbound_hint",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-unbound_hint.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='z:EClass #//Leaf'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "unqualified_hint",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-unqualified_hint.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='EClass #//Leaf'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "missing_hint_href",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-missing_hint_href.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='e:EClass'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "shadowed_good",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-shadowed_good.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze' xmlns:k='urn:outer'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' xmlns:k='http://www.eclipse.org/emf/2002/Ecore'><eStructuralFeatures x:type='e:EReference' name='value' eType='k:EClass #//Leaf'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "shadowed_wrong",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-shadowed_wrong.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze' xmlns:k='http://www.eclipse.org/emf/2002/Ecore'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='k:EClass #//Leaf' xmlns:k='urn:wrong'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "child_href",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-child_href.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "child_hint",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-child_hint.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf' x:type='e:EClass'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "child_wrong_hint",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-child_wrong_hint.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf' x:type='e:EDataType'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "child_wrong_namespace",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-child_wrong_namespace.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType xmlns:k='urn:wrong' href='#//Leaf' x:type='k:EClass'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "attribute_child_duplicate",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-attribute_child_duplicate.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf'><eType bad='x'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "duplicate_children",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-duplicate_children.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf'/><eType href='#//Other'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "missing_href",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-missing_href.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "empty_href",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-empty_href.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href=''/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "space_href",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-space_href.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href=' #//Leaf'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "multi_href",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-multi_href.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf #//Other'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "unsupported_attribute",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-unsupported_attribute.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf' bad='x'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "unsupported_namespace_attribute",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-unsupported_namespace_attribute.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType xmlns:z='urn:other' href='#//Leaf' z:bad='x'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "inline_child",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-inline_child.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf'><inline/></eType></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "comments_whitespace",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-comments_whitespace.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf'> \n<!--kept-->\t</eType></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "text_payload",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-text_payload.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf'>bad</eType></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "cdata_whitespace",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-cdata_whitespace.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf'><![CDATA[ ]]></eType></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "processing_instruction",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-processing_instruction.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf'><?audit value?></eType></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "duplicate_xml_attribute",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-duplicate_xml_attribute.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' ><eType href='#//Leaf' href='#//Other'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "agreement_exact",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-agreement_exact.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf'><eGenericType eClassifier='#//Leaf'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": "#//Host/value/@eGenericType.0"
+  },
+  {
+    "id": "agreement_mismatch",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-agreement_mismatch.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf'><eGenericType eClassifier='#//Other'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": "#//Host/value/@eGenericType.0"
+  },
+  {
+    "id": "ordered_exact",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-ordered_exact.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' eSuperTypes='#//Leaf #//Other'><eGenericSuperTypes eClassifier='#//Leaf'/><eGenericSuperTypes eClassifier='#//Other'/><eStructuralFeatures x:type='e:EReference' name='value' ></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes",
+    "generic_fragment": null
+  },
+  {
+    "id": "ordered_mismatch",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-ordered_mismatch.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' eSuperTypes='#//Leaf #//Other'><eGenericSuperTypes eClassifier='#//Other'/><eGenericSuperTypes eClassifier='#//Leaf'/><eStructuralFeatures x:type='e:EReference' name='value' ></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes",
+    "generic_fragment": null
+  },
+  {
+    "id": "wrong_super_kind",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-wrong_super_kind.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' eSuperTypes='#//Scalar'><eStructuralFeatures x:type='e:EReference' name='value' ></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes",
+    "generic_fragment": null
+  },
+  {
+    "id": "raw_generic",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-raw_generic.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Box'><eGenericType eClassifier='#//Box'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": "#//Host/value/@eGenericType.0"
+  },
+  {
+    "id": "applied_generic",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-applied_generic.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Box'><eGenericType eClassifier='#//Box'><eTypeArguments eClassifier='#//Leaf'/></eGenericType></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": "#//Host/value/@eGenericType.0"
+  },
+  {
+    "id": "parameter_erasure",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-parameter_erasure.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf'><eGenericType eTypeParameter='#//Host/T'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": "#//Host/value/@eGenericType.0"
+  },
+  {
+    "id": "bound_kind_order",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-bound_kind_order.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eTypeParameters name='T'><eBounds eClassifier='#//Scalar'/><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf'><eGenericType eTypeParameter='#//Host/T'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": "#//Host/value/@eGenericType.0"
+  },
+  {
+    "id": "unknown_legacy",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-unknown_legacy.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Missing'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "unknown_generic",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-unknown_generic.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf'><eGenericType eClassifier='#//Missing'/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": "#//Host/value/@eGenericType.0"
+  },
+  {
+    "id": "unrelated_annotation",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-unrelated_annotation.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='#//Leaf'><eAnnotations source='urn:note'><details key='k' value='kept'/></eAnnotations></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null
+  },
+  {
+    "id": "exception_order",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-exception_order.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eOperations name='read' eType='#//Leaf' eExceptions='e:EClass #//Leaf e:EClass #//Other'><eGenericExceptions eClassifier='#//Leaf'/><eGenericExceptions eClassifier='#//Other'/></eOperations><eStructuralFeatures x:type='e:EReference' name='value' ></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/read",
+    "feature": "eExceptions",
+    "generic_fragment": null
+  },
+  {
+    "id": "cross_resource",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-freeze-cross_resource.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EDataType' name='Scalar'/><eClassifiers x:type='e:EEnum' name='Choice'><eLiterals name='One'/></eClassifiers><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'/></eClassifiers><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='memory:legacy-dependency.ecore#//Foreign'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "generic_fragment": null,
+    "dependency": {
+      "uri": "memory:legacy-dependency.ecore",
+      "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Foreign'/></e:EPackage>"
+    }
+  },
+  {
+    "id": "literal_556",
+    "source_kind": "ecore",
+    "uri": "memory:x",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:p'><eClassifiers x:type='e:EClass' name='C'><eStructuralFeatures x:type='e:EReference' name='r' eType='#//C'/></eClassifiers></e:EPackage>",
+    "owner": "#//C/r",
+    "feature": "eType"
+  },
+  {
+    "id": "literal_259",
+    "source_kind": "ecore",
+    "uri": "memory:x",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:p'><eClassifiers x:type='e:EClass' name='Owner'><eGenericSuperTypes eClassifier='#//@eClassifiers.0'/></eClassifiers></e:EPackage>",
+    "owner": "#//Owner",
+    "feature": "eSuperTypes",
+    "selected_path": [
+      0,
+      0
+    ]
+  },
+  {
+    "id": "literal_390",
+    "source_kind": "ecore",
+    "uri": "memory:x",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:p'><eClassifiers x:type='e:EClass' name='Owner'><eTypeParameters name='T'/><eGenericSuperTypes eClassifier='#//@eClassifiers.0'/></eClassifiers></e:EPackage>",
+    "owner": "#//Owner",
+    "feature": "eSuperTypes",
+    "selected_path": [
+      0,
+      1
+    ]
+  },
+  {
+    "id": "owner_ecore_generic",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-owner-generic.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' ><eGenericType eTypeParameter='#//Box/T'/></eStructuralFeatures></eClassifiers><eClassifiers x:type='e:EClass' name='Child' ><eGenericSuperTypes eClassifier='#//Box'><eTypeArguments eClassifier='#//Leaf'/></eGenericSuperTypes></eClassifiers></e:EPackage>",
+    "owner": "#//Box/value",
+    "feature": "eType"
+  },
+  {
+    "id": "owner_ecore_raw",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-owner-raw.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' ><eGenericType eTypeParameter='#//Box/T'/></eStructuralFeatures></eClassifiers><eClassifiers x:type='e:EClass' name='Child' eSuperTypes='#//Box'></eClassifiers></e:EPackage>",
+    "owner": "#//Box/value",
+    "feature": "eType"
+  },
+  {
+    "id": "owner_ecore_qualified",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-owner-qualified.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' eType='e:EClass #//Leaf'><eGenericType eTypeParameter='#//Box/T'/></eStructuralFeatures></eClassifiers><eClassifiers x:type='e:EClass' name='Child' ><eGenericSuperTypes eClassifier='#//Box'><eTypeArguments eClassifier='#//Leaf'/></eGenericSuperTypes></eClassifiers></e:EPackage>",
+    "owner": "#//Box/value",
+    "feature": "eType"
+  },
+  {
+    "id": "owner_ecore_method_bounds",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-owner-method_bounds.ecore",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Box'><eTypeParameters name='T'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eStructuralFeatures x:type='e:EReference' name='value' ><eGenericType eTypeParameter='#//Box/T'/></eStructuralFeatures><eOperations name='pick'><eTypeParameters name='U'><eBounds eClassifier='#//Leaf'/></eTypeParameters><eGenericType eTypeParameter='#//Box/T'/><eParameters name='input'><eGenericType eTypeParameter='#//Box/pick/U'/></eParameters></eOperations></eClassifiers><eClassifiers x:type='e:EClass' name='Child' ><eGenericSuperTypes eClassifier='#//Box'><eTypeArguments eClassifier='#//Leaf'/></eGenericSuperTypes></eClassifiers></e:EPackage>",
+    "owner": "#//Box/pick",
+    "feature": "eType"
+  },
+  {
+    "id": "owner_rcore_generic",
+    "source_kind": "rcore",
+    "uri": "memory:legacy-owner.rcore",
+    "text": "rcore 1;package legacy version \"1\";metamodel \"urn:legacy-freeze\" prefix l {class Leaf {}class Box<T> {ref value:T [0,1];}class Child extends Box<Leaf> {}}",
+    "owner": "#//Box/value",
+    "feature": "eType"
+  },
+  {
+    "id": "href_word_255",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='#//Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "href_word_256",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='#//Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "href_word_257",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='#//Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "hint_word_255",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze' xmlns:pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp='http://www.eclipse.org/emf/2002/Ecore'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp:EClass #//Leaf'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "hint_word_256",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze' xmlns:ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp='http://www.eclipse.org/emf/2002/Ecore'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp:EClass #//Leaf'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "hint_word_257",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze' xmlns:pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp='http://www.eclipse.org/emf/2002/Ecore'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp:EClass #//Leaf'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "unicode_whitespace_many",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='#//Leaf #//Other #//Leaf'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "xml_entity_whitespace",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='#//Leaf&#x9;#//Other&#xA;#//Leaf&#xD;'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "xml_literal_whitespace",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='#//Leaf\t#//Other\n#//Leaf\r'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "unicode_child_href_rejected",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value'><eType href='#//Leaf '/></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType"
+  },
+  {
+    "id": "long_prefix_shadow_good",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze' xmlns:前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前k='urn:outer'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host' xmlns:前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前k='http://www.eclipse.org/emf/2002/Ecore' eSuperTypes='前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前k:EClass #//Leaf'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "long_prefix_shadow_wrong",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze' xmlns:前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前k='http://www.eclipse.org/emf/2002/Ecore'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host' xmlns:前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前k='urn:wrong' eSuperTypes='前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前前k:EClass #//Leaf'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "duplicate_long_targets",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='#//Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa #//Caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "ordered_long_mismatch",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/><eClassifiers x:type='e:EClass' name='Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'/><eClassifiers x:type='e:EClass' name='Host'  eSuperTypes='#//Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa #//Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'><eGenericSuperTypes eClassifier='#//Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'/><eGenericSuperTypes eClassifier='#//Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/></eClassifiers></e:EPackage>",
+    "owner": "#//Host",
+    "feature": "eSuperTypes"
+  },
+  {
+    "id": "long_unicode_absolute_href",
+    "source_kind": "ecore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Leaf'/><eClassifiers x:type='e:EClass' name='Other'/><eClassifiers x:type='e:EClass' name='Host' ><eStructuralFeatures x:type='e:EReference' name='value' eType='memory:dependency-名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍#//Foreign'></eStructuralFeatures></eClassifiers></e:EPackage>",
+    "owner": "#//Host/value",
+    "feature": "eType",
+    "dependency": {
+      "uri": "memory:dependency-名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍名Ω🌍",
+      "text": "<e:EPackage xmlns:e='http://www.eclipse.org/emf/2002/Ecore' xmlns:x='http://www.w3.org/2001/XMLSchema-instance' name='p' nsURI='urn:legacy-freeze'><eClassifiers x:type='e:EClass' name='Foreign'/></e:EPackage>"
+    }
+  },
+  {
+    "id": "owner_rcore_long_unicode",
+    "source_kind": "rcore",
+    "uri": "memory:legacy-Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍Ωé🌍",
+    "text": "rcore 1;package legacy version \"1\";metamodel \"urn:legacy-freeze\" prefix l {class Leaf {}class Box<T> {ref value:T [0,1];}class Child extends Box<Leaf> {}}",
+    "receiver": "#//Child",
+    "signature": "#//Box/value",
+    "parameter": "#//Box/T",
+    "argument": "#//Leaf",
+    "owner": "#//Child"
+  },
+  {
+    "id": "inventory_multisource",
+    "source_kind": "ecore",
+    "uri": "memory:inventory",
+    "text": "<e:EPackage xmlns:e=\"http://www.eclipse.org/emf/2002/Ecore\" xmlns:x=\"http://www.w3.org/2001/XMLSchema-instance\" name=\"p\" nsURI=\"urn:inventory\"><eClassifiers x:type=\"e:EClass\" name=\"Base\"/>\n<eClassifiers x:type=\"e:EClass\" name=\"Box\" eSuperTypes=\"e:EClass #//Base\">\n<eTypeParameters name=\"T\"><eBounds eClassifier=\"#//Base\"/><eAnnotations source=\"parameter\"/></eTypeParameters>\n<eStructuralFeatures x:type=\"e:EReference\" name=\"value\" eType=\"#//Base\"><eGenericType eTypeParameter=\"#//Box/T\"/></eStructuralFeatures>\n<eOperations name=\"run\" eType=\"#//Base\"><eParameters name=\"arg\" eType=\"#//Base\"/><eGenericExceptions eClassifier=\"#//Base\"/></eOperations>\n<eAnnotations source=\"class\"><details key=\"k\" value=\"v\"/></eAnnotations>\n</eClassifiers>\n<eSubpackages name=\"nested\" nsURI=\"urn:inventory:nested\"><eClassifiers x:type=\"e:EClass\" name=\"Other\" eSuperTypes=\"\"/></eSubpackages>\n<f:payload xmlns:f=\"urn:foreign\">opaque content</f:payload></e:EPackage>",
+    "owner": "#//Box",
+    "dependency": {
+      "uri": "memory:inventory-second",
+      "text": "<e:EPackage xmlns:e=\"http://www.eclipse.org/emf/2002/Ecore\" xmlns:x=\"http://www.w3.org/2001/XMLSchema-instance\" name=\"q\" nsURI=\"urn:inventory-second\"><eClassifiers x:type=\"e:EClass\" name=\"Last\"/></e:EPackage>"
+    }
+  }
+]
