@@ -15,6 +15,8 @@
 //! Import and execution paths refuse state outside their supported contracts.
 #[path = "frozen/builder.rs"]
 mod builder;
+#[path = "frozen/identity_index.rs"]
+mod identity_index;
 #[path = "frozen/intern.rs"]
 mod intern;
 #[path = "frozen/interop.rs"]

@@ -1716,10 +1716,18 @@ impl ReferenceConformancePreparation {
         Ok(matches!(self.stage, ReferenceStage::Done))
     }
     pub fn finish(self) -> Result<bool, String> {
+        self.completed_result()
+    }
+    // Recycle only an actually completed canonical cursor inside one private,
+    // fixed-schema audit. No public result/admission authority is introduced.
+    pub(crate) fn completed_result(&self) -> Result<bool, String> {
         if self.failed || !matches!(self.stage, ReferenceStage::Done) {
             return Err("Reference conformance preparation is not complete".into());
         }
         Ok(self.accepted)
+    }
+    pub(crate) fn selection(&self) -> (&str, &str, &str) {
+        (&self.receiver, &self.name, &self.actual)
     }
 }
 impl AncestryPreparation {

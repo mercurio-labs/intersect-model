@@ -44,6 +44,8 @@ use feature_shape::FeatureShape;
 mod construction_shapes;
 mod structural_preparation;
 pub use structural_preparation::{DraftReferencePolicy, StructuralPreparation};
+mod structure_acceptance;
+pub use structure_acceptance::{FeatureRule, FeatureRuleKind, StructureFacts};
 mod pending_source;
 pub use pending_source::PendingSourceInputs;
 mod ownership;
@@ -171,6 +173,16 @@ pub trait ModelRead {
     ) -> StorageResult<Option<crate::core::resources::ResourceRecord>> {
         Ok(self.resource_records()?.remove(uri))
     }
+    /// Whether an unloaded resource reserves the identity. Same answer as
+    /// searching `resource_records`; stores may answer without copying them.
+    fn identity_reserved(&self, id: &str) -> StorageResult<bool> {
+        Ok(self.resource_records()?.values().any(|record| {
+            record
+                .unloaded
+                .as_ref()
+                .is_some_and(|contents| contents.identities.contains(id))
+        }))
+    }
     fn revision(&self) -> StorageResult<String>;
     /// Borrow the revision during the callback. The compatibility default keeps
     /// revision()'s owned-result boundary; shipped adapters borrow their value.
@@ -265,6 +277,17 @@ pub trait ModelRead {
     }
     fn value(&self, id: &str, field: &str) -> StorageResult<Option<Value>> {
         Ok(self.get(id)?.and_then(|mut e| e.values.remove(field)))
+    }
+    /// Whether this store can establish, from its own representation, that
+    /// the staged structural audit prepared `facts` for would pass. False
+    /// (the default) only means the audit decides; true must be exact.
+    fn accepts_structure(&self, _facts: &dyn StructureFacts) -> bool {
+        false
+    }
+    /// Cheap screen before an audit prepares facts for `accepts_structure`:
+    /// false when this store would answer false whatever the facts are.
+    fn may_accept_structure(&self) -> bool {
+        false
     }
     /// Test whether a wire-projected atom represents stored lexical state.
     /// Adapters without typed evidence must leave this false.
@@ -399,6 +422,18 @@ pub trait ModelStore: ModelRead {
     fn remove_resource_record(&mut self, _uri: &str) -> StorageResult<()> {
         Err("Explicit resource records are not supported by this storage adapter".into())
     }
+    /// Advance a loaded resource's content revision and clear stale source
+    /// correspondence and diagnostics. Missing records are created. Adapters
+    /// may specialize storage while preserving the shared resource effects.
+    fn touch_resource_record(&mut self, uri: &str) -> StorageResult<()> {
+        crate::core::resources::touch_resource_compat(self, uri)
+    }
+    /// Add or remove one root of a registered resource in place, with the
+    /// shared root-change effects. False (the default) leaves the change to
+    /// the shared read, edit and replace of the record.
+    fn change_resource_root(&mut self, _uri: &str, _id: &str, _root: bool) -> StorageResult<bool> {
+        Ok(false)
+    }
     fn put(&mut self, element: Element) -> StorageResult<()>;
     fn remove(&mut self, id: &str) -> StorageResult<()>;
     /// Arrange to release payloads retired by unload when the outer
@@ -532,17 +567,29 @@ pub trait ModelStore: ModelRead {
         index: Option<usize>,
         target: &str,
     ) -> StorageResult<()> {
-        let value = Value::String(target.into());
-        if let Some(index) = index {
-            let mut current = self.value(id, field)?.ok_or("Missing reference feature")?;
-            *current
-                .as_array_mut()
-                .and_then(|a| a.get_mut(index))
-                .ok_or("Missing reference item")? = value;
-            self.set_value(id, field, Some(current))
-        } else {
-            self.set_value(id, field, Some(value))
-        }
+        resolve_reference_compat(self, id, field, index, target)
+    }
+}
+
+/// The existing wire-value compatibility operation, shared by adapters that
+/// cannot update one physical reference cell without changing its semantics.
+pub(crate) fn resolve_reference_compat(
+    store: &mut (impl ModelStore + ?Sized),
+    id: &str,
+    field: &str,
+    index: Option<usize>,
+    target: &str,
+) -> StorageResult<()> {
+    let value = Value::String(target.into());
+    if let Some(index) = index {
+        let mut current = store.value(id, field)?.ok_or("Missing reference feature")?;
+        *current
+            .as_array_mut()
+            .and_then(|a| a.get_mut(index))
+            .ok_or("Missing reference item")? = value;
+        store.set_value(id, field, Some(current))
+    } else {
+        store.set_value(id, field, Some(value))
     }
 }
 /// Roll back on returned errors and on unwinding. Drop is best effort; explicit

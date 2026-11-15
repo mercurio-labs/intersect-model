@@ -1,6 +1,7 @@
 //! Arena model data and the immutable, check-free read API.
 use super::{
     FrozenError,
+    identity_index::IdentityIndex,
     intern::{FxHashMap, Interner, Sym},
     metamodel::{ClassId, FeatureId, FeatureKind, Metamodel},
 };
@@ -72,7 +73,7 @@ pub(super) struct ModelData {
     pub json: Vec<Value>,
     pub proxies: Vec<Proxy>,
     pub strings: Interner,
-    pub by_id: FxHashMap<Sym, ObjId>,
+    pub by_id: IdentityIndex,
     pub resources: Vec<Sym>,
     pub resource_records: Vec<Option<crate::core::resources::ResourceRecord>>,
     /// Construction evidence carried through import and export unchanged. The

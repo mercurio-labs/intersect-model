@@ -5,6 +5,9 @@ use super::construction_shapes::{
 use super::*;
 use crate::definitions::schema::NoAttributeSourceInputs;
 use std::ops::Bound::{Excluded, Unbounded};
+#[path = "completed_references.rs"]
+mod completed_references;
+use completed_references::CompletedReferences;
 // Full audits retain their owned projection without an additional Arc allocation.
 // Eligible local edits borrow the facade's immutable shared metadata through Arc.
 /// Reference requirements during an incomplete construction transaction.
@@ -198,6 +201,103 @@ impl initialization::MemberLookup for CachedFeatures {
     }
 }
 
+/// The prepared stages of one synchronous audit, as `StructureFacts`.
+struct AuditFacts<'a, A: intersect_model::definitions::schema::RuntimeAlternative> {
+    schema: &'a intersect_model::definitions::schema::SchemaRepresentation<A>,
+    features: &'a BTreeMap<String, CachedFeatures>,
+    order: &'a BTreeMap<String, Vec<String>>,
+    audit: &'a crate::core::resources::ResourceAudit,
+}
+impl<A: intersect_model::definitions::schema::RuntimeAlternative> StructureFacts
+    for AuditFacts<'_, A>
+{
+    fn class(&self, class: &str, identity: &str) -> Option<Vec<FeatureRule<'_>>> {
+        let observation = InvocationContext::default();
+        if self.schema.classes.get(class)?.abstract_type
+            || !self
+                .schema
+                .identity_matches_observed(class, identity, &observation)
+                .ok()?
+            || !self
+                .schema
+                .runtime_feature_domains
+                .get(class)
+                .is_none_or(Vec::is_empty)
+        {
+            return None;
+        }
+        let prepared = self.features.get(class)?;
+        if !prepared.has_no_unsettable_fields() {
+            return None;
+        }
+        self.order
+            .get(class)?
+            .iter()
+            .map(|name| {
+                let field = prepared.get(name)?;
+                // Declared datatypes and opposites take the staged conversion
+                // and reciprocity checks.
+                let kind = if field.opposite.is_some() || field.datatype.is_some() {
+                    return None;
+                } else if field.derived {
+                    if field.containment {
+                        return None;
+                    }
+                    FeatureRuleKind::Derived
+                } else if field.reference {
+                    FeatureRuleKind::Reference {
+                        containment: field.containment,
+                    }
+                } else if field.containment
+                    || crate::definitions::scalars::Builtin::named(&field.target)
+                        != Some(crate::definitions::scalars::Builtin::EString)
+                {
+                    return None;
+                } else {
+                    FeatureRuleKind::Text
+                };
+                Some(FeatureRule {
+                    name,
+                    lower: field.lower,
+                    upper: field.upper,
+                    unique: field.unique,
+                    kind,
+                })
+            })
+            .collect()
+    }
+    fn conforms(&self, class: &str, feature: &str, target: &str) -> bool {
+        let observation = InvocationContext::default();
+        (|| -> StorageResult<bool> {
+            let prepared = self.features.get(class).ok_or("Missing class")?;
+            let field = prepared.get(feature).ok_or("Missing feature")?;
+            let source =
+                prepared.selected_reference(class, feature, field, self.schema, &observation)?;
+            let mut preparation = match source {
+                Some(source) => intersect_model::definitions::schema::ReferenceConformancePreparation::from_selected_source_observed(
+                    class, feature, target, source.owner, source.declared, &observation,
+                ),
+                None => intersect_model::definitions::schema::ReferenceConformancePreparation::new_observed(
+                    class, feature, target, &observation,
+                ),
+            }
+            .map_err(|error| error.to_string())?;
+            while !preparation
+                .advance_observed(self.schema, &observation)
+                .map_err(|error| error.to_string())?
+            {}
+            preparation.completed_result()
+        })()
+        .unwrap_or(false)
+    }
+    fn resource_loaded(&self, uri: &str) -> bool {
+        self.audit.loaded(uri)
+    }
+    fn roots(&self, visit: &mut dyn FnMut(&str, &str) -> bool) -> bool {
+        self.audit.declared_roots().all(|(id, uri)| visit(id, uri))
+    }
+}
+
 enum Stage {
     Start,
     Revision,
@@ -356,6 +456,7 @@ impl StructuralPreparation {
                 scoped,
                 &mut NoConstructionShapes,
                 None,
+                None,
             )
         })();
         if result.is_err() {
@@ -375,8 +476,77 @@ impl StructuralPreparation {
         scoped: Option<&InvocationContext<'_>>,
     ) -> StorageResult<OwnershipIndex> {
         self.synchronous = scoped.is_none() && conversions.is_none();
-        while !self.advance(store, schema, conversions, scoped)? {}
+        if self.synchronous
+            && self.require_lower_bounds
+            && !self.retain_ownership
+            && self.audit_resources
+            && self.references == DraftReferencePolicy::Resolved
+            && matches!(self.stage, Stage::Start)
+            && self.features.is_empty()
+            && store.may_accept_structure()
+            && Self::accepted(store, schema)
+        {
+            return Ok(self.owners);
+        }
+        let mut completed = CompletedReferences::default();
+        while !self.advance_cached(
+            store,
+            schema,
+            conversions,
+            scoped,
+            self.synchronous.then_some(&mut completed),
+        )? {}
         self.finish()
+    }
+
+    /// Whether the store itself establishes that an unobserved complete
+    /// audit passes. A separate preparation runs the canonical schema,
+    /// revision, resource-registry and per-class feature stages; the store
+    /// then checks its objects against those prepared facts
+    /// (`ModelRead::accepts_structure`). Any failure or doubt returns false
+    /// and the caller's own audit starts from the beginning, so every error
+    /// and its precedence stay the staged audit's.
+    fn accepted(
+        store: &(impl ModelRead + ?Sized),
+        schema: &intersect_model::definitions::schema::SchemaRepresentation<
+            impl intersect_model::definitions::schema::RuntimeAlternative,
+        >,
+    ) -> bool {
+        let mut probe = Self::new(true, false);
+        probe.synchronous = true;
+        while matches!(probe.stage, Stage::Start | Stage::Revision) {
+            if probe
+                .advance_cached(store, schema, None, None, None)
+                .is_err()
+            {
+                return false;
+            }
+        }
+        if !matches!(probe.stage, Stage::Identity) {
+            return false;
+        }
+        // The per-class feature stages read only the schema.
+        probe.stage = Stage::Cache;
+        while matches!(
+            probe.stage,
+            Stage::Cache | Stage::CachePrepare | Stage::CacheOrder
+        ) {
+            if probe
+                .advance_cached(store, schema, None, None, None)
+                .is_err()
+            {
+                return false;
+            }
+        }
+        let Some(audit) = &probe.resource_audit else {
+            return false;
+        };
+        store.accepts_structure(&AuditFacts {
+            schema,
+            features: &probe.features,
+            order: &probe.feature_order,
+            audit,
+        })
     }
 
     pub fn advance(
@@ -387,6 +557,18 @@ impl StructuralPreparation {
         >,
         conversions: Option<&ConversionRegistry<'_>>,
         scoped: Option<&InvocationContext<'_>>,
+    ) -> StorageResult<bool> {
+        self.advance_cached(store, schema, conversions, scoped, None)
+    }
+    fn advance_cached(
+        &mut self,
+        store: &(impl ModelRead + ?Sized),
+        schema: &intersect_model::definitions::schema::SchemaRepresentation<
+            impl intersect_model::definitions::schema::RuntimeAlternative,
+        >,
+        conversions: Option<&ConversionRegistry<'_>>,
+        scoped: Option<&InvocationContext<'_>>,
+        completed: Option<&mut CompletedReferences>,
     ) -> StorageResult<bool> {
         if self.checked_schema.is_some() {
             self.failed = true;
@@ -405,6 +587,7 @@ impl StructuralPreparation {
             scoped,
             &mut NoConstructionShapes,
             None,
+            completed,
         );
         if result.is_err() {
             self.failed = true;
@@ -436,6 +619,7 @@ impl StructuralPreparation {
             Some(observation),
             &mut NoConstructionShapes,
             Some(values),
+            None,
         );
         if result.is_err() {
             self.failed = true;
@@ -489,6 +673,7 @@ impl StructuralPreparation {
                     context: construction,
                     budget,
                 },
+                None,
                 None,
             )
         })();
@@ -568,6 +753,7 @@ impl StructuralPreparation {
                     budget,
                 },
                 None,
+                None,
             )
         })();
         if result.is_err() {
@@ -626,6 +812,7 @@ impl StructuralPreparation {
         scoped: Option<&InvocationContext<'_>>,
         shapes: &mut D,
         values: Option<&mut super::structural_values::StructuralValueCursor<'_, '_, '_>>,
+        completed: Option<&mut CompletedReferences>,
     ) -> StorageResult<bool> {
         let unobserved = InvocationContext::default();
         let observation = scoped.unwrap_or(&unobserved);
@@ -881,9 +1068,15 @@ impl StructuralPreparation {
             | Stage::Shape
             | Stage::Value
             | Stage::Attribute
-            | Stage::Reference => {
-                self.advance_member(store, schema, conversions, scoped, shapes, values)?
-            }
+            | Stage::Reference => self.advance_member(
+                store,
+                schema,
+                conversions,
+                scoped,
+                shapes,
+                values,
+                completed,
+            )?,
             Stage::CycleStart => {
                 let next = match &self.last_cycle {
                     Some(last) => self
@@ -1008,6 +1201,7 @@ impl StructuralPreparation {
         scoped: Option<&InvocationContext<'_>>,
         shapes: &mut D,
         mut values: Option<&mut super::structural_values::StructuralValueCursor<'_, '_, '_>>,
+        mut completed: Option<&mut CompletedReferences>,
     ) -> StorageResult<()> {
         let unobserved = InvocationContext::default();
         let observation = scoped.unwrap_or(&unobserved);
@@ -1085,8 +1279,11 @@ impl StructuralPreparation {
                     .reference
                     .take()
                     .ok_or("Missing structural reference qualification")?;
-                if !preparation.finish()? {
+                if !preparation.completed_result()? {
                     return Err(format!("Reference type mismatch {class}.{name}"));
+                }
+                if let Some(cache) = completed {
+                    cache.retain(preparation)?;
                 }
                 if field.containment {
                     self.owners.insert(&target, id, observation)?;
@@ -1271,6 +1468,12 @@ impl StructuralPreparation {
                     let id = identity.ok_or("Reference must be an identity")?;
                     let mut preparation = None;
                     let found = store.inspect_class(id, &mut |target_class| {
+                        if let Some(reused) = completed.as_deref_mut().and_then(|cache|
+                            cache.take(element.class(), name, target_class))
+                        {
+                            preparation = Some(reused);
+                            return Ok(());
+                        }
                         let source = if self.synchronous {
                             prepared_fields.selected_reference(element.class(), name, field, schema, observation)?
                         } else {
@@ -1480,6 +1683,9 @@ mod cycle_storage_tests {
     }
 }
 
+#[cfg(test)]
+#[path = "completed_reference_tests.rs"]
+mod completed_reference_tests;
 #[cfg(test)]
 #[path = "prepared_reference_source_tests.rs"]
 mod prepared_reference_source_tests;

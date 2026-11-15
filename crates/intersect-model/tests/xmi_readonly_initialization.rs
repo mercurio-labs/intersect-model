@@ -304,6 +304,42 @@ fn readonly_id_and_receipt_restore_at_true_fresh_state_without_touching_retained
     );
 }
 #[test]
+fn repeated_class_import_initializes_each_readonly_row_at_its_own_fresh_state() {
+    let fixture = Fixture::new();
+    let mut set = fixture.set();
+    let before = set.snapshot().unwrap();
+    let registry = registry();
+    let control = InvocationContext::default();
+    let mut caller = QueryBudget::new(1_000_000);
+    let authority = StructuralValueContext::new(&Raw, &mut caller, &control);
+    let formats = FormatContext {
+        structural_values: Some(authority.borrowed()),
+        snapshot_initializers: Some(&fixture),
+        ..Default::default()
+    };
+    let bytes = registry
+        .export_with_format_context("xmi", &fixture.schema, &before, None, &formats)
+        .unwrap();
+    assert_eq!(bytes.len(), 2);
+    fixture.provider.calls.set(0);
+    let decoded = registry
+        .import_with_format_context("xmi", &fixture.schema, &bytes, None, &formats)
+        .unwrap();
+    assert_eq!(fixture.provider.calls.get(), 2);
+    assert_eq!(semantic(decoded), semantic(before));
+    for id in ["a", "b"] {
+        assert_eq!(
+            set.reader().value(id, "identity").unwrap(),
+            Some(json!(if id == "a" {
+                "models/one.xmi#a"
+            } else {
+                "models/two.xmi#b"
+            }))
+        );
+    }
+}
+
+#[test]
 fn wrong_readonly_value_object_resource_source_or_missing_authority_never_publish() {
     let fixture = Fixture::new();
     let mut set = fixture.set();

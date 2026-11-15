@@ -1566,15 +1566,20 @@ pub(super) fn encode_value(data: &mut ModelData, value: Value) -> Result<Slot, F
         Value::Array(items) => {
             let items = items
                 .into_iter()
-                .map(|item| match item {
-                    Value::Array(_) | Value::Object(_) => json_slot(data, item),
-                    item => encode_value(data, item),
-                })
+                .map(|item| encode_list_item(data, item))
                 .collect::<Result<_, _>>()?;
             new_list(data, items)?
         }
         value => json_slot(data, value)?,
     })
+}
+/// A collection member is an atom: nested JSON stays lossless rather than
+/// becoming another arena collection. Shared by replacement and append.
+pub(super) fn encode_list_item(data: &mut ModelData, value: Value) -> Result<Slot, FrozenError> {
+    match value {
+        Value::Array(_) | Value::Object(_) => json_slot(data, value),
+        value => encode_value(data, value),
+    }
 }
 pub(super) fn json_slot(data: &mut ModelData, value: Value) -> Result<Slot, FrozenError> {
     let index = u32::try_from(data.json.len()).map_err(|_| FrozenError::Capacity("json values"))?;

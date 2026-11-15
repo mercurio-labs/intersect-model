@@ -82,17 +82,25 @@ impl Indexes {
     }
 
     pub fn update_value(&mut self, row: ObjId, field: &str, value: &Value, add: bool) {
+        for member in value_members(value) {
+            self.update_member(row, field, member, add);
+        }
+    }
+
+    /// One member of a collection, including an atomic nested JSON value.
+    pub fn update_member(&mut self, row: ObjId, field: &str, member: &Value, add: bool) {
+        if member.is_null() {
+            return;
+        }
         let Some(postings) = self.postings.get_mut() else {
             return;
         };
-        for member in value_members(value) {
-            update_posting(
-                &mut postings.values,
-                query_key(Query::Value(field, member)),
-                row,
-                add,
-            );
-        }
+        update_posting(
+            &mut postings.values,
+            query_key(Query::Value(field, member)),
+            row,
+            add,
+        );
     }
 }
 

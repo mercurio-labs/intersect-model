@@ -87,13 +87,15 @@ impl ResourceRecord {
         })
     }
     pub fn touch(&mut self) -> StorageResult<()> {
-        self.content_revision = self
-            .content_revision
-            .checked_add(1)
-            .ok_or("Resource content revision exhausted")?;
+        self.content_revision = self.next_content_revision()?;
         self.source = None;
         self.diagnostics.clear();
         Ok(())
+    }
+    pub(crate) fn next_content_revision(&self) -> StorageResult<u64> {
+        self.content_revision
+            .checked_add(1)
+            .ok_or_else(|| "Resource content revision exhausted".into())
     }
 }
 
@@ -320,6 +322,13 @@ pub(crate) fn touch_resource(
     store: &mut (impl ModelStore + ?Sized),
     uri: &str,
 ) -> StorageResult<()> {
+    store.touch_resource_record(uri)
+}
+
+pub(crate) fn touch_resource_compat(
+    store: &mut (impl ModelStore + ?Sized),
+    uri: &str,
+) -> StorageResult<()> {
     let mut record = match store.resource_record(uri)? {
         Some(record) => record,
         None => ResourceRecord::new(uri)?,
@@ -337,6 +346,9 @@ pub(crate) fn change_root(
     id: &str,
     root: bool,
 ) -> StorageResult<()> {
+    if store.change_resource_root(uri, id, root)? {
+        return Ok(());
+    }
     let mut record = match store.resource_record(uri)? {
         Some(record) => record,
         None => ResourceRecord::new(uri)?,
@@ -457,6 +469,7 @@ pub fn records_for_elements(
 ) -> StorageResult<BTreeMap<String, ResourceRecord>> {
     let mut records = BTreeMap::new();
     let mut contained = BTreeSet::new();
+    let mut fields = RecordContainmentFields::new(schema);
     for element in elements {
         if !records.contains_key(&element.resource) {
             records.insert(
@@ -464,10 +477,8 @@ pub fn records_for_elements(
                 ResourceRecord::new(&element.resource)?,
             );
         }
-        for (name, feature) in schema.features(&element.class)? {
-            if feature.containment && !feature.derived {
-                contained.extend(reference_ids(element.values.get(&name)));
-            }
+        for name in fields.get(&element.class)?.iter() {
+            contained.extend(reference_ids(element.values.get(name)));
         }
     }
     for element in elements {
@@ -482,6 +493,42 @@ pub fn records_for_elements(
         }
     }
     Ok(records)
+}
+
+/// Canonical containment selection for one immutable-schema resource projection.
+/// Only metadata is reused: each object still contributes its own references.
+struct RecordContainmentFields<'a> {
+    schema: &'a Schema,
+    classes: BTreeMap<String, Vec<String>>,
+}
+impl<'a> RecordContainmentFields<'a> {
+    const CAPACITY: usize = 256;
+
+    fn new(schema: &'a Schema) -> Self {
+        Self {
+            schema,
+            classes: BTreeMap::new(),
+        }
+    }
+
+    fn select(schema: &Schema, class: &str) -> StorageResult<Vec<String>> {
+        Ok(schema
+            .features(class)?
+            .into_iter()
+            .filter_map(|(name, field)| (field.containment && !field.derived).then_some(name))
+            .collect())
+    }
+
+    fn get(&mut self, class: &str) -> StorageResult<std::borrow::Cow<'_, [String]>> {
+        if !self.classes.contains_key(class) && self.classes.len() < Self::CAPACITY {
+            let fields = Self::select(self.schema, class)?;
+            self.classes.insert(class.into(), fields);
+        }
+        match self.classes.get(class) {
+            Some(fields) => Ok(std::borrow::Cow::Borrowed(fields)),
+            None => Ok(std::borrow::Cow::Owned(Self::select(self.schema, class)?)),
+        }
+    }
 }
 
 /// Audit logical boundaries independently of full structural/provider checks.
@@ -580,12 +627,7 @@ pub(super) fn add_member_with_defaults<'a>(
 }
 
 fn check_identity_available(store: &(impl ModelRead + ?Sized), id: &str) -> StorageResult<()> {
-    if store.resource_records()?.values().any(|record| {
-        record
-            .unloaded
-            .as_ref()
-            .is_some_and(|contents| contents.identities.contains(id))
-    }) {
+    if store.identity_reserved(id)? {
         return Err(format!(
             "Identity is reserved by an unloaded resource: {id}"
         ));
@@ -673,6 +715,18 @@ impl ResourceAudit {
         }
         Ok(())
     }
+    /// Whether `element` would accept a member of this resource.
+    pub(crate) fn loaded(&self, uri: &str) -> bool {
+        self.records
+            .get(uri)
+            .is_some_and(|record| record.load_state == ResourceLoadState::Loaded)
+    }
+    /// Declared roots as (identity, resource URI).
+    pub(crate) fn declared_roots(&self) -> impl Iterator<Item = (&str, &str)> {
+        self.declared
+            .iter()
+            .map(|(id, (uri, _))| (id.as_str(), uri.as_ref()))
+    }
     pub(crate) fn contained(&mut self, id: &str) {
         if let Some((_, present)) = self.declared.get_mut(id) {
             *present = false;
@@ -751,6 +805,136 @@ mod tests {
             .containment()
             .unwrap();
         BasicModel::new(builder.build().unwrap().as_schema().clone()).unwrap()
+    }
+
+    // The pre-reuse projection is retained only as an independent test oracle.
+    fn uncached_records(
+        schema: &Schema,
+        elements: &[Element],
+    ) -> StorageResult<BTreeMap<String, ResourceRecord>> {
+        let mut records = BTreeMap::new();
+        let mut contained = BTreeSet::new();
+        for element in elements {
+            if !records.contains_key(&element.resource) {
+                records.insert(
+                    element.resource.clone(),
+                    ResourceRecord::new(&element.resource)?,
+                );
+            }
+            for (name, feature) in schema.features(&element.class)? {
+                if feature.containment && !feature.derived {
+                    contained.extend(reference_ids(element.values.get(&name)));
+                }
+            }
+        }
+        for element in elements {
+            if !contained.contains(element.id.as_str()) {
+                Arc::make_mut(&mut records.get_mut(&element.resource).unwrap().roots)
+                    .push(element.id.clone());
+            }
+        }
+        Ok(records)
+    }
+
+    #[test]
+    fn record_metadata_reuse_preserves_inheritance_roots_order_and_raw_reference_shapes() {
+        let mut builder = SchemaBuilder::new("record-fields", "urn:record-fields");
+        let node = builder.class("Node").unwrap();
+        node.reference("children", &node)
+            .many()
+            .containment()
+            .unwrap();
+        let child = builder.class("Child").unwrap();
+        child.extends(&node).unwrap();
+        let mut schema = builder.build().unwrap().as_schema().clone();
+        let mut computed = schema.classes["Node"].features["children"].clone();
+        computed.name = "computed".into();
+        computed.derived = true;
+        let class = schema.classes.get_mut("Child").unwrap();
+        class.features.insert("computed".into(), computed);
+        class.feature_order.push("computed".into());
+        let mut elements: Vec<_> = [
+            ("tail", "Node", "urn:b"),
+            ("owner", "Child", "urn:a"),
+            ("first", "Node", "urn:a"),
+            ("child", "Child", "urn:b"),
+        ]
+        .into_iter()
+        .map(|(id, class, uri)| Element::new(&schema, id, class, uri, 0, 0).unwrap())
+        .collect();
+        elements[1]
+            .values
+            .insert("children".into(), json!(["child", 17, "child", "missing"]));
+        elements[1]
+            .values
+            .insert("computed".into(), json!(["first"]));
+        elements[2].values.insert("children".into(), json!("tail"));
+        elements[3]
+            .values
+            .insert("children".into(), json!(["child"]));
+        let actual = records_for_elements(&schema, &elements).unwrap();
+        assert_eq!(actual, uncached_records(&schema, &elements).unwrap());
+        assert_eq!(actual["urn:a"].roots.as_ref(), &["owner", "first"]);
+        assert!(actual["urn:b"].roots.is_empty());
+        assert!(records_for_elements(&schema, &[]).unwrap().is_empty());
+        // Neither a previous call nor its schema revision authorizes reuse in a new call.
+        schema
+            .classes
+            .get_mut("Node")
+            .unwrap()
+            .features
+            .get_mut("children")
+            .unwrap()
+            .derived = true;
+        let changed = records_for_elements(&schema, &elements).unwrap();
+        assert_eq!(changed, uncached_records(&schema, &elements).unwrap());
+        assert_eq!(changed["urn:b"].roots.as_ref(), &["tail", "child"]);
+        elements[0].class = "Unknown".into();
+        assert_eq!(
+            records_for_elements(&schema, &elements),
+            uncached_records(&schema, &elements)
+        );
+        elements[0].resource = "bad uri".into();
+        assert_eq!(
+            records_for_elements(&schema, &elements),
+            uncached_records(&schema, &elements)
+        );
+    }
+
+    #[test]
+    fn resource_containment_metadata_is_bounded_with_canonical_fallback() {
+        let mut builder = SchemaBuilder::new("many-record-fields", "urn:many-record-fields");
+        let target = builder.class("Target").unwrap();
+        for i in 0..RecordContainmentFields::CAPACITY + 2 {
+            builder
+                .class(&format!("C{i}"))
+                .unwrap()
+                .reference("child", &target)
+                .containment()
+                .unwrap();
+        }
+        let schema = builder.build().unwrap();
+        let mut fields = RecordContainmentFields::new(schema.as_schema());
+        assert!(fields.get("Missing").is_err());
+        assert!(fields.classes.is_empty());
+        for i in 0..RecordContainmentFields::CAPACITY + 2 {
+            assert_eq!(fields.get(&format!("C{i}")).unwrap().as_ref(), &["child"]);
+        }
+        assert_eq!(fields.classes.len(), RecordContainmentFields::CAPACITY);
+        assert!(
+            !fields
+                .classes
+                .contains_key(&format!("C{}", RecordContainmentFields::CAPACITY))
+        );
+        assert!(matches!(
+            fields.get("C0").unwrap(),
+            std::borrow::Cow::Borrowed(_)
+        ));
+        assert!(matches!(
+            fields.get("C257").unwrap(),
+            std::borrow::Cow::Owned(_)
+        ));
+        assert!(fields.get("Missing").is_err());
     }
 
     #[test]

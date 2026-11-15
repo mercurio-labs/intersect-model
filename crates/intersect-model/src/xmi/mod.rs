@@ -1,6 +1,8 @@
 //! Handwritten native XMI 2.0 codec for the bounded Intersect Ecore profile.
 //! No I/O, generated code, or Java runtime dependency. Explicit contexts borrow
 //! language-owned lexical providers; the codec owns no conversion algorithm.
+#[cfg(test)]
+mod construction_tests;
 mod xml;
 use intersect_model::core::{
     interchange::{DecodedModel, FormatContext, ModelFormat, Resource},
@@ -637,10 +639,61 @@ fn readonly_wire_values(
     Ok(values.into_iter().collect())
 }
 
+/// Pristine canonical construction results for one immutable-schema import.
+/// Never populated from retained rows, provenance, providers or wire values.
+struct FreshElements<'a> {
+    schema: &'a Schema,
+    templates: BTreeMap<String, Element>,
+}
+impl<'a> FreshElements<'a> {
+    const CAPACITY: usize = 256;
+
+    fn new(schema: &'a Schema) -> Self {
+        Self {
+            schema,
+            templates: BTreeMap::new(),
+        }
+    }
+
+    fn create(
+        &mut self,
+        id: &str,
+        class: &str,
+        resource: &str,
+        start: usize,
+        end: usize,
+    ) -> Result<Element, String> {
+        if let Some(template) = self.templates.get(class) {
+            // This immutable schema/class already passed the canonical factory.
+            // Object identity remains a per-construction check.
+            if id.is_empty() {
+                return Err("Element identity must be unique and nonempty".into());
+            }
+            let mut element = template.clone();
+            element.id = id.into();
+            element.resource = resource.into();
+            element.start = start;
+            element.end = end;
+            return Ok(element);
+        }
+        let element = Element::new(self.schema, id, class, resource, start, end)?;
+        if self.templates.len() < Self::CAPACITY {
+            let mut template = element.clone();
+            template.id = String::new();
+            template.resource = String::new();
+            template.start = 0;
+            template.end = 0;
+            self.templates.insert(class.into(), template);
+        }
+        Ok(element)
+    }
+}
+
 struct Import<'a, 'services> {
     context: FormatContext<'services>,
     classes: Classes<'a>,
     schema: &'a Schema,
+    fresh_elements: FreshElements<'a>,
     model: Model,
     aliases: BTreeMap<(String, String), String>,
     pending: Vec<(usize, String, Vec<String>)>,
@@ -735,7 +788,9 @@ impl Import<'_, '_> {
                 return Err("Unsupported absent stored XMI member".into());
             }
         }
-        let element = Element::new(self.schema, &id, &class, resource, start, end)?;
+        let element = self
+            .fresh_elements
+            .create(&id, &class, resource, start, end)?;
         let initialization = saved
             .as_ref()
             .and_then(|saved| saved.initialization.clone());
@@ -1147,6 +1202,7 @@ fn decode_with_rules(
         context: *context,
         classes: Classes::new(schema, rules),
         schema,
+        fresh_elements: FreshElements::new(schema),
         model: retained.clone(),
         aliases: BTreeMap::new(),
         pending: vec![],

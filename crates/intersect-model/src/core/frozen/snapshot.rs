@@ -58,7 +58,8 @@
 //! The module performs no I/O and uses no clocks, threads or environment.
 use super::{
     Diagnostics, FrozenError,
-    intern::{FxHashMap, Interner, Sym},
+    identity_index::IdentityIndex,
+    intern::{Interner, Sym},
     metamodel::{ClassId, FeatureId, Metamodel},
     model::{Carried, Header, Model, ModelData, ObjId, Proxy, Slot},
 };
@@ -750,7 +751,7 @@ fn decode_sections(mm: &Metamodel, sections: &[&[u8]]) -> Result<ModelData, Snap
     let total = reader.count(36)?;
     data.headers.reserve(total);
     let features = mm.feature_count();
-    let mut by_id: FxHashMap<Sym, ObjId> = FxHashMap::default();
+    let mut by_id = IdentityIndex::default();
     by_id.reserve(total);
     for index in 0..total {
         let class = ClassId(reader.u32()?);

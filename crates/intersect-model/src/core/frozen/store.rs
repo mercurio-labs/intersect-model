@@ -40,8 +40,19 @@ use index::{Indexes, value_members};
 #[path = "store_views.rs"]
 mod views;
 pub(in crate::core) use views::{FrozenAtom, FrozenItems, FrozenObject, FrozenValue};
+#[path = "store_append.rs"]
+mod append;
+use append::AppendList;
+#[path = "store_resolve.rs"]
+mod resolve;
+#[path = "store_resource_journal.rs"]
+mod resource_journal;
+#[path = "store_structure.rs"]
+mod structure;
+use resource_journal::ResourceTouches;
 
 type IdentityProxies = std::collections::HashSet<u32, super::intern::FxBuild>;
+type ResourceUris = std::collections::HashSet<String, super::intern::FxBuild>;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum ReferenceEncoding {
@@ -65,7 +76,12 @@ struct Frame {
     strings: usize,
     resources: usize,
     saved: FxHashMap<ObjId, Saved>,
+    /// Original lengths of append-owned lists that predate this frame.
+    list_lengths: FxHashMap<u32, usize>,
+    /// Prior cells of slot-owned lists, in mutation order. Replayed backwards.
+    list_items: Vec<((u32, usize), Slot)>,
     records: FxHashMap<String, Option<ResourceRecord>>,
+    touches: ResourceTouches,
     revision: Option<String>,
     release_unloaded_values: bool,
     /// `FrozenStore::prepared_written` when the frame began.
@@ -89,9 +105,15 @@ pub struct FrozenStore {
     builder: ModelBuilder,
     revision: String,
     records: BTreeMap<String, ResourceRecord>,
+    /// Exact strings admitted through the validating setter. Raw materialized
+    /// imports do not establish this proof. Retention is bounded by records.
+    validated_resource_uris: ResourceUris,
     checkpoints: CheckpointIssuer,
     frames: Vec<Frame>,
     indexes: Indexes,
+    /// Lists created for one mutable slot; imported/possibly shared lists are
+    /// copied once before append. Not part of snapshots or public identities.
+    append_lists: FxHashMap<u32, AppendList>,
     descriptors: Arc<OnceLock<StorageResult<SchemaDescriptor>>>,
     incarnations: Vec<Arc<()>>,
     archive_defaults: bool,
@@ -102,19 +124,36 @@ pub struct FrozenStore {
     /// Whether a write changed an object of the model the store started
     /// from. Rolling back restores those objects and this flag.
     prepared_written: bool,
+    /// Rows of recently resolved identities. Lookup-only: a hit is rechecked
+    /// against the row's identity and the live index, so a stale or
+    /// colliding entry only costs the ordinary lookup.
+    recent_objects: RecentObjects,
+}
+
+/// Direct-mapped by the identity's length and trailing bytes, where
+/// generated identities differ.
+struct RecentObjects(Box<[std::sync::atomic::AtomicU32]>);
+impl RecentObjects {
+    const SLOTS: usize = 1024;
+    fn new() -> Self {
+        Self(
+            (0..Self::SLOTS)
+                .map(|_| std::sync::atomic::AtomicU32::new(u32::MAX))
+                .collect(),
+        )
+    }
+    fn slot(&self, id: &str) -> &std::sync::atomic::AtomicU32 {
+        let bytes = id.as_bytes();
+        let mut tail = [0u8; 8];
+        let taken = bytes.len().min(8);
+        tail[..taken].copy_from_slice(&bytes[bytes.len() - taken..]);
+        let mixed =
+            (u64::from_le_bytes(tail) ^ bytes.len() as u64).wrapping_mul(0x9e37_79b9_7f4a_7c15);
+        &self.0[(mixed >> 54) as usize % Self::SLOTS]
+    }
 }
 
 impl FrozenStore {
-    fn remember_resource(&mut self, uri: &str) {
-        if let Some(frame) = self.frames.last_mut()
-            && !frame.records.contains_key(uri)
-        {
-            frame
-                .records
-                .insert(uri.to_owned(), self.records.get(uri).cloned());
-        }
-    }
-
     /// Freeze a schema once and create an empty builder-backed store with
     /// the default value indexes for checked model editing.
     pub fn for_schema(schema: &crate::definitions::schema::Schema) -> Result<Self, FrozenError> {
@@ -140,15 +179,18 @@ impl FrozenStore {
             builder: ModelBuilder::new(metamodel),
             revision: String::new(),
             records: BTreeMap::new(),
+            validated_resource_uris: ResourceUris::default(),
             checkpoints: CheckpointIssuer::default(),
             frames: Vec::new(),
             indexes: Indexes::new(policy),
+            append_lists: FxHashMap::default(),
             descriptors: Arc::default(),
             incarnations: Vec::new(),
             archive_defaults: false,
             identity_proxies: Default::default(),
             prefix: None,
             prepared_written: false,
+            recent_objects: RecentObjects::new(),
         }
     }
     /// A store holding a validated model, ready to parse more resources into
@@ -235,15 +277,18 @@ impl FrozenStore {
             builder: self.builder.clone(),
             revision: self.revision.clone(),
             records: self.records.clone(),
+            validated_resource_uris: self.validated_resource_uris.clone(),
             checkpoints: CheckpointIssuer::default(),
             frames: Vec::new(),
             indexes: self.indexes.clone(),
+            append_lists: self.append_lists.clone(),
             descriptors: self.descriptors.clone(),
             incarnations: self.incarnations.clone(),
             archive_defaults: self.archive_defaults,
             identity_proxies: self.identity_proxies.clone(),
             prefix: self.prefix.clone(),
             prepared_written: self.prepared_written,
+            recent_objects: RecentObjects::new(),
         })
     }
 
@@ -267,6 +312,7 @@ impl FrozenStore {
         })?;
         // The supplied registry is authoritative, including empty resources.
         store.records = model.resources.clone();
+        store.validated_resource_uris.clear();
         Ok(store)
     }
 
@@ -390,7 +436,19 @@ impl FrozenStore {
     }
 
     fn object(&self, id: &str) -> Option<ObjId> {
-        self.builder.lookup(id)
+        use std::sync::atomic::Ordering::Relaxed;
+        let data = &self.builder.data;
+        let slot = self.recent_objects.slot(id);
+        let recent = ObjId(slot.load(Relaxed));
+        if let Some(header) = data.header(recent)
+            && data.strings.resolve(header.id) == id
+            && data.by_id.get(&header.id) == Some(&recent)
+        {
+            return Some(recent);
+        }
+        let found = self.builder.lookup(id)?;
+        slot.store(found.0, Relaxed);
+        Some(found)
     }
 
     fn object_view(&self, id: &str) -> StorageResult<Option<FrozenObject<'_>>> {
@@ -1114,6 +1172,14 @@ impl ModelRead for FrozenStore {
     fn resource_record(&self, uri: &str) -> StorageResult<Option<ResourceRecord>> {
         Ok(self.records.get(uri).cloned())
     }
+    fn identity_reserved(&self, id: &str) -> StorageResult<bool> {
+        Ok(self.records.values().any(|record| {
+            record
+                .unloaded
+                .as_ref()
+                .is_some_and(|contents| contents.identities.contains(id))
+        }))
+    }
     fn revision(&self) -> StorageResult<String> {
         Ok(self.revision.clone())
     }
@@ -1142,6 +1208,12 @@ impl ModelRead for FrozenStore {
         };
         self.inspect_row(row, f)?;
         Ok(true)
+    }
+    fn accepts_structure(&self, facts: &dyn storage::StructureFacts) -> bool {
+        self.accepts_structure_rows(facts)
+    }
+    fn may_accept_structure(&self) -> bool {
+        self.may_accept_structure_rows()
     }
     fn get(&self, id: &str) -> StorageResult<Option<Element>> {
         self.object(id).map(|obj| self.element(obj)).transpose()
@@ -1222,7 +1294,14 @@ impl ModelRead for FrozenStore {
                 .posting(query, &InvocationContext::default())?
                 .into_iter()
                 .flatten()
-                .map(|&row| self.identity(row).map(str::to_owned))
+                .map(|&row| {
+                    let id = self.identity(row)?;
+                    // Callers usually look the returned identities up next.
+                    self.recent_objects
+                        .slot(id)
+                        .store(row.0, std::sync::atomic::Ordering::Relaxed);
+                    Ok(id.to_owned())
+                })
                 .collect();
         }
         let mut found = Vec::new();
@@ -1286,7 +1365,10 @@ impl ModelStore for FrozenStore {
             strings: data.strings.len(),
             resources: data.resources.len(),
             saved: FxHashMap::default(),
+            list_lengths: FxHashMap::default(),
+            list_items: Vec::new(),
             records: FxHashMap::default(),
+            touches: ResourceTouches::default(),
             revision: None,
             release_unloaded_values: false,
             prepared_written: self.prepared_written,
@@ -1315,14 +1397,27 @@ impl ModelStore for FrozenStore {
         };
         // The parent keeps its earliest snapshot of each object.
         if let Some(parent) = self.frames.last_mut() {
+            for change in frame.list_items {
+                if (change.0.0 as usize) < parent.lists {
+                    parent.list_items.push(change);
+                }
+            }
+            for (list, length) in frame.list_lengths {
+                if (list as usize) < parent.lists {
+                    parent.list_lengths.entry(list).or_insert(length);
+                }
+            }
             for (obj, saved) in frame.saved {
                 if obj.index() < parent.headers {
                     parent.saved.entry(obj).or_insert(saved);
                 }
             }
-            for (uri, record) in frame.records {
-                parent.records.entry(uri).or_insert(record);
-            }
+            resource_journal::merge(
+                &self.builder.data.strings,
+                parent,
+                frame.records,
+                frame.touches,
+            );
             if parent.revision.is_none() {
                 parent.revision = frame.revision;
             }
@@ -1331,6 +1426,7 @@ impl ModelStore for FrozenStore {
         if let Some(packed) = packed {
             self.builder = packed.builder;
             self.identity_proxies = packed.identity_proxies;
+            self.append_lists.clear();
             // The arena was rebuilt: no object is where its model put it.
             self.prefix = None;
             self.indexes = self.indexes.empty();
@@ -1347,12 +1443,43 @@ impl ModelStore for FrozenStore {
         let Some(frame) = self.frames.pop() else {
             return Err("Missing checkpoint".into());
         };
+        // Symbols must be resolved before the checkpoint's string suffix is
+        // removed. Full record replacements promote compact undo beforehand.
+        for (uri, undo) in frame.touches.into_iter() {
+            let uri = self.builder.data.strings.resolve(uri);
+            let record = self
+                .records
+                .get_mut(uri)
+                .ok_or("Missing touched resource")?;
+            undo.restore(record);
+        }
         for row in frame.saved.keys().copied() {
             self.index_row(row, false);
         }
         for row in frame.headers..self.builder.data.headers.len() {
             self.index_row(ObjId(row as u32), false);
         }
+        // Remove current postings before restoring list contents, then rebuild
+        // restored rows below. Membership journals must precede string rollback.
+        for ((list, index), value) in frame.list_items.into_iter().rev() {
+            *self
+                .builder
+                .data
+                .lists
+                .get_mut(list as usize)
+                .and_then(|items| items.get_mut(index))
+                .ok_or("Missing journaled reference item")? = value;
+        }
+        for (&list, &length) in &frame.list_lengths {
+            if let Some(items) = self.builder.data.lists.get_mut(list as usize) {
+                items.truncate(length);
+            }
+            if let Some(owned) = self.append_lists.get_mut(&list) {
+                owned.truncate(length);
+            }
+        }
+        self.append_lists
+            .retain(|&list, owned| (list as usize) < frame.lists && owned.owner < frame.slots);
         let data = &mut self.builder.data;
         for (index, header) in data.headers.drain(frame.headers..).enumerate() {
             let obj = ObjId((frame.headers + index) as u32);
@@ -1402,6 +1529,7 @@ impl ModelStore for FrozenStore {
                 self.records.insert(uri, record);
             } else {
                 self.records.remove(&uri);
+                self.validated_resource_uris.remove(&uri);
             }
         }
         if let Some(revision) = frame.revision {
@@ -1423,10 +1551,44 @@ impl ModelStore for FrozenStore {
     }
     fn set_resource_record(&mut self, record: ResourceRecord) -> StorageResult<()> {
         self.active()?;
-        crate::core::resources::validate_resource_uri(&record.uri)?;
+        if !self.validated_resource_uris.contains(&record.uri) {
+            crate::core::resources::validate_resource_uri(&record.uri)?;
+            self.validated_resource_uris.insert(record.uri.clone());
+        }
         self.remember_resource(&record.uri);
         self.records.insert(record.uri.clone(), record);
         Ok(())
+    }
+    fn touch_resource_record(&mut self, uri: &str) -> StorageResult<()> {
+        self.touch_record(uri)
+    }
+    /// The shared root change on the registered record itself: the same
+    /// membership test, revision check, admission order, journal entry and
+    /// resulting record as reading it, editing the copy and replacing it.
+    fn change_resource_root(&mut self, uri: &str, id: &str, root: bool) -> StorageResult<bool> {
+        let Some(record) = self.records.get(uri) else {
+            return Ok(false);
+        };
+        if record.roots.iter().any(|r| r == id) == root {
+            return Ok(true);
+        }
+        let revision = record.next_content_revision()?;
+        self.active()?;
+        if !self.validated_resource_uris.contains(uri) {
+            crate::core::resources::validate_resource_uri(uri)?;
+            self.validated_resource_uris.insert(uri.to_owned());
+        }
+        self.remember_resource(uri);
+        let record = self.records.get_mut(uri).ok_or("Missing resource record")?;
+        if root {
+            Arc::make_mut(&mut record.roots).push(id.into());
+        } else {
+            Arc::make_mut(&mut record.roots).retain(|r| r != id);
+        }
+        record.content_revision = revision;
+        record.source = None;
+        record.diagnostics.clear();
+        Ok(true)
     }
     fn remove_resource_record(&mut self, uri: &str) -> StorageResult<()> {
         self.active()?;
@@ -1435,6 +1597,7 @@ impl ModelStore for FrozenStore {
         }
         self.remember_resource(uri);
         self.records.remove(uri);
+        self.validated_resource_uris.remove(uri);
         Ok(())
     }
     fn put(&mut self, element: Element) -> StorageResult<()> {
@@ -1564,6 +1727,10 @@ impl ModelStore for FrozenStore {
         self.assign_value(id, field, value, ReferenceEncoding::Wire)
     }
 
+    fn append_value(&mut self, id: &str, field: &str, value: Value) -> StorageResult<()> {
+        self.append_item(id, field, value)
+    }
+
     fn set_resolved_value(
         &mut self,
         id: &str,
@@ -1571,6 +1738,16 @@ impl ModelStore for FrozenStore {
         value: Option<Value>,
     ) -> StorageResult<()> {
         self.assign_value(id, field, value, ReferenceEncoding::Identity)
+    }
+
+    fn resolve_reference(
+        &mut self,
+        id: &str,
+        field: &str,
+        index: Option<usize>,
+        target: &str,
+    ) -> StorageResult<()> {
+        self.resolve_item(id, field, index, target)
     }
 
     fn remove(&mut self, id: &str) -> StorageResult<()> {
@@ -2071,6 +2248,120 @@ mod tests {
     use super::*;
     use serde_json::json;
 
+    fn resource_fixture() -> StorageResult<crate::definitions::schema::Schema> {
+        crate::compile_rcore(
+            r#"rcore 1; package records version "1";
+               metamodel "urn:records" prefix r { class Node {} }"#,
+        )
+        .map(|package| package.schema().clone())
+        .map_err(|error| error.to_string())
+    }
+
+    #[test]
+    fn imported_resource_records_require_exact_uri_admission() -> StorageResult<()> {
+        let schema = resource_fixture()?;
+        let valid = ResourceRecord::new("urn:valid")?;
+        let mut invalid = valid.clone();
+        invalid.uri = "urn:valid#fragment".into();
+        let mut model = crate::core::model::Model {
+            schema_revision: schema.revision.clone(),
+            ..Default::default()
+        };
+        model.resources.insert(valid.uri.clone(), valid.clone());
+        model.resources.insert(invalid.uri.clone(), invalid.clone());
+        let mut store = FrozenStore::from_materialized(&schema, &model)?;
+        let before = storage::export(&store)?;
+        assert!(store.validated_resource_uris.is_empty());
+        assert!(
+            storage::atomic(&mut store, |store| {
+                store.set_resource_record(invalid.clone())
+            })
+            .is_err()
+        );
+        assert_eq!(storage::export(&store)?, before);
+        assert!(store.validated_resource_uris.is_empty());
+        storage::atomic(&mut store, |store| store.set_resource_record(valid.clone()))?;
+        assert!(store.validated_resource_uris.contains("urn:valid"));
+        // A cached prefix does not admit another exact identity.
+        assert!(
+            storage::atomic(&mut store, |store| { store.set_resource_record(invalid) }).is_err()
+        );
+        assert_eq!(storage::export(&store)?, before);
+        Ok(())
+    }
+
+    #[test]
+    fn resource_uri_admission_preserves_nested_record_rollback() -> StorageResult<()> {
+        let schema = resource_fixture()?;
+        let mut store = FrozenStore::for_schema(&schema).map_err(|e| e.to_string())?;
+        let mut initial = ResourceRecord::new("urn:existing")?;
+        initial.content_revision = 17;
+        initial.diagnostics.push("retained diagnostic".into());
+        initial.source = Some(crate::core::resources::SourceCorrespondence {
+            uri: "file:///source.sml".into(),
+            revision: "original".into(),
+        });
+        storage::atomic(&mut store, |store| {
+            store.set_resource_record(initial.clone())
+        })?;
+        let before = storage::export(&store)?;
+        let outer = store.begin()?;
+        for _ in 0..8 {
+            crate::core::resources::touch_resource(&mut store, &initial.uri)?;
+        }
+        let updated = store
+            .resource_record(&initial.uri)?
+            .ok_or("Missing record")?;
+        assert_eq!(updated.content_revision, 25);
+        assert!(updated.source.is_none() && updated.diagnostics.is_empty());
+        let inner = store.begin()?;
+        store.remove_resource_record(&initial.uri)?;
+        store.set_resource_record(ResourceRecord::new("urn:temporary")?)?;
+        store.commit(&inner)?;
+        store.rollback(&outer)?;
+        assert_eq!(storage::export(&store)?, before);
+        assert!(!store.validated_resource_uris.contains("urn:temporary"));
+        // Rollback can conservatively drop a proof. The next update still
+        // validates and preserves the restored metadata and overflow behavior.
+        storage::atomic(&mut store, |store| {
+            let mut record = initial.clone();
+            record.content_revision = u64::MAX;
+            store.set_resource_record(record)
+        })?;
+        let before = storage::export(&store)?;
+        assert!(
+            storage::atomic(&mut store, |store| {
+                crate::core::resources::touch_resource(store, &initial.uri)
+            })
+            .is_err()
+        );
+        assert_eq!(storage::export(&store)?, before);
+        Ok(())
+    }
+
+    #[test]
+    fn resource_uri_proofs_do_not_accumulate_rolled_back_identities() -> StorageResult<()> {
+        let schema = resource_fixture()?;
+        let mut store = FrozenStore::for_schema(&schema).map_err(|e| e.to_string())?;
+        for i in 0..32 {
+            let checkpoint = store.begin()?;
+            store.set_resource_record(ResourceRecord::new(format!("urn:temporary:{i}"))?)?;
+            store.rollback(&checkpoint)?;
+        }
+        assert!(store.validated_resource_uris.is_empty());
+        storage::atomic(&mut store, |store| {
+            store.set_resource_record(ResourceRecord::new("urn:retained")?)
+        })?;
+        let mut fork = store.fork_arena()?;
+        storage::atomic(&mut fork, |store| {
+            store.remove_resource_record("urn:retained")
+        })?;
+        assert!(fork.validated_resource_uris.is_empty());
+        assert!(store.validated_resource_uris.contains("urn:retained"));
+        assert!(store.resource_record("urn:retained")?.is_some());
+        Ok(())
+    }
+
     #[test]
     fn archive_views_borrow_values_and_preserve_explicit_defaults() -> StorageResult<()> {
         let package = crate::compile_rcore(
@@ -2225,6 +2516,77 @@ mod tests {
             assert_eq!(staged.is_ok(), valid);
             assert_eq!(storage::validate(&store, schema), staged);
         }
+        Ok(())
+    }
+
+    #[test]
+    fn one_pass_acceptance_agrees_with_the_staged_audit() -> StorageResult<()> {
+        let package = crate::compile_rcore(
+            r#"rcore 1; package trees version "1";
+               metamodel "urn:trees" prefix t {
+                   class Node {
+                       attr name: String [1,1];
+                       ref children: Node [0,*] containment;
+                       ref peer: Node [0,1];
+                       ref peers: Node [0,2];
+                   }
+               }"#,
+        )
+        .map_err(|error| error.to_string())?;
+        let schema = package.schema();
+        let class = schema
+            .classes
+            .keys()
+            .next()
+            .ok_or("Missing fixture class")?;
+        let mut store = FrozenStore::for_schema(schema).map_err(|error| error.to_string())?;
+        storage::atomic(&mut store, |store| {
+            for id in ["a", "b", "c"] {
+                store.create_element(schema, id, class, "fixture", 0, 0)?;
+                store.set_value(id, "name", Some(json!(id)))?;
+            }
+            store.append_value("a", "children", json!("b"))?;
+            store.append_value("a", "children", json!("c"))?;
+            store.set_value("b", "peer", Some(json!("c")))?;
+            store.set_value("c", "peers", Some(json!(["a", "b"])))
+        })?;
+        let staged = |store: &FrozenStore| {
+            let mut audit = storage::StructuralPreparation::ownership();
+            while !audit.advance(store, schema, None, None)? {}
+            audit.finish().map(|_| ())
+        };
+        // The valid graph is in the forms the store accepts in one pass.
+        assert!(store.may_accept_structure());
+        assert_eq!(staged(&store), Ok(()));
+        assert_eq!(storage::validate(&store, schema), Ok(()));
+        type Mutation = fn(&mut FrozenStore) -> StorageResult<()>;
+        let mutations: [(Mutation, bool); 9] = [
+            (|s| s.set_value("b", "name", None), false),
+            (|s| s.set_value("b", "name", Some(json!(5))), false),
+            (|s| s.set_value("b", "peer", Some(json!("missing"))), false),
+            (
+                |s| s.set_value("c", "peers", Some(json!(["b", "b"]))),
+                false,
+            ),
+            (
+                |s| s.set_value("c", "peers", Some(json!(["a", "b", "c"]))),
+                false,
+            ),
+            (|s| s.append_value("b", "children", json!("c")), false),
+            (|s| s.append_value("b", "children", json!("a")), false),
+            (|s| s.set_value("a", "children", Some(json!(["b"]))), true),
+            (|s| s.set_value("b", "peer", None), true),
+        ];
+        for (mutate, valid) in mutations {
+            let checkpoint = store.begin()?;
+            mutate(&mut store)?;
+            let expected = staged(&store);
+            assert_eq!(expected.is_ok(), valid, "{expected:?}");
+            // Same outcome and, when rejected, the staged audit's own error.
+            assert_eq!(storage::validate(&store, schema), expected);
+            store.rollback(&checkpoint)?;
+        }
+        assert_eq!(storage::validate(&store, schema), Ok(()));
         Ok(())
     }
 

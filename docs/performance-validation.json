@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-15",
+  "toolchain": "cargo 1.99.1 (5f94df478 2026-08-27)",
+  "runtime_files_sha256": {
+    "crates/intersect-model/examples/collection_growth_metrics.rs": "591c8c7fd415d3d608219ad09b7b2a57cd445d5f808b22f1a47c462a66cba4fa",
+    "crates/intersect-model/src/core/frozen.rs": "000cee02df46b607ab98bca4c45807cbb3e7356b91df868086c44d3e227dd8fc",
+    "crates/intersect-model/src/core/frozen/builder.rs": "52168650916b4e1453dd2a561dc38de79fcb1f1f80d6487673c68186f49b4f5a",
+    "crates/intersect-model/src/core/frozen/identity_index.rs": "a7aa9f0c7c52db78196a0d7d8d14e1c7f68d4d615156c0e063933f101107c4db",
+    "crates/intersect-model/src/core/frozen/model.rs": "1fdb9a2e16ca94f354eddf9b603e9bb5b99585fbb09d0ad2af6c36aae5219120",
+    "crates/intersect-model/src/core/frozen/snapshot.rs": "e535efaf459acedcad85b02d91fead3ff56f884861095f8e007f40693540897f",
+    "crates/intersect-model/src/core/frozen/store.rs": "37ae3a3a5768a7fec2c11ee5c693d76e301ae6d6cf3041c90fd82d15a54e58f3",
+    "crates/intersect-model/src/core/frozen/store_append.rs": "77718f7cf26b08aa3c144adb7c529ad8bdc51ad639c75a6ee8f2bde3e2f45cb8",
+    "crates/intersect-model/src/core/frozen/store_index.rs": "5d7160677173abf2db15dcdf97cd2278baa6027f59cdc03087de665ca8592915",
+    "crates/intersect-model/src/core/frozen/store_resolve.rs": "78ad27093dc459ef6dfd850e4da299e4b9380066d77fcdc4ee4c93d12bf308fe",
+    "crates/intersect-model/src/core/frozen/store_resolve_tests.rs": "b87ba0980630770d7d42a047ba31e0afcf590b0ef883750d83625a95cf3cd958",
+    "crates/intersect-model/src/core/frozen/store_resource_journal.rs": "5637a21b873517358ee195fa469bda8a19162aa317c167b898576ee96b86881e",
+    "crates/intersect-model/src/core/frozen/store_resource_journal_tests.rs": "1465badb898e28e5b195ebfef3567fba6edcd0907ecd55cee2c4f4d533290d2f",
+    "crates/intersect-model/src/core/frozen/store_structure.rs": "2527ac36da04bfab440c3b6de4ceed4598356dabdf0fb3c37a0223bba5effef5",
+    "crates/intersect-model/src/core/resources.rs": "b549d7f32d7983d5ac3ed8817e114bcf574ecb4553ca9dc3639ac2ea95d68e5f",
+    "crates/intersect-model/src/core/storage.rs": "7ab237264c535f71113240251b5ded9d0cdde5b5bb254f8fab6232a816606e2f",
+    "crates/intersect-model/src/core/storage/completed_reference_tests.rs": "9e7d674539338b6ec049e24fe39680b1eebf211fd590e1a4616662fa912a79c4",
+    "crates/intersect-model/src/core/storage/completed_references.rs": "1ebb9b859dd9b20b9d090051409822cdb1e639269d9b18b11fb959fd7866d36e",
+    "crates/intersect-model/src/core/storage/structural_preparation.rs": "53584b4fbd91951747b8d941b97e4687da5e19bba43b50a6e33c6d687ede0c2f",
+    "crates/intersect-model/src/core/storage/structure_acceptance.rs": "c0c645ed9c2cb390bd2158f3290ebfbcd37c33426cc05f5853e9b90e16f4600b",
+    "crates/intersect-model/src/definitions/schema_preparation.rs": "f5099dbab5312f08460c284c48568c6dec367cd63ac5a5be1e051c9fbab3b9f3",
+    "crates/intersect-model/src/xmi/construction_tests.rs": "6db2926b6f680bb8a507198118cb26ab6c75c2665aca02518327731fa922406e",
+    "crates/intersect-model/src/xmi/mod.rs": "03ee6021aec5c494e0437f62a1fcc5fd84e94656dd043c3f3dc9cd60630a1088",
+    "crates/intersect-model/tests/xmi_readonly_initialization.rs": "e46dae66b1f8c8fb8bb099102e975e2b6fe23b5b2f4620162a939195039f0d8b"
+  },
+  "native": {
+    "command": "cargo test --profile test-fast -p intersect-model --lib --tests --locked --features xmi",
+    "totals": {
+      "passed": 959,
+      "failed": 0,
+      "ignored": 21,
+      "binaries": 5,
+      "binaries_built_not_run": 0,
+      "binaries_done": 5,
+      "binaries_crashed": 0,
+      "test_seconds": 61.8,
+      "build_seconds": 220.2,
+      "crates_built": 44
+    },
+    "report": "http://localhost:8765/intersect-model/20261115-124952/"
+  },
+  "passed_checks": [
+    "python -B tools/format_workspace.py --check",
+    "cargo clippy -p intersect-model --all-targets --locked --features xmi -- -D warnings",
+    "cargo check -p intersect-model --lib --target wasm32-unknown-unknown --locked --features xmi",
+    "python -B tools/check_text_release_contract.py",
+    "python -B tools/check_text_separation.py",
+    "python -B tools/check_model_boundary.py",
+    "python -B -m unittest discover -s tools -p test_api*.py",
+    "Default and all-feature rustdoc API/declaration inventory review (42 added paths, zero removed paths)"
+  ],
+  "collection_growth": {
+    "profile": "test-fast, xmi feature",
+    "repeats": 2,
+    "summary": [
+      {
+        "items": 500,
+        "mode": "append",
+        "instrumented_ms": 0.4936499999999999,
+        "operation_retained_requested_bytes": 58224.0,
+        "operation_peak_requested_bytes": 70151.0,
+        "operation_cumulative_requested_bytes": 351896.0,
+        "allocation_calls": 3525.0
+      },
+      {
+        "items": 500,
+        "mode": "bulk",
+        "instrumented_ms": 0.1882,
+        "operation_retained_requested_bytes": 65724.0,
+        "operation_peak_requested_bytes": 98135.0,
+        "operation_cumulative_requested_bytes": 124881.0,
+        "allocation_calls": 1521.0
+      },
+      {
+        "items": 1000,
+        "mode": "append",
+        "instrumented_ms": 0.9185000000000001,
+        "operation_retained_requested_bytes": 116208.0,
+        "operation_peak_requested_bytes": 139271.0,
+        "operation_cumulative_requested_bytes": 703380.0,
+        "allocation_calls": 7028.0
+      },
+      {
+        "items": 1000,
+        "mode": "bulk",
+        "instrumented_ms": 0.37,
+        "operation_retained_requested_bytes": 131516.0,
+        "operation_peak_requested_bytes": 196031.0,
+        "operation_cumulative_requested_bytes": 249481.0,
+        "allocation_calls": 3023.0
+      },
+      {
+        "items": 2000,
+        "mode": "append",
+        "instrumented_ms": 1.81345,
+        "operation_retained_requested_bytes": 232176.0,
+        "operation_peak_requested_bytes": 277511.0,
+        "operation_cumulative_requested_bytes": 1406332.0,
+        "allocation_calls": 14031.0
+      },
+      {
+        "items": 2000,
+        "mode": "bulk",
+        "instrumented_ms": 0.7258,
+        "operation_retained_requested_bytes": 263100.0,
+        "operation_peak_requested_bytes": 391823.0,
+        "operation_cumulative_requested_bytes": 498665.0,
+        "allocation_calls": 6025.0
+      },
+      {
+        "items": 4000,
+        "mode": "append",
+        "instrumented_ms": 3.731,
+        "operation_retained_requested_bytes": 464112.0,
+        "operation_peak_requested_bytes": 553991.0,
+        "operation_cumulative_requested_bytes": 2812220.0,
+        "allocation_calls": 28034.0
+      },
+      {
+        "items": 4000,
+        "mode": "bulk",
+        "instrumented_ms": 1.4632,
+        "operation_retained_requested_bytes": 526268.0,
+        "operation_peak_requested_bytes": 783407.0,
+        "operation_cumulative_requested_bytes": 997017.0,
+        "allocation_calls": 12027.0
+      }
+    ],
+    "binary_sha256": "227be86554060fbdb5d3fd0dcac0d925ad8d498009ed33f710901c830c602915",
+    "scope": "Host-only allocation diagnostic; no Java parity or general end-to-end speedup claim."
+  },
+  "excluded": [
+    "Hosted CI",
+    "Full workspace and milestone suites",
+    "Artifact rebuilds",
+    "Canonical remote fetching of unpublished migration commits"
+  ]
+}
