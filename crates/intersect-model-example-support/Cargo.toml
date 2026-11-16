@@ -1,0 +1,11 @@
+[package]
+name = "intersect-model-example-support"
+description = "Shared browser example bindings against the released Model crate."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+intersect-model = "=0.1.0-alpha.1"

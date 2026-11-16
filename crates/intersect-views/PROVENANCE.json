@@ -1,0 +1,7 @@
+{
+  "source_repository": "https://github.com/mercurio-labs/intersect-model-pre-dev",
+  "source_revision": "17554be4fa73bdf0fecda5bee5d01ed3f49e8830",
+  "source_path": "crates/intersect-views",
+  "scope": "Exact retained visualization wire contracts and tests; new public home in Model.",
+  "implementation_changes": false
+}

@@ -2,7 +2,7 @@
 
 Intersect Model owns: Native modeling, definitions, Rcore/Ecore import, execution, code generation and host adapters.
 
-The dependency direction is host/application → language package → Model → definitions.
+The dependency direction is host/application â†’ language package â†’ Model â†’ definitions.
 Model owns structural services, native resource storage and execution. Text
 owns grammar compilation, inference, scoping adapters and text interpretation.
 Language packages own domain algorithms, standard libraries and delegates.
@@ -42,3 +42,13 @@ The [model guide](model-guide.md) explains facade selection and atomicity. The
 bindings and provider adapters. Metadata registration, type checking and runtime
 activation are distinct steps. The [release plan](release-plan.md)
 identifies which public contracts need qualification before compatibility freezes.
+
+## Released runtime adapters
+
+Unpublished host/example adapters consume the exact released Model/Text crates.
+Model owns `intersect-project-host`, the language-neutral `intersect-views` wire
+contracts, and `intersect-model-example-support`. The last adapter compiles the
+existing shared binding fixture sources against the registry Model types; it
+does not duplicate their implementations. Text Library/Web adapters likewise use
+registry runtime types. Source qualification harnesses retain their original
+workspace/Git runtime identities. Ordinary downstream builds use no local patches.
