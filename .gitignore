@@ -35,3 +35,5 @@
 
 # Local Python interpreter caches.
 __pycache__/
+
+/node_modules/
