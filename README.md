@@ -138,7 +138,7 @@ This is conceptual alignment, not Java API or file-format compatibility with eve
 EMF extension. See the [EMF project](https://eclipse.dev/emf/) and our
 [support boundaries](docs/model-guide.md).
 
-## Try the browser Toolkit and examples
+## Runnable browser example
 
 [Open the Toolkit workbench](https://mercurio-labs.github.io/intersect-lang-examples/toolkit/)
 for language authoring and model/text workflows, or
