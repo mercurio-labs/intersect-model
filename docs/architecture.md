@@ -2,7 +2,7 @@
 
 Intersect Model owns: Native modeling, definitions, Rcore/Ecore import, execution, code generation and host adapters.
 
-The dependency direction is host/application â†’ language package â†’ Model â†’ definitions.
+The dependency direction is host/application → language package → Model → definitions.
 Model owns structural services, native resource storage and execution. Text
 owns grammar compilation, inference, scoping adapters and text interpretation.
 Language packages own domain algorithms, standard libraries and delegates.

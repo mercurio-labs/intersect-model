@@ -1,6 +1,3 @@
-//! Browser example adapters use the released Model types. The fixture sources
-//! remain shared with qualification helpers, with no second implementation.
-#[path = "../../../tests/support/src/bindings/contract.rs"]
-pub mod contract;
-#[path = "../../../tests/support/src/bindings/native.rs"]
-pub mod native;
+//! Browser examples and native fixture oracles use the released Model types.
+//! Source-workspace and registry qualification share one fixture implementation.
+include!("../../../tests/support/src/shared.rs");

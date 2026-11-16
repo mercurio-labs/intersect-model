@@ -9,3 +9,4 @@ publish = false
 
 [dependencies]
 intersect-model = "=0.1.0-alpha.1"
+serde_json.workspace = true

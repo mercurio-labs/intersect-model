@@ -1,7 +1,7 @@
 # Released-Model browser example support
 
-This unpublished adapter compiles the existing shared `contract` and `native`
-binding examples against `intersect-model = "=0.1.0-alpha.1"`. The source files
+This unpublished adapter compiles the existing shared binding and native-oracle
+fixtures against `intersect-model = "=0.1.0-alpha.1"`. The source files
 are shared with `tests/support`, whose qualification helpers continue to test the
 workspace runtime. There is one implementation of each fixture and native function.
 

@@ -273,6 +273,7 @@ name = "intersect-model-example-support"
 version = "0.1.0-alpha.1"
 dependencies = [
  "intersect-model 0.1.0-alpha.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "serde_json",
 ]
 
 [[package]]
