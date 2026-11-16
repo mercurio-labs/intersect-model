@@ -2,6 +2,9 @@
 
 **Define a modeling language, build models, and execute their behavior in Rust and WebAssembly.**
 
+[Try the browser Toolkit](https://mercurio-labs.github.io/intersect-lang-examples/toolkit/)
+· [Explore the examples](https://mercurio-labs.github.io/intersect-lang-examples/)
+
 Intersect Model was designed around the same conceptual ideas as the
 [Eclipse Modeling Framework (EMF)](https://eclipse.dev/emf/): define a metamodel,
 create instances, and share model services across tools. It brings those ideas to
@@ -135,16 +138,13 @@ This is conceptual alignment, not Java API or file-format compatibility with eve
 EMF extension. See the [EMF project](https://eclipse.dev/emf/) and our
 [support boundaries](docs/model-guide.md).
 
-## Runnable browser example
+## Try the browser Toolkit and examples
 
-Hosting is currently disabled. Download **examples-site.zip** from the
-[verified preview build](https://github.com/mercurio-labs/intersect-lang-examples/releases/tag/examples-preview-2026-11-13), unzip it,
-then run `python -m http.server 8000` in the extracted directory and open
-`http://localhost:8000/`. The site links below are reserved for future hosting.
-Future successful Browser examples workflow runs also provide an `examples-site`
-artifact; the preview download is built and checked locally.
+[Open the Toolkit workbench](https://mercurio-labs.github.io/intersect-lang-examples/toolkit/)
+for language authoring and model/text workflows, or
+[browse the interactive examples](https://mercurio-labs.github.io/intersect-lang-examples/)
+to explore the Rust/WASM demonstrations.
 
-[Open the interactive example site](https://mercurio-labs.github.io/intersect-lang-examples/) to run the Rust/WASM examples.
 The [Library simulator](https://mercurio-labs.github.io/intersect-lang-examples/examples/library/) supports object edits,
 reference changes and synchronized source text with undo/redo. Petri pairs a
 model with animated simulation; Catalog explores cross-resource references.
