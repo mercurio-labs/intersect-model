@@ -4,7 +4,11 @@ version = "0.1.0-alpha.1"
 edition = "2024"
 rust-version = "1.88"
 license = "MIT"
-publish = false
+publish = ["crates-io"]
+repository = "https://github.com/mercurio-labs/intersect-model"
+documentation = "https://docs.rs/intersect-build-support"
+keywords = ["build", "modeling"]
+categories = ["development-tools::build-utils"]
 description = "Host-only deterministic source identity support for Intersect packages."
 
 [dependencies]

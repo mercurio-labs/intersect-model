@@ -7,7 +7,10 @@ edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 repository.workspace = true
-publish.workspace = true
+publish = ["crates-io"]
+documentation = "https://docs.rs/intersect-model"
+keywords = ["modeling", "metamodel", "rcore", "wasm"]
+categories = ["data-structures", "compilers"]
 
 [dependencies]
 serde.workspace = true

@@ -31,6 +31,19 @@ The objective is consistent behavior across native and browser consumers.
 Support is qualified by API, feature, and execution path; importing a definition
 does not mean all of its semantics are executable.
 
+## Install
+
+The first registry release is `0.1.0-alpha.1`, for evaluation and feedback:
+
+```toml
+[dependencies]
+intersect-model = "=0.1.0-alpha.1"
+serde_json = "1"
+```
+
+APIs may change between alpha releases. Optional features are `xmi`, native-only
+`sqlite`, `codegen`, and `rhai`. The default runtime also supports WebAssembly.
+
 ## A small model
 
 Both examples define an `Item` with one required name, create `item-1`, set its
@@ -159,10 +172,11 @@ contracts, and `intersect-run` is a deterministic discrete-event kernel.
 The repositories are preparing their first release after the Model/Text split.
 Use the
 [current release plan](docs/release-plan.md) for the new scope and open gates.
-Registry installation and broad platform qualification are not claimed here.
-This GitHub prerelease plans no crates.io publication. A later registry release
-would need three packages under the current architecture; see the
+The registry release set is `intersect-build-support`, `intersect-model`, and
+`intersect-text`; the support crate runs only during builds. See the
 [package and API scope](docs/release-plan.md#package-count-and-public-api-decision).
+The [registry release procedure](docs/registry-release.md) explains standalone
+packages, retained upstream notices, and release verification.
 
 - [Architecture](docs/architecture.md) and [model guide](docs/model-guide.md)
 - [Rcore guide](docs/rcore-guide.md)
