@@ -5,6 +5,25 @@ models. It is language-neutral and requires the opt-in `components` feature.
 It does not download or prepare KPARs, run Text editing sessions, or provide a
 durable component cache. Those are later milestones in the component usage plan.
 
+## Immutable component validation
+
+Preparation and restore run the canonical structural audit on each closed native
+arena before issuing a private immutable image. Mount construction checks schema
+ownership and duplicate identities, then shares those already checked images;
+it does not repeat their audits through qualified object adapters.
+
+Final admission audits the editable project with the canonical validator. Target
+and opposite lookups retain the whole mounted view. Every component object with
+an inverse overlay is also checked. Overlays cannot remove base relationships or
+alter containment, so the remaining immutable graph keeps its preparation
+invariant. A project containment edge into a component selects the full global
+audit, preserving ownership and resource-root checks across that boundary.
+
+This is a component-specific optimization. General checked edit services and the
+canonical full validator remain available unchanged. The partition controls compare
+success and failure against the full validator, including broken targets, inverse
+overlays, cycles and cross-boundary containment.
+
 ## Run the demonstration
 
 From this checkout in PowerShell:
