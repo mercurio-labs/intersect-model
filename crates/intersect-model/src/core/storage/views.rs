@@ -250,6 +250,14 @@ pub enum ReferenceView<'a> {
     },
 }
 impl<'a> ValueView<'a> {
+    #[cfg(feature = "components")]
+    pub(in crate::core) fn component_atom(self) -> FrozenAtom<'a> {
+        match self.data {
+            ValueData::Frozen(value) => value.atom(),
+            ValueData::Json(value) => FrozenAtom::Json(value),
+            ValueData::Null => FrozenAtom::Null,
+        }
+    }
     pub(in crate::core) fn frozen(value: FrozenValue<'a>) -> Self {
         Self {
             data: ValueData::Frozen(value),

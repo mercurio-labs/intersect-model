@@ -13,6 +13,8 @@ pub(in crate::core) struct FrozenObject<'a> {
     header: &'a Header,
     row: ObjId,
     assignment: Option<&'a AssignmentState>,
+    #[cfg(feature = "components")]
+    mount: Option<crate::core::components::ReadContext<'a>>,
 }
 
 impl<'a> FrozenObject<'a> {
@@ -23,7 +25,15 @@ impl<'a> FrozenObject<'a> {
             header,
             row,
             assignment: None,
+            #[cfg(feature = "components")]
+            mount: None,
         })
+    }
+
+    #[cfg(feature = "components")]
+    pub(crate) fn with_mount(mut self, context: crate::core::components::ReadContext<'a>) -> Self {
+        self.mount = Some(context);
+        self
     }
 
     pub(super) fn class_info(self) -> Option<&'a ClassInfo> {
@@ -31,7 +41,12 @@ impl<'a> FrozenObject<'a> {
     }
 
     pub(crate) fn id(self) -> &'a str {
-        self.store.builder.data.strings.resolve(self.header.id)
+        let id = self.store.builder.data.strings.resolve(self.header.id);
+        #[cfg(feature = "components")]
+        if let Some(context) = self.mount {
+            return context.identity(id);
+        }
+        id
     }
 
     pub(crate) fn class(self) -> &'a str {
@@ -49,9 +64,15 @@ impl<'a> FrozenObject<'a> {
 
     pub(crate) fn resource(self) -> &'a str {
         let data = &self.store.builder.data;
-        data.resources
+        let resource = data
+            .resources
             .get(self.header.resource as usize)
-            .map_or("", |uri| data.strings.resolve(*uri))
+            .map_or("", |uri| data.strings.resolve(*uri));
+        #[cfg(feature = "components")]
+        if let Some(context) = self.mount {
+            return context.resource(resource);
+        }
+        resource
     }
 
     pub(crate) fn start(self) -> usize {
@@ -114,6 +135,16 @@ impl<'a> FrozenObject<'a> {
         self.value_at(mm.slot(self.header.class, feature)?, feature)
     }
 
+    /// Use the frozen linker’s exact class-specific redefinition read slot.
+    #[cfg(feature = "components")]
+    pub(in crate::core) fn component_value(
+        self,
+        feature: crate::core::frozen::FeatureId,
+    ) -> Option<crate::core::storage::ValueView<'a>> {
+        let mm = &self.store.builder.metamodel;
+        self.value_at(mm.read_slot(self.header.class, feature)?, feature)
+    }
+
     pub(crate) fn next_field(
         self,
         index: &mut usize,
@@ -141,6 +172,22 @@ impl<'a> FrozenObject<'a> {
             .data
             .slots
             .get(self.header.slots as usize + index)?;
+        #[cfg(feature = "components")]
+        let overlay = self.mount.and_then(|context| {
+            context.overlay(
+                self.id(),
+                self.store.builder.metamodel.feature_name(feature),
+            )
+        });
+        #[cfg(feature = "components")]
+        if overlay.is_some() {
+            return Some(ValueView::frozen(FrozenValue {
+                store: self.store,
+                slot,
+                mount: self.mount,
+                overlay,
+            }));
+        }
         match slot {
             Slot::Absent => None,
             Slot::Default => Some(
@@ -153,6 +200,10 @@ impl<'a> FrozenObject<'a> {
             slot => Some(ValueView::frozen(FrozenValue {
                 store: self.store,
                 slot,
+                #[cfg(feature = "components")]
+                mount: self.mount,
+                #[cfg(feature = "components")]
+                overlay: None,
             })),
         }
     }
@@ -162,6 +213,10 @@ impl<'a> FrozenObject<'a> {
 pub(in crate::core) struct FrozenValue<'a> {
     store: &'a FrozenStore,
     slot: &'a Slot,
+    #[cfg(feature = "components")]
+    mount: Option<crate::core::components::ReadContext<'a>>,
+    #[cfg(feature = "components")]
+    overlay: Option<&'a Value>,
 }
 
 pub(in crate::core) enum FrozenAtom<'a> {
@@ -177,6 +232,20 @@ pub(in crate::core) enum FrozenAtom<'a> {
 
 impl<'a> FrozenValue<'a> {
     pub(crate) fn atom(self) -> FrozenAtom<'a> {
+        #[cfg(feature = "components")]
+        if let Some(value) = self.overlay {
+            return match value {
+                Value::Null => FrozenAtom::Null,
+                Value::String(id) => FrozenAtom::Identity(id),
+                Value::Array(items) => FrozenAtom::Many(FrozenItems {
+                    store: self.store,
+                    items: &[],
+                    mount: self.mount,
+                    overlay: Some(items),
+                }),
+                value => FrozenAtom::Json(value),
+            };
+        }
         let data = &self.store.builder.data;
         match *self.slot {
             Slot::Absent | Slot::Default | Slot::Null => FrozenAtom::Null,
@@ -188,7 +257,10 @@ impl<'a> FrozenValue<'a> {
                 .get(index as usize)
                 .map_or(FrozenAtom::Null, FrozenAtom::Json),
             Slot::Ref(row) => data.header(row).map_or(FrozenAtom::Null, |header| {
-                FrozenAtom::Identity(data.strings.resolve(header.id))
+                let id = data.strings.resolve(header.id);
+                #[cfg(feature = "components")]
+                let id = self.mount.map_or(id, |context| context.identity(id));
+                FrozenAtom::Identity(id)
             }),
             Slot::Proxy(index) => {
                 data.proxies
@@ -196,6 +268,10 @@ impl<'a> FrozenValue<'a> {
                     .map_or(FrozenAtom::Null, |proxy| {
                         let spelling = data.strings.resolve(proxy.spelling);
                         if self.store.identity_proxies.contains(&index) {
+                            #[cfg(feature = "components")]
+                            let spelling = self
+                                .mount
+                                .map_or(spelling, |context| context.identity(spelling));
                             FrozenAtom::Identity(spelling)
                         } else {
                             FrozenAtom::Pending(spelling)
@@ -205,11 +281,23 @@ impl<'a> FrozenValue<'a> {
             Slot::Many(index) => FrozenAtom::Many(FrozenItems {
                 store: self.store,
                 items: data.lists.get(index as usize).map_or(&[], Vec::as_slice),
+                #[cfg(feature = "components")]
+                mount: self.mount,
+                #[cfg(feature = "components")]
+                overlay: None,
             }),
         }
     }
 
     pub(crate) fn reference(self) -> Option<ReferenceView<'a>> {
+        #[cfg(feature = "components")]
+        if let Some(context) = self.mount {
+            return match self.atom() {
+                FrozenAtom::Identity(identity) => Some(context.reference(identity)),
+                FrozenAtom::Pending(spelling) => Some(ReferenceView::Unresolved { spelling }),
+                _ => None,
+            };
+        }
         match self.atom() {
             FrozenAtom::Identity(identity) => Some(self.store.handle(identity).map_or(
                 ReferenceView::Unavailable { identity },
@@ -221,6 +309,23 @@ impl<'a> FrozenValue<'a> {
     }
 
     pub(crate) fn to_json(self) -> Value {
+        #[cfg(feature = "components")]
+        if self.mount.is_some() {
+            return match self.atom() {
+                FrozenAtom::Null => Value::Null,
+                FrozenAtom::Bool(v) => Value::Bool(v),
+                FrozenAtom::Int(v) => Value::from(v),
+                FrozenAtom::Text(v) | FrozenAtom::Identity(v) => Value::String(v.into()),
+                FrozenAtom::Pending(v) => Value::String(format!("?{v}")),
+                FrozenAtom::Json(v) => v.clone(),
+                FrozenAtom::Many(items) => Value::Array(
+                    (0..items.len())
+                        .filter_map(|i| items.get(i))
+                        .map(|v| v.to_json())
+                        .collect(),
+                ),
+            };
+        }
         self.store.decode(*self.slot)
     }
 }
@@ -229,17 +334,38 @@ impl<'a> FrozenValue<'a> {
 pub(in crate::core) struct FrozenItems<'a> {
     store: &'a FrozenStore,
     items: &'a [Slot],
+    #[cfg(feature = "components")]
+    mount: Option<crate::core::components::ReadContext<'a>>,
+    #[cfg(feature = "components")]
+    overlay: Option<&'a [Value]>,
 }
 
 impl<'a> FrozenItems<'a> {
     pub(crate) fn len(self) -> usize {
+        #[cfg(feature = "components")]
+        if let Some(items) = self.overlay {
+            return items.len();
+        }
         self.items.len()
     }
 
     pub(crate) fn get(self, index: usize) -> Option<FrozenValue<'a>> {
+        #[cfg(feature = "components")]
+        if let Some(items) = self.overlay {
+            return Some(FrozenValue {
+                store: self.store,
+                slot: &Slot::Null,
+                mount: self.mount,
+                overlay: Some(items.get(index)?),
+            });
+        }
         Some(FrozenValue {
             store: self.store,
             slot: self.items.get(index)?,
+            #[cfg(feature = "components")]
+            mount: self.mount,
+            #[cfg(feature = "components")]
+            overlay: None,
         })
     }
 }

@@ -161,3 +161,21 @@ jobs:
         run: cargo +1.99.1 build --manifest-path tests/model-only/Cargo.toml --target-dir target/model-only --lib --target wasm32-unknown-unknown --locked
       - name: Model-only WASM execution
         run: node tools/test_model_boundary_wasm.mjs
+
+  components:
+    name: Experimental components (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install Rust
+        run: rustup toolchain install 1.99.1 --profile minimal --component clippy --target wasm32-unknown-unknown
+      - name: Component-enabled runtime controls
+        run: python -B tools/test_report.py run -- --profile test-fast -p intersect-model --features components --lib --test all --locked
+      - name: Component-enabled strict lint
+        run: cargo clippy -p intersect-model --features components --all-targets --locked -- -D warnings
+      - name: Component-enabled WASM
+        run: cargo build -p intersect-model --lib --features components --target wasm32-unknown-unknown --locked

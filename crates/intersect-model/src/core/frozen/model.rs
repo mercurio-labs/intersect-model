@@ -12,6 +12,12 @@ use std::sync::{Arc, OnceLock};
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ObjId(pub(super) u32);
 impl ObjId {
+    #[cfg(feature = "components")]
+    pub(crate) fn from_index(index: usize) -> Result<Self, String> {
+        Ok(Self(
+            u32::try_from(index).map_err(|_| "Mounted object index exceeds u32")?,
+        ))
+    }
     pub fn index(self) -> usize {
         self.0 as usize
     }

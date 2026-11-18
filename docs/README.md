@@ -9,6 +9,7 @@ This index and the five guides below are the maintained narrative documentation.
 - [Repository development](repository-development.md)
 - [Release status and roadmap](release-plan.md)
 - [Performance changes carried forward](performance-carry-forward.md)
+- [Experimental Model component proof](component-proof.md)
 
 Machine-readable compatibility, notices and definition inventories remain alongside
 these guides. [Baseline provenance](baseline-provenance.json) records the source

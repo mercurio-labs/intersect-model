@@ -154,6 +154,64 @@ impl RecentObjects {
 }
 
 impl FrozenStore {
+    #[cfg(feature = "components")]
+    pub(in crate::core) fn borrow_mounted<'a>(
+        &'a self,
+        id: &str,
+        context: crate::core::components::ReadContext<'a>,
+    ) -> StorageResult<Option<FrozenObject<'a>>> {
+        self.object(id)
+            .map(|row| FrozenObject::new(self, row).map(|object| object.with_mount(context)))
+            .transpose()
+    }
+
+    #[cfg(feature = "components")]
+    pub(crate) fn component_slot_state(
+        &self,
+        id: &str,
+        feature: super::FeatureId,
+    ) -> Option<(bool, bool, bool)> {
+        let row = self.object(id)?;
+        let data = &self.builder.data;
+        let mm = self.metamodel();
+        let slot = data.slot(mm, row, feature)?;
+        let unassigned = matches!(slot, Slot::Default | Slot::Absent);
+        let empty = data.is_empty_slot(mm, feature, slot);
+        let optional_unassigned = matches!(slot, Slot::Default)
+            && mm.feature_info(feature).is_some_and(|info| {
+                info.kind == FeatureKind::Attribute && !info.many && info.lower == 0
+            });
+        Some((unassigned, empty, optional_unassigned))
+    }
+
+    #[cfg(feature = "components")]
+    pub(crate) fn share_schema(
+        &mut self,
+        context: &crate::core::components::SharedSchema,
+    ) -> StorageResult<()> {
+        if self.metamodel().digest().map_err(|e| e.to_string())? != context.digest {
+            return Err("Component uses an incompatible metamodel".into());
+        }
+        self.builder.metamodel = context.metamodel.clone();
+        self.descriptors = context.descriptors.clone();
+        Ok(())
+    }
+
+    #[cfg(feature = "components")]
+    pub(crate) fn inspect_mounted(
+        &self,
+        id: &str,
+        context: crate::core::components::ReadContext<'_>,
+        f: &mut dyn FnMut(storage::ObjectView<'_>) -> StorageResult<()>,
+    ) -> StorageResult<bool> {
+        let Some(row) = self.object(id) else {
+            return Ok(false);
+        };
+        let view = FrozenObject::new(self, row)?.with_mount(context);
+        f(storage::ObjectView::frozen(view))?;
+        Ok(true)
+    }
+
     /// Freeze a schema once and create an empty builder-backed store with
     /// the default value indexes for checked model editing.
     pub fn for_schema(schema: &crate::definitions::schema::Schema) -> Result<Self, FrozenError> {

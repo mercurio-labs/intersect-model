@@ -9,6 +9,9 @@ mod declaration_inventory;
 mod model_definition;
 mod model_fixture;
 
+#[cfg(feature = "components")]
+mod component_usage;
+
 #[path = "checked_normalization_consumers.rs"]
 pub mod checked_normalization_consumers;
 

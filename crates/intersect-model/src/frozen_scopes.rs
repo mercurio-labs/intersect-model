@@ -32,6 +32,9 @@ use std::{
     rc::Rc,
 };
 
+#[cfg(feature = "components")]
+mod mounted;
+
 /// Work allowance for one scope invocation. Budgets apply per resolution,
 /// not per evaluator step across the whole link phase.
 pub const DEFAULT_SCOPE_BUDGET: usize = 1_000_000;
@@ -74,6 +77,8 @@ struct Route<'a> {
 /// Routes each reference feature with a `bind scope` to its verified function.
 /// Features without one go to `fallback`, or stay unresolved.
 pub struct RcoreScopes<'a> {
+    #[cfg(feature = "components")]
+    mounted_schema_digest: [u8; 32],
     bundle: &'a DefinitionBundle,
     routes: BTreeMap<FeatureId, Route<'a>>,
     /// `bind default` functions; direct executor only.
@@ -190,6 +195,10 @@ impl<'a> RcoreScopes<'a> {
             }
         }
         Ok(Self {
+            #[cfg(feature = "components")]
+            mounted_schema_digest: metamodel
+                .digest()
+                .map_err(|e| FrozenError::Scope(e.to_string()))?,
             bundle,
             routes,
             defaults,
@@ -706,12 +715,23 @@ impl Defaults for RcoreScopes<'_> {
 
 /// `ScopeRead` over a frozen link view. Object identities are the model's
 /// string identities; members are mapped through their source declarations.
-pub struct FrozenScopeRead<'v, 'a> {
-    view: &'v LinkView<'a>,
+pub trait IndexedScopeRead: crate::rcore_fast::FastRead {
+    fn lookup(&self, identity: &str) -> Option<ObjId>;
+}
+impl IndexedScopeRead for LinkView<'_> {
+    fn lookup(&self, identity: &str) -> Option<ObjId> {
+        LinkView::lookup(self, identity)
+    }
 }
 
-impl<'v, 'a> FrozenScopeRead<'v, 'a> {
-    pub fn new(view: &'v LinkView<'a>) -> Self {
+/// The native VM observation adapter, shared by frozen and mounted arenas.
+pub struct StoredScopeRead<'v, R: ?Sized> {
+    view: &'v R,
+}
+pub type FrozenScopeRead<'v, 'a> = StoredScopeRead<'v, LinkView<'a>>;
+
+impl<'v, R: IndexedScopeRead + ?Sized> StoredScopeRead<'v, R> {
+    pub fn new(view: &'v R) -> Self {
         Self { view }
     }
     fn object(&self, object: &str) -> Result<ObjId, String> {
@@ -764,7 +784,7 @@ impl<'v, 'a> FrozenScopeRead<'v, 'a> {
     }
 }
 
-impl ScopeRead for FrozenScopeRead<'_, '_> {
+impl<R: IndexedScopeRead + ?Sized> ScopeRead for StoredScopeRead<'_, R> {
     fn check(&self, observation: &InvocationContext<'_>) -> Result<(), String> {
         // The link view cannot change during the phase; only cancellation applies.
         observation.checkpoint()
@@ -837,7 +857,7 @@ impl ScopeRead for FrozenScopeRead<'_, '_> {
                 return Err("Checked type views use the shared source authority".into());
             }
             OwnershipOp::Container => {
-                if let Some((parent, _)) = self.view.container(obj)
+                if let Some(parent) = self.view.container(obj)
                     && cursor == 0
                     && conforms(parent)?
                 {
@@ -847,9 +867,9 @@ impl ScopeRead for FrozenScopeRead<'_, '_> {
             OwnershipOp::Ancestors => {
                 let mut current = obj;
                 let mut steps = 0usize;
-                while let Some((parent, _)) = self.view.container(current) {
+                while let Some(parent) = self.view.container(current) {
                     steps += 1;
-                    if steps > self.view.len() {
+                    if steps > self.view.object_count() {
                         return Err("Rcore scope containment cycle".into());
                     }
                     observation.work(1)?;

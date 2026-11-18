@@ -366,6 +366,30 @@ pub struct StructuralPreparation {
     failed: bool,
 }
 impl StructuralPreparation {
+    /// Match frozen validation's class-specific redefinition selection. All
+    /// remaining members use the ordinary canonical structural checks.
+    #[cfg(feature = "components")]
+    pub(super) fn select_metamodel_layout(
+        &mut self,
+        metamodel: &crate::core::frozen::Metamodel,
+    ) -> StorageResult<()> {
+        for (key, names) in &mut self.feature_order {
+            let class = metamodel
+                .class(key)
+                .ok_or("Validation layout is missing a class")?;
+            let mut retained = Vec::with_capacity(names.len());
+            for name in names.iter() {
+                let feature = metamodel
+                    .feature(class, name)
+                    .ok_or("Validation layout is missing a feature")?;
+                if metamodel.redefined_by(class, feature).is_none() {
+                    retained.push(name.clone());
+                }
+            }
+            *names = retained;
+        }
+        Ok(())
+    }
     pub fn ownership() -> Self {
         Self::new(true, true)
     }

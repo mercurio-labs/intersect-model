@@ -24,6 +24,8 @@ fn effective_features(schema: &Schema) -> StorageResult<EffectiveFeatures> {
 pub(crate) struct DraftValidationPlan {
     features: EffectiveFeatures,
     reciprocal_names: BTreeSet<String>,
+    #[cfg(feature = "components")]
+    metamodel: Option<Arc<crate::core::frozen::Metamodel>>,
 }
 impl DraftValidationPlan {
     pub(crate) fn new(schema: &Schema) -> StorageResult<Self> {
@@ -40,7 +42,37 @@ impl DraftValidationPlan {
         Ok(Self {
             features,
             reciprocal_names,
+            #[cfg(feature = "components")]
+            metamodel: None,
         })
+    }
+
+    /// The frozen engine admits MOF redefinitions separately from the schema.
+    /// Keep that exact physical layout when running the shared graph audit.
+    #[cfg(feature = "components")]
+    pub(crate) fn for_metamodel(
+        metamodel: Arc<crate::core::frozen::Metamodel>,
+    ) -> StorageResult<Self> {
+        let mut plan = Self::new(metamodel.schema())?;
+        plan.metamodel = Some(metamodel);
+        Ok(plan)
+    }
+
+    fn select_layout(
+        &self,
+        preparation: &mut super::StructuralPreparation,
+        schema: &Schema,
+    ) -> StorageResult<()> {
+        #[cfg(feature = "components")]
+        if let Some(metamodel) = &self.metamodel {
+            if !std::ptr::eq(metamodel.schema(), schema) {
+                return Err("Validation layout belongs to another schema".into());
+            }
+            preparation.select_metamodel_layout(metamodel)?;
+        }
+        #[cfg(not(feature = "components"))]
+        let _ = (preparation, schema);
+        Ok(())
     }
 
     pub(crate) fn is_local_attribute(
@@ -98,9 +130,12 @@ impl DraftValidationPlan {
         schema: &Schema,
         require_lower_bounds: bool,
     ) -> StorageResult<()> {
-        super::StructuralPreparation::with_prepared_features(require_lower_bounds, &self.features)
-            .run(store, schema, None, None)
-            .map(|_| ())
+        let mut preparation = super::StructuralPreparation::with_prepared_features(
+            require_lower_bounds,
+            &self.features,
+        );
+        self.select_layout(&mut preparation, schema)?;
+        preparation.run(store, schema, None, None).map(|_| ())
     }
 
     /// Only use after a locally confined edit to a known draft-valid isolated
@@ -112,9 +147,9 @@ impl DraftValidationPlan {
         ids: &BTreeSet<&str>,
     ) -> StorageResult<()> {
         let selected = SelectedRead { store, ids };
-        super::StructuralPreparation::selected(&self.features)
-            .run(&selected, schema, None, None)
-            .map(|_| ())
+        let mut preparation = super::StructuralPreparation::selected(&self.features);
+        self.select_layout(&mut preparation, schema)?;
+        preparation.run(&selected, schema, None, None).map(|_| ())
     }
 }
 
