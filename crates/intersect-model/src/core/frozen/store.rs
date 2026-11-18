@@ -198,6 +198,21 @@ impl FrozenStore {
     }
 
     #[cfg(feature = "components")]
+    pub(crate) fn inspect_component_native(
+        &self,
+        id: &str,
+        f: &mut dyn FnMut(storage::ObjectView<'_>) -> StorageResult<()>,
+    ) -> StorageResult<bool> {
+        let Some(row) = self.object(id) else {
+            return Ok(false);
+        };
+        // Component validation reads physical native assignment evidence, just
+        // like inspect_mounted, without the legacy archive projection.
+        f(storage::ObjectView::frozen(FrozenObject::new(self, row)?))?;
+        Ok(true)
+    }
+
+    #[cfg(feature = "components")]
     pub(crate) fn inspect_mounted(
         &self,
         id: &str,

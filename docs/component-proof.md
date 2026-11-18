@@ -24,6 +24,17 @@ canonical full validator remain available unchanged. The partition controls comp
 success and failure against the full validator, including broken targets, inverse
 overlays, cycles and cross-boundary containment.
 
+Object-bound initialization receipts are not yet rebased by the mounted read
+adapter. Preparation explicitly rejects those images rather than caching native
+evidence that the qualified full audit would reject. Other explicit assignment
+markers retain their existing canonical checks.
+
+The audit uses the same physical native slot/assignment view as mounted reads.
+The general FrozenStore archive adapter can synthesize legacy assignment markers
+for serialization; those markers must not replace native evidence during image
+admission. A default-valued native image and its snapshot restore exercise this
+distinction against the full mounted validator.
+
 ## Run the demonstration
 
 From this checkout in PowerShell:

@@ -270,15 +270,24 @@ impl ComponentImage {
         // cannot acquire new objects, resources or assignments after this point.
         context
             .validation
-            .validate_all(&arena, context.schema(), true)?;
+            .validate_all(&NativeComponentRead(&arena), context.schema(), true)?;
         let objects: BTreeMap<String, String> = arena
             .id_page(None, usize::MAX)?
             .into_iter()
             .map(|(_, id)| {
+                arena.inspect_component_native(&id, &mut |object| {
+                    // Retained receipts name their native owner. The existing
+                    // mounted view does not rebase that evidence, so its full
+                    // audit would reject it after identity qualification.
+                    if object.initialization().is_some() {
+                        return Err("Component images do not yet support object-bound initialization receipts".into());
+                    }
+                    Ok(())
+                })?;
                 let qualified = qualify(&key, "object", &id);
-                (id, qualified)
+                Ok((id, qualified))
             })
-            .collect();
+            .collect::<StorageResult<_>>()?;
         let qualified = objects
             .iter()
             .map(|(local, qualified)| (qualified.clone(), local.clone()))
@@ -594,6 +603,44 @@ impl MountedStore {
 
 // Validation traversal is confined to the mutable partition; target inspection
 // is deliberately not confined. This adapter has no mutation capability.
+struct NativeComponentRead<'a>(&'a FrozenStore);
+impl ModelRead for NativeComponentRead<'_> {
+    fn revision(&self) -> StorageResult<String> {
+        self.0.revision()
+    }
+    fn resource_records(&self) -> StorageResult<BTreeMap<String, ResourceRecord>> {
+        self.0.resource_records()
+    }
+    fn inspect(
+        &self,
+        id: &str,
+        f: &mut dyn FnMut(ObjectView<'_>) -> StorageResult<()>,
+    ) -> StorageResult<bool> {
+        self.0.inspect_component_native(id, f)
+    }
+    fn get(&self, id: &str) -> StorageResult<Option<super::model::Element>> {
+        self.0.get(id)
+    }
+    fn class(&self, id: &str) -> StorageResult<Option<String>> {
+        self.0.class(id)
+    }
+    fn value(&self, id: &str, field: &str) -> StorageResult<Option<Value>> {
+        self.0.value(id, field)
+    }
+    fn id_page(&self, after: Option<u64>, limit: usize) -> StorageResult<Vec<(u64, String)>> {
+        self.0.id_page(after, limit)
+    }
+    fn page(&self, after: Option<u64>, limit: usize) -> StorageResult<Vec<Row>> {
+        self.0.page(after, limit)
+    }
+    fn query(&self, query: Query<'_>) -> StorageResult<Vec<String>> {
+        self.0.query(query)
+    }
+    fn matches(&self, id: &str, query: Query<'_>) -> StorageResult<bool> {
+        self.0.matches(id, query)
+    }
+}
+
 struct ProjectRead<'a>(&'a MountedStore);
 impl ModelRead for ProjectRead<'_> {
     fn revision(&self) -> StorageResult<String> {
