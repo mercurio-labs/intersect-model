@@ -35,6 +35,15 @@ for serialization; those markers must not replace native evidence during image
 admission. A default-valued native image and its snapshot restore exercise this
 distinction against the full mounted validator.
 
+Immutable images also retain their qualified identities, class indices and
+ordered containment topology. Scope, completion and validation reads rebuild
+only project containment and combine it with this retained topology. They still
+read attributes, reference values and reciprocal overlays from the live mounted
+arenas. Per-invocation evaluation memos are not shared across project changes.
+Image identities use shared strings, avoiding repeated copies of large qualified
+IDs. A full-traversal comparison checks multiple mounts, child order, snapshot
+restore, changing project row offsets, forks and conflicting owners.
+
 ## Run the demonstration
 
 From this checkout in PowerShell:

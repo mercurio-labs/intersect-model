@@ -94,9 +94,10 @@ pub struct ComponentImage {
     identity: PackageIdentity,
     key: String,
     arena: FrozenStore,
-    objects: BTreeMap<String, String>,
-    qualified: BTreeMap<String, String>,
+    objects: BTreeMap<String, Arc<str>>,
+    qualified: BTreeMap<Arc<str>, String>,
     resources: BTreeMap<String, String>,
+    topology: draft::ComponentTopology,
 }
 
 /// Durable ownership of an object, separate from its mounted runtime handle.
@@ -257,6 +258,12 @@ impl ComponentImage {
         key: String,
         model: FrozenModel,
     ) -> StorageResult<Arc<Self>> {
+        let topology = draft::ComponentTopology::new(&model, &key)?;
+        let objects = model
+            .objects()
+            .zip(&topology.ids)
+            .map(|(object, id)| (object.identity().to_owned(), id.clone()))
+            .collect::<BTreeMap<_, _>>();
         let mut arena = FrozenStore::from_model(model);
         arena.share_schema(&context)?;
         // Native frozen models carry their schema in the metamodel, not the
@@ -271,23 +278,20 @@ impl ComponentImage {
         context
             .validation
             .validate_all(&NativeComponentRead(&arena), context.schema(), true)?;
-        let objects: BTreeMap<String, String> = arena
-            .id_page(None, usize::MAX)?
-            .into_iter()
-            .map(|(_, id)| {
-                arena.inspect_component_native(&id, &mut |object| {
-                    // Retained receipts name their native owner. The existing
-                    // mounted view does not rebase that evidence, so its full
-                    // audit would reject it after identity qualification.
-                    if object.initialization().is_some() {
-                        return Err("Component images do not yet support object-bound initialization receipts".into());
-                    }
-                    Ok(())
-                })?;
-                let qualified = qualify(&key, "object", &id);
-                Ok((id, qualified))
-            })
-            .collect::<StorageResult<_>>()?;
+        for (_, id) in arena.id_page(None, usize::MAX)? {
+            arena.inspect_component_native(&id, &mut |object| {
+                // Retained receipts name their native owner. The existing
+                // mounted view does not rebase that evidence, so its full
+                // audit would reject it after identity qualification.
+                if object.initialization().is_some() {
+                    return Err(
+                        "Component images do not yet support object-bound initialization receipts"
+                            .into(),
+                    );
+                }
+                Ok(())
+            })?;
+        }
         let qualified = objects
             .iter()
             .map(|(local, qualified)| (qualified.clone(), local.clone()))
@@ -309,6 +313,7 @@ impl ComponentImage {
             objects,
             qualified,
             resources,
+            topology,
         }))
     }
 
@@ -330,7 +335,7 @@ impl ComponentImage {
     pub fn object_id(&self, element_id: &str) -> StorageResult<&str> {
         self.objects
             .get(element_id)
-            .map(String::as_str)
+            .map(AsRef::as_ref)
             .ok_or_else(|| format!("Unknown component object: {element_id}"))
     }
 }
@@ -359,7 +364,7 @@ impl<'a> ReadContext<'a> {
     pub(crate) fn identity(self, local: &'a str) -> &'a str {
         self.image
             .and_then(|image| image.objects.get(local))
-            .map_or(local, String::as_str)
+            .map_or(local, AsRef::as_ref)
     }
     pub(crate) fn resource(self, local: &'a str) -> &'a str {
         self.image

@@ -1,6 +1,6 @@
 use super::*;
 #[path = "../../../examples/support/component_fixture.rs"]
-mod fixture;
+pub(super) mod fixture;
 use serde_json::json;
 
 #[test]
