@@ -10,6 +10,8 @@
 //! [`extensions`] describes provider, storage and execution integration. These
 //! contracts require explicit source identity, validation and work accounting;
 //! public transport data is not a checked executable model.
+#[cfg(feature = "components")]
+pub use intersect_model::core::components;
 pub use intersect_model::core::{DuplicatePackage, PackageRegistry};
 pub use intersect_model::core::{
     api, dynamic, frozen, interchange, model, package_load, project_usages, resource_set,

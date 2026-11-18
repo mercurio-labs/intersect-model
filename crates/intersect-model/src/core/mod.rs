@@ -11,6 +11,8 @@ use std::fmt;
 use intersect_model::definitions::{DefinitionManifest, PackageId};
 
 pub mod api;
+#[cfg(feature = "components")]
+pub mod components;
 pub mod dynamic;
 pub mod frozen;
 pub mod interchange;

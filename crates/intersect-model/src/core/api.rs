@@ -134,7 +134,7 @@ fn create(
 ) -> StorageResult<()> {
     create_context(store, schema, validation, id, class, resource, None)
 }
-fn create_context(
+pub(crate) fn create_context(
     store: &mut impl ModelStore,
     schema: &Schema,
     validation: &storage::DraftValidationPlan,
@@ -185,7 +185,7 @@ fn set_many(
 ) -> StorageResult<()> {
     set_many_context(store, schema, validation, edits, None)
 }
-fn set_many_context(
+pub(crate) fn set_many_context(
     store: &mut impl ModelStore,
     schema: &Schema,
     validation: &storage::DraftValidationPlan,

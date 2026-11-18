@@ -39,6 +39,8 @@ rusqlite = { version = "0.32.1", features = ["bundled"], optional = true }
 # tests compile or run only with this feature.
 milestone-tests = []
 default = []
+# Experimental, language-neutral shared read-only component proof.
+components = []
 xmi = []
 sqlite = ["dep:rusqlite"]
 codegen = []
@@ -50,6 +52,10 @@ allocation-profile = []
 [[example]]
 name = "xmi_conversion_probe"
 required-features = ["xmi"]
+
+[[example]]
+name = "model_component_usage"
+required-features = ["components"]
 
 [[test]]
 name = "all"
