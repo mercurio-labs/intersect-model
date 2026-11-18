@@ -7,7 +7,7 @@ durable component cache. Those are later milestones in the component usage plan.
 
 ## Immutable component validation
 
-Preparation and restore run the canonical structural audit on each closed native
+Preparation and default restore run the canonical structural audit on each closed native
 arena before issuing a private immutable image. Mount construction checks schema
 ownership and duplicate identities, then shares those already checked images;
 it does not repeat their audits through qualified object adapters.
@@ -43,6 +43,17 @@ arenas. Per-invocation evaluation memos are not shared across project changes.
 Image identities use shared strings, avoiding repeated copies of large qualified
 IDs. A full-traversal comparison checks multiple mounts, child order, snapshot
 restore, changing project row offsets, forks and conflicting owners.
+
+## Host-built component caches
+
+`restore_with_trust` adds the same explicit trust choices as frozen snapshots.
+The default `restore` remains fully revalidated. `HostCache` accepts the original
+host-built canonical admission and checks snapshot digests and decoding bounds;
+`VerifiedHostCache` requires the caller to have verified the exact enclosing
+payload already. Both still check runtime, schema, descriptor key, resource
+package identity and unsupported constructor evidence. They do not materialize
+and hash the graph or repeat canonical admission. Downloaded model interchange
+and textual KPAR preparation must not use these trusted modes.
 
 ## Run the demonstration
 

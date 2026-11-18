@@ -163,6 +163,7 @@ impl ComponentImage {
             );
         }
         let content_digest = digest(&materialized)?;
+        drop(materialized);
         let identity = PackageIdentity {
             content_digest,
             dependency_lock_digest: DependencyLock::empty().digest()?,
@@ -189,7 +190,7 @@ impl ComponentImage {
             None
         };
         Ok((
-            Self::from_prepared(context, uri, identity, key, model)?,
+            Self::from_prepared(context, uri, identity, key, model, true)?,
             snapshot,
         ))
     }
@@ -210,6 +211,27 @@ impl ComponentImage {
         descriptor: &ComponentDescriptor,
         snapshot: &[u8],
     ) -> StorageResult<Arc<Self>> {
+        Self::restore_with_trust(
+            context,
+            descriptor,
+            snapshot,
+            super::frozen::SnapshotTrust::Revalidate,
+        )
+    }
+
+    /// Restore the host's own prepared component cache. `HostCache` trusts the
+    /// original canonical admission proof; it checks snapshot digests and all
+    /// decoding bounds. `VerifiedHostCache` additionally requires the host to
+    /// have verified the exact enclosing payload's digest before calling here.
+    /// Neither mode is for downloaded model interchange or untrusted KPARs.
+    /// Runtime/schema/descriptor keys and resource ownership are always checked.
+    /// `Revalidate` retains restore()'s full graph digest and canonical audit.
+    pub fn restore_with_trust(
+        context: Arc<SharedSchema>,
+        descriptor: &ComponentDescriptor,
+        snapshot: &[u8],
+        trust: super::frozen::SnapshotTrust,
+    ) -> StorageResult<Arc<Self>> {
         crate::core::resources::validate_resource_uri(&descriptor.uri)?;
         if descriptor.version != 1
             || descriptor.identity.engine != crate::SOURCE_IDENTITY
@@ -229,18 +251,27 @@ impl ComponentImage {
             snapshot,
             &crate::definitions::library_part::key_bytes(&descriptor.key)
                 .map_err(|e| e.to_string())?,
-            crate::core::frozen::SnapshotTrust::Revalidate,
+            trust,
         )
         .map_err(|e| e.to_string())?;
-        let mut content = model.to_model().map_err(|e| e.to_string())?;
-        for record in content.resources.values_mut() {
+        for record in model
+            .resource_records()
+            .map_err(|e| e.to_string())?
+            .values()
+        {
             if record.package.as_ref() != Some(&descriptor.identity) {
                 return Err("Prepared component resource identity mismatch".into());
             }
-            record.package = None;
         }
-        if digest(&content)? != descriptor.identity.content_digest {
-            return Err("Prepared component graph digest mismatch".into());
+        let revalidate = trust == super::frozen::SnapshotTrust::Revalidate;
+        if revalidate {
+            let mut content = model.to_model().map_err(|e| e.to_string())?;
+            for record in content.resources.values_mut() {
+                record.package = None;
+            }
+            if digest(&content)? != descriptor.identity.content_digest {
+                return Err("Prepared component graph digest mismatch".into());
+            }
         }
         Self::from_prepared(
             context,
@@ -248,6 +279,7 @@ impl ComponentImage {
             descriptor.identity.clone(),
             descriptor.key.clone(),
             model,
+            revalidate,
         )
     }
 
@@ -257,6 +289,7 @@ impl ComponentImage {
         identity: PackageIdentity,
         key: String,
         model: FrozenModel,
+        revalidate: bool,
     ) -> StorageResult<Arc<Self>> {
         let topology = draft::ComponentTopology::new(&model, &key)?;
         let objects = model
@@ -275,9 +308,13 @@ impl ComponentImage {
         // Establish the canonical structural invariant once, over the closed
         // native arena. Qualification is a bijective renaming; private images
         // cannot acquire new objects, resources or assignments after this point.
-        context
-            .validation
-            .validate_all(&NativeComponentRead(&arena), context.schema(), true)?;
+        if revalidate {
+            context.validation.validate_all(
+                &NativeComponentRead(&arena),
+                context.schema(),
+                true,
+            )?;
+        }
         for (_, id) in arena.id_page(None, usize::MAX)? {
             arena.inspect_component_native(&id, &mut |object| {
                 // Retained receipts name their native owner. The existing

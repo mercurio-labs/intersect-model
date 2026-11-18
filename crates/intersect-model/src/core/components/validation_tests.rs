@@ -4,6 +4,104 @@ pub(super) mod fixture;
 use serde_json::json;
 
 #[test]
+fn component_host_cache_restore_keeps_checked_identity_ownership_and_bounds() -> StorageResult<()> {
+    use crate::frozen::SnapshotTrust;
+    let fixture = fixture::Fixture::new()?;
+    let native = {
+        use crate::frozen::{ById, ModelBuilder};
+        let mm = fixture.context.metamodel();
+        let mut builder = ModelBuilder::new(mm.clone());
+        builder
+            .create(
+                "cached",
+                mm.class(&fixture.node).ok_or("Node class")?,
+                "memory:/cached",
+            )
+            .map_err(|e| e.to_string())?;
+        builder
+            .link(&ById)
+            .map_err(|e| format!("{e:?}"))?
+            .validate()
+            .map_err(|e| format!("{e:?}"))?
+    };
+    let (image, bytes) =
+        ComponentImage::prepare_with_snapshot(fixture.context.clone(), "urn:cached", native)?;
+    for trust in [
+        SnapshotTrust::Revalidate,
+        SnapshotTrust::HostCache,
+        SnapshotTrust::VerifiedHostCache,
+    ] {
+        let restored = ComponentImage::restore_with_trust(
+            fixture.context.clone(),
+            &image.descriptor(),
+            &bytes,
+            trust,
+        )?;
+        assert_eq!(restored.key(), image.key());
+        let mounted = MountedModel::new(fixture.context.clone(), vec![restored.clone()])?;
+        mounted.validate()?;
+        full(&mounted)?;
+        let mut fork = mounted.fork()?;
+        assert!(
+            fork.set(restored.object_id("cached")?, "name", json!("cannot edit"))
+                .is_err()
+        );
+        let mut wrong = image.descriptor();
+        wrong.identity.engine = "stale-runtime".into();
+        assert!(
+            ComponentImage::restore_with_trust(fixture.context.clone(), &wrong, &bytes, trust)
+                .is_err()
+        );
+        let mut wrong = image.descriptor();
+        wrong.identity.schema = "stale-schema".into();
+        assert!(
+            ComponentImage::restore_with_trust(fixture.context.clone(), &wrong, &bytes, trust)
+                .is_err()
+        );
+    }
+    let mut corrupt = bytes.clone();
+    let last = corrupt.last_mut().ok_or("Snapshot")?;
+    *last ^= 1;
+    assert!(
+        ComponentImage::restore_with_trust(
+            fixture.context.clone(),
+            &image.descriptor(),
+            &corrupt,
+            SnapshotTrust::HostCache
+        )
+        .is_err()
+    );
+    assert!(
+        ComponentImage::restore_with_trust(
+            fixture.context.clone(),
+            &image.descriptor(),
+            &corrupt,
+            SnapshotTrust::VerifiedHostCache
+        )
+        .is_err()
+    );
+    // Even trusted-cache loading must not substitute another package identity.
+    let mut forged = image.descriptor();
+    forged.identity.content_digest = "different-content".into();
+    forged.key = digest(&(&forged.uri, &forged.identity))?;
+    let mut forged_bytes = bytes.clone();
+    forged_bytes[48..80].copy_from_slice(
+        &crate::definitions::library_part::key_bytes(&forged.key).map_err(|e| e.to_string())?,
+    );
+    let error = match ComponentImage::restore_with_trust(
+        fixture.context,
+        &forged,
+        &forged_bytes,
+        SnapshotTrust::HostCache,
+    ) {
+        Ok(_) => return Err("Mismatched resource ownership was accepted".into()),
+        Err(error) => error,
+    };
+    assert!(error.contains("resource identity"), "{error}");
+    Ok(())
+}
+
+#[test]
 fn component_validation_reads_native_defaults_without_archive_assignment_markers()
 -> StorageResult<()> {
     use crate::frozen::{ById, ModelBuilder};
