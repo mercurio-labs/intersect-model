@@ -197,3 +197,12 @@ CI keeps the ordinary scoped lane and additionally checks the component-enabled
 native runtime controls, strict lint and WASM build. Downstream development
 consumers must select the committed Model revision consistently; local sibling
 patches are not part of the integrated dependency graph.
+
+The performance follow-up reviews `ComponentImage::key()` and
+`ComponentImage::restore_with_trust(...)` in both public module paths, together
+with the retained immutable image representation. The key accessor exposes the
+existing immutable identity. The restore method takes an explicit
+`SnapshotTrust`; default `restore()` still fully revalidates, while trusted
+host-cache modes require the admission and enclosing-payload verification
+described above. The all-feature export and signature inventories include these
+additions. Default-feature declarations remain unchanged.
