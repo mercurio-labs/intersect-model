@@ -8,6 +8,7 @@
 mod declaration_inventory;
 mod model_definition;
 mod model_fixture;
+mod model_snapshots;
 
 #[cfg(feature = "components")]
 mod component_usage;

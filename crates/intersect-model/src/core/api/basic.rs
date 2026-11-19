@@ -48,6 +48,16 @@ impl<S: storage::DraftConstructionStore> BasicModel<S> {
 }
 
 impl BasicModel<FrozenStore> {
+    /// Capture an isolated, immutable snapshot, allowing missing required values.
+    /// The native structural profile is checked; provider-backed values require
+    /// their separately qualified snapshot admission profile.
+    pub fn snapshot(&self) -> StorageResult<super::ModelSnapshot> {
+        super::versioned::snapshot_draft(
+            std::sync::Arc::new(self.state.schema.clone()),
+            self.state.store.fork_arena()?,
+        )
+    }
+
     pub fn new(schema: Schema) -> StorageResult<Self> {
         let store = FrozenStore::for_schema(&schema).map_err(|error| error.to_string())?;
         Self::from_store(schema, store)
