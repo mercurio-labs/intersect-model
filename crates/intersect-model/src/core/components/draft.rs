@@ -292,7 +292,7 @@ fn scalar(mut values: Vec<Value>) -> StorageResult<Value> {
 fn materialize(
     store: &mut MountedStore,
     context: &SharedSchema,
-    ids: &[String],
+    ids: &[Arc<str>],
     owner: &str,
     id: &str,
     object: ImplicitObject,
@@ -316,7 +316,7 @@ fn materialize(
                 ImplicitValue::Ref(object) => Value::String(
                     ids.get(object.index())
                         .ok_or("Missing implicit reference")?
-                        .clone(),
+                        .to_string(),
                 ),
                 ImplicitValue::Object(child) => {
                     let child_id = format!("{id}/{name}/{position}");
@@ -377,30 +377,80 @@ impl MountedStore {
 
 // Indexes retain identities and containment topology, never copied library
 // attributes or reference payloads. All program reads borrow the actual arenas.
+// Immutable native containment is compiled once per image, not once per scope
+// request. Iterating stored features and their targets preserves traversal order.
+pub(super) struct ComponentTopology {
+    pub(super) ids: Vec<Arc<str>>,
+    classes: Vec<ClassId>,
+    children: Vec<Vec<usize>>,
+}
+
+impl ComponentTopology {
+    pub(super) fn new(model: &FrozenModel, key: &str) -> StorageResult<Self> {
+        let mut ids = Vec::with_capacity(model.len());
+        let mut classes = Vec::with_capacity(model.len());
+        let mut children = Vec::with_capacity(model.len());
+        for object in model.objects() {
+            ids.push(Arc::from(qualify(key, "object", object.identity())));
+            classes.push(object.class());
+            let info = model
+                .metamodel()
+                .class_info(object.class())
+                .ok_or("Unknown component class")?;
+            let mut targets = Vec::new();
+            for feature in &info.stored {
+                if model
+                    .metamodel()
+                    .definition(*feature)
+                    .is_some_and(|field| field.containment)
+                {
+                    for child in object.refs(*feature) {
+                        if !targets.contains(&child.id().index()) {
+                            targets.push(child.id().index());
+                        }
+                    }
+                }
+            }
+            children.push(targets);
+        }
+        Ok(Self {
+            ids,
+            classes,
+            children,
+        })
+    }
+}
+
 struct ReadIndex<'a> {
     store: &'a MountedStore,
-    ids: Vec<String>,
-    lookup: BTreeMap<String, ObjId>,
+    ids: Vec<Arc<str>>,
+    lookup: BTreeMap<Arc<str>, ObjId>,
     classes: Vec<ClassId>,
     parents: Vec<Option<ObjId>>,
     children: Vec<Vec<ObjId>>,
     roots: Vec<ObjId>,
     memo: FastMemo,
+    project_count: usize,
 }
 
 impl<'a> ReadIndex<'a> {
     fn new(store: &'a MountedStore) -> StorageResult<Self> {
-        let ids: Vec<String> = store
+        let mut ids: Vec<Arc<str>> = store
+            .project
             .id_page(None, usize::MAX)?
             .into_iter()
-            .map(|(_, id)| id)
+            .map(|(_, id)| Arc::from(id))
             .collect();
+        let project_count = ids.len();
+        for image in &store.images {
+            ids.extend(image.topology.ids.iter().cloned());
+        }
         let lookup = ids
             .iter()
             .enumerate()
             .map(|(i, id)| Ok((id.clone(), ObjId::from_index(i)?)))
             .collect::<StorageResult<BTreeMap<_, _>>>()?;
-        let classes = ids
+        let mut classes = ids[..project_count]
             .iter()
             .map(|id| {
                 let class = store.class(id)?.ok_or("Missing mounted class")?;
@@ -411,6 +461,9 @@ impl<'a> ReadIndex<'a> {
                     .ok_or_else(|| "Unknown mounted class".into())
             })
             .collect::<StorageResult<Vec<_>>>()?;
+        for image in &store.images {
+            classes.extend_from_slice(&image.topology.classes);
+        }
         let mut read = Self {
             parents: vec![None; ids.len()],
             children: vec![vec![]; ids.len()],
@@ -420,40 +473,23 @@ impl<'a> ReadIndex<'a> {
             classes,
             store,
             memo: FastMemo::default(),
+            project_count,
         };
-        for index in 0..read.ids.len() {
-            let object = ObjId::from_index(index)?;
-            let class = read.classes[index];
-            let Some(info) = read.metamodel().class_info(class) else {
-                return Err("Unknown containment class".into());
-            };
-            let features = info.stored.to_vec();
-            for feature in features {
-                if !read
-                    .metamodel()
-                    .definition(feature)
-                    .is_some_and(|field| field.containment)
-                {
-                    continue;
-                }
-                let count = match read.value(object, feature).map_err(|e| e.to_string())? {
-                    Some(LinkValue::Many(len)) => len,
-                    Some(LinkValue::Ref(target)) => {
-                        read.add_child(object, target)?;
-                        continue;
-                    }
-                    _ => continue,
-                };
-                for index in 0..count {
-                    if let Some(LinkValue::Ref(target)) = read
-                        .item(object, feature, index)
-                        .map_err(|e| e.to_string())?
-                    {
-                        read.add_child(object, target)?;
-                    }
+        let mut offset = project_count;
+        for image in &store.images {
+            for (parent, children) in image.topology.children.iter().enumerate() {
+                for child in children {
+                    read.add_child(
+                        ObjId::from_index(offset + parent)?,
+                        ObjId::from_index(offset + child)?,
+                    )?;
                 }
             }
+            offset += image.topology.ids.len();
         }
+        // Only project containment changes. Its edges may target a component;
+        // add_child still detects conflicting ownership across that boundary.
+        read.scan_containment(0..project_count)?;
         read.roots = read
             .parents
             .iter()
@@ -464,6 +500,43 @@ impl<'a> ReadIndex<'a> {
         read.roots
             .sort_by(|a, b| read.ids[a.index()].cmp(&read.ids[b.index()]));
         Ok(read)
+    }
+
+    fn scan_containment(&mut self, range: std::ops::Range<usize>) -> StorageResult<()> {
+        for index in range {
+            let object = ObjId::from_index(index)?;
+            let class = self.classes[index];
+            let Some(info) = self.metamodel().class_info(class) else {
+                return Err("Unknown containment class".into());
+            };
+            let features = info.stored.to_vec();
+            for feature in features {
+                if !self
+                    .metamodel()
+                    .definition(feature)
+                    .is_some_and(|field| field.containment)
+                {
+                    continue;
+                }
+                let count = match self.value(object, feature).map_err(|e| e.to_string())? {
+                    Some(LinkValue::Many(len)) => len,
+                    Some(LinkValue::Ref(target)) => {
+                        self.add_child(object, target)?;
+                        continue;
+                    }
+                    _ => continue,
+                };
+                for index in 0..count {
+                    if let Some(LinkValue::Ref(target)) = self
+                        .item(object, feature, index)
+                        .map_err(|e| e.to_string())?
+                    {
+                        self.add_child(object, target)?;
+                    }
+                }
+            }
+        }
+        Ok(())
     }
 
     fn add_child(&mut self, parent: ObjId, child: ObjId) -> StorageResult<()> {
@@ -486,11 +559,7 @@ impl<'a> ReadIndex<'a> {
     }
 
     fn project_objects(&self) -> impl Iterator<Item = ObjId> + '_ {
-        self.ids
-            .iter()
-            .enumerate()
-            .filter(|(_, id)| self.store.locate(id).is_none())
-            .filter_map(|(i, _)| ObjId::from_index(i).ok())
+        (0..self.project_count).filter_map(|i| ObjId::from_index(i).ok())
     }
 
     fn atom<'b>(
@@ -522,7 +591,7 @@ impl FastRead for ReadIndex<'_> {
         self.classes.get(object.index()).copied()
     }
     fn identity(&self, object: ObjId) -> Option<&str> {
-        self.ids.get(object.index()).map(String::as_str)
+        self.ids.get(object.index()).map(AsRef::as_ref)
     }
     fn resource(&self, object: ObjId) -> Option<&str> {
         self.store
@@ -587,5 +656,123 @@ impl FastRead for ReadIndex<'_> {
 impl crate::frozen_scopes::IndexedScopeRead for ReadIndex<'_> {
     fn lookup(&self, identity: &str) -> Option<ObjId> {
         self.lookup.get(identity).copied()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::core::components::validation_tests::fixture;
+    use crate::frozen::{ById, ModelBuilder};
+    use serde_json::json;
+
+    fn compare_full_scan(model: &MountedModel) -> StorageResult<()> {
+        let cached = ReadIndex::new(&model.store)?;
+        let mut full = ReadIndex::new(&model.store)?;
+        full.parents.fill(None);
+        for children in &mut full.children {
+            children.clear();
+        }
+        full.scan_containment(0..full.ids.len())?;
+        assert_eq!(cached.parents, full.parents);
+        assert_eq!(cached.children, full.children);
+        for (index, id) in cached.ids.iter().enumerate() {
+            assert_eq!(cached.lookup.get(id), Some(&ObjId::from_index(index)?));
+            assert_eq!(
+                cached.metamodel().class_key(cached.classes[index]),
+                model.class(id)?.ok_or("Missing class")?
+            );
+            assert_eq!(
+                cached.roots.contains(&ObjId::from_index(index)?),
+                full.parents[index].is_none()
+            );
+        }
+        assert_eq!(
+            cached.project_objects().count(),
+            model.project_object_count()?
+        );
+        Ok(())
+    }
+
+    #[test]
+    fn component_topology_preserves_order_offsets_restore_and_project_changes() -> StorageResult<()>
+    {
+        let fixture = fixture::Fixture::new()?;
+        let mm = fixture.context.metamodel();
+        let class = mm.class(&fixture.node).ok_or("Node class")?;
+        let children = mm.feature(class, "children").ok_or("Children feature")?;
+        let mut builder = ModelBuilder::new(mm);
+        let root = builder
+            .create("root", class, "memory:/tree")
+            .map_err(|e| e.to_string())?;
+        let first = builder
+            .create("first", class, "memory:/tree")
+            .map_err(|e| e.to_string())?;
+        let second = builder
+            .create("second", class, "memory:/tree")
+            .map_err(|e| e.to_string())?;
+        builder
+            .add_ref(root, children, second)
+            .map_err(|e| e.to_string())?;
+        builder
+            .add_ref(root, children, first)
+            .map_err(|e| e.to_string())?;
+        let native = builder
+            .link(&ById)
+            .map_err(|e| format!("{e:?}"))?
+            .validate()
+            .map_err(|e| format!("{e:?}"))?;
+        let second_image =
+            ComponentImage::prepare(fixture.context.clone(), "urn:tree:second", native.clone())?;
+        let (first_image, snapshot) = ComponentImage::prepare_with_snapshot(
+            fixture.context.clone(),
+            "urn:tree:first",
+            native,
+        )?;
+        let first_image = ComponentImage::restore(
+            fixture.context.clone(),
+            &first_image.descriptor(),
+            &snapshot,
+        )?;
+        let mut model = MountedModel::new(
+            fixture.context.clone(),
+            vec![first_image.clone(), second_image],
+        )?;
+        compare_full_scan(&model)?;
+        let read = ReadIndex::new(&model.store)?;
+        let root = read.lookup[first_image.object_id("root")?];
+        let names: Vec<_> = read
+            .children(root)
+            .iter()
+            .filter_map(|id| read.identity(*id))
+            .collect();
+        assert_eq!(
+            names,
+            vec![
+                first_image.object_id("second")?,
+                first_image.object_id("first")?
+            ]
+        );
+        drop(read);
+        model.create("project", &fixture.node, "memory:/project")?;
+        model.create("child", &fixture.node, "memory:/project")?;
+        model.set("project", "children", json!(["child"]))?;
+        compare_full_scan(&model)?;
+        let mut fork = model.fork()?;
+        fork.set("project", "children", json!([]))?;
+        compare_full_scan(&fork)?;
+        compare_full_scan(&model)?;
+        assert!(Arc::ptr_eq(&model.store.images[0], &fork.store.images[0]));
+        // Parsing may introduce an invalid cross-boundary owner. Cached
+        // topology must still expose the component child's existing owner.
+        storage::atomic(&mut fork.store.project, |store| {
+            store.set_resolved_value(
+                "project",
+                "children",
+                Some(json!([first_image.object_id("first")?])),
+            )
+        })?;
+        assert!(ReadIndex::new(&fork.store).is_err());
+        Ok(())
     }
 }

@@ -5,6 +5,56 @@ models. It is language-neutral and requires the opt-in `components` feature.
 It does not download or prepare KPARs, run Text editing sessions, or provide a
 durable component cache. Those are later milestones in the component usage plan.
 
+## Immutable component validation
+
+Preparation and default restore run the canonical structural audit on each closed native
+arena before issuing a private immutable image. Mount construction checks schema
+ownership and duplicate identities, then shares those already checked images;
+it does not repeat their audits through qualified object adapters.
+
+Final admission audits the editable project with the canonical validator. Target
+and opposite lookups retain the whole mounted view. Every component object with
+an inverse overlay is also checked. Overlays cannot remove base relationships or
+alter containment, so the remaining immutable graph keeps its preparation
+invariant. A project containment edge into a component selects the full global
+audit, preserving ownership and resource-root checks across that boundary.
+
+This is a component-specific optimization. General checked edit services and the
+canonical full validator remain available unchanged. The partition controls compare
+success and failure against the full validator, including broken targets, inverse
+overlays, cycles and cross-boundary containment.
+
+Object-bound initialization receipts are not yet rebased by the mounted read
+adapter. Preparation explicitly rejects those images rather than caching native
+evidence that the qualified full audit would reject. Other explicit assignment
+markers retain their existing canonical checks.
+
+The audit uses the same physical native slot/assignment view as mounted reads.
+The general FrozenStore archive adapter can synthesize legacy assignment markers
+for serialization; those markers must not replace native evidence during image
+admission. A default-valued native image and its snapshot restore exercise this
+distinction against the full mounted validator.
+
+Immutable images also retain their qualified identities, class indices and
+ordered containment topology. Scope, completion and validation reads rebuild
+only project containment and combine it with this retained topology. They still
+read attributes, reference values and reciprocal overlays from the live mounted
+arenas. Per-invocation evaluation memos are not shared across project changes.
+Image identities use shared strings, avoiding repeated copies of large qualified
+IDs. A full-traversal comparison checks multiple mounts, child order, snapshot
+restore, changing project row offsets, forks and conflicting owners.
+
+## Host-built component caches
+
+`restore_with_trust` adds the same explicit trust choices as frozen snapshots.
+The default `restore` remains fully revalidated. `HostCache` accepts the original
+host-built canonical admission and checks snapshot digests and decoding bounds;
+`VerifiedHostCache` requires the caller to have verified the exact enclosing
+payload already. Both still check runtime, schema, descriptor key, resource
+package identity and unsupported constructor evidence. They do not materialize
+and hash the graph or repeat canonical admission. Downloaded model interchange
+and textual KPAR preparation must not use these trusted modes.
+
 ## Run the demonstration
 
 From this checkout in PowerShell:

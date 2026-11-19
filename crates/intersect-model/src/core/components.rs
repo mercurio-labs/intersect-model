@@ -32,6 +32,8 @@ const ROW_MASK: u64 = u32::MAX as u64;
 
 mod draft;
 pub use draft::MountedDraft;
+#[cfg(test)]
+mod validation_tests;
 
 /// Explicitly shared metamodel, descriptors and checked-edit validation plan.
 pub struct SharedSchema {
@@ -92,9 +94,10 @@ pub struct ComponentImage {
     identity: PackageIdentity,
     key: String,
     arena: FrozenStore,
-    objects: BTreeMap<String, String>,
-    qualified: BTreeMap<String, String>,
+    objects: BTreeMap<String, Arc<str>>,
+    qualified: BTreeMap<Arc<str>, String>,
     resources: BTreeMap<String, String>,
+    topology: draft::ComponentTopology,
 }
 
 /// Durable ownership of an object, separate from its mounted runtime handle.
@@ -160,6 +163,7 @@ impl ComponentImage {
             );
         }
         let content_digest = digest(&materialized)?;
+        drop(materialized);
         let identity = PackageIdentity {
             content_digest,
             dependency_lock_digest: DependencyLock::empty().digest()?,
@@ -186,7 +190,7 @@ impl ComponentImage {
             None
         };
         Ok((
-            Self::from_prepared(context, uri, identity, key, model)?,
+            Self::from_prepared(context, uri, identity, key, model, true)?,
             snapshot,
         ))
     }
@@ -207,6 +211,27 @@ impl ComponentImage {
         descriptor: &ComponentDescriptor,
         snapshot: &[u8],
     ) -> StorageResult<Arc<Self>> {
+        Self::restore_with_trust(
+            context,
+            descriptor,
+            snapshot,
+            super::frozen::SnapshotTrust::Revalidate,
+        )
+    }
+
+    /// Restore the host's own prepared component cache. `HostCache` trusts the
+    /// original canonical admission proof; it checks snapshot digests and all
+    /// decoding bounds. `VerifiedHostCache` additionally requires the host to
+    /// have verified the exact enclosing payload's digest before calling here.
+    /// Neither mode is for downloaded model interchange or untrusted KPARs.
+    /// Runtime/schema/descriptor keys and resource ownership are always checked.
+    /// `Revalidate` retains restore()'s full graph digest and canonical audit.
+    pub fn restore_with_trust(
+        context: Arc<SharedSchema>,
+        descriptor: &ComponentDescriptor,
+        snapshot: &[u8],
+        trust: super::frozen::SnapshotTrust,
+    ) -> StorageResult<Arc<Self>> {
         crate::core::resources::validate_resource_uri(&descriptor.uri)?;
         if descriptor.version != 1
             || descriptor.identity.engine != crate::SOURCE_IDENTITY
@@ -226,18 +251,27 @@ impl ComponentImage {
             snapshot,
             &crate::definitions::library_part::key_bytes(&descriptor.key)
                 .map_err(|e| e.to_string())?,
-            crate::core::frozen::SnapshotTrust::Revalidate,
+            trust,
         )
         .map_err(|e| e.to_string())?;
-        let mut content = model.to_model().map_err(|e| e.to_string())?;
-        for record in content.resources.values_mut() {
+        for record in model
+            .resource_records()
+            .map_err(|e| e.to_string())?
+            .values()
+        {
             if record.package.as_ref() != Some(&descriptor.identity) {
                 return Err("Prepared component resource identity mismatch".into());
             }
-            record.package = None;
         }
-        if digest(&content)? != descriptor.identity.content_digest {
-            return Err("Prepared component graph digest mismatch".into());
+        let revalidate = trust == super::frozen::SnapshotTrust::Revalidate;
+        if revalidate {
+            let mut content = model.to_model().map_err(|e| e.to_string())?;
+            for record in content.resources.values_mut() {
+                record.package = None;
+            }
+            if digest(&content)? != descriptor.identity.content_digest {
+                return Err("Prepared component graph digest mismatch".into());
+            }
         }
         Self::from_prepared(
             context,
@@ -245,6 +279,7 @@ impl ComponentImage {
             descriptor.identity.clone(),
             descriptor.key.clone(),
             model,
+            revalidate,
         )
     }
 
@@ -254,17 +289,46 @@ impl ComponentImage {
         identity: PackageIdentity,
         key: String,
         model: FrozenModel,
+        revalidate: bool,
     ) -> StorageResult<Arc<Self>> {
+        let topology = draft::ComponentTopology::new(&model, &key)?;
+        let objects = model
+            .objects()
+            .zip(&topology.ids)
+            .map(|(object, id)| (object.identity().to_owned(), id.clone()))
+            .collect::<BTreeMap<_, _>>();
         let mut arena = FrozenStore::from_model(model);
         arena.share_schema(&context)?;
-        let objects: BTreeMap<String, String> = arena
-            .id_page(None, usize::MAX)?
-            .into_iter()
-            .map(|(_, id)| {
-                let qualified = qualify(&key, "object", &id);
-                (id, qualified)
-            })
-            .collect();
+        // Native frozen models carry their schema in the metamodel, not the
+        // draft-store revision field. Bind that field to the same checked
+        // metamodel before using the canonical store validator.
+        storage::atomic(&mut arena, |store| {
+            store.set_revision(&context.schema().revision)
+        })?;
+        // Establish the canonical structural invariant once, over the closed
+        // native arena. Qualification is a bijective renaming; private images
+        // cannot acquire new objects, resources or assignments after this point.
+        if revalidate {
+            context.validation.validate_all(
+                &NativeComponentRead(&arena),
+                context.schema(),
+                true,
+            )?;
+        }
+        for (_, id) in arena.id_page(None, usize::MAX)? {
+            arena.inspect_component_native(&id, &mut |object| {
+                // Retained receipts name their native owner. The existing
+                // mounted view does not rebase that evidence, so its full
+                // audit would reject it after identity qualification.
+                if object.initialization().is_some() {
+                    return Err(
+                        "Component images do not yet support object-bound initialization receipts"
+                            .into(),
+                    );
+                }
+                Ok(())
+            })?;
+        }
         let qualified = objects
             .iter()
             .map(|(local, qualified)| (qualified.clone(), local.clone()))
@@ -286,11 +350,16 @@ impl ComponentImage {
             objects,
             qualified,
             resources,
+            topology,
         }))
     }
 
     pub fn identity(&self) -> &PackageIdentity {
         &self.identity
+    }
+    /// Exact prepared image identity, independent of acquisition location.
+    pub fn key(&self) -> &str {
+        &self.key
     }
     pub fn uri(&self) -> &str {
         &self.uri
@@ -303,7 +372,7 @@ impl ComponentImage {
     pub fn object_id(&self, element_id: &str) -> StorageResult<&str> {
         self.objects
             .get(element_id)
-            .map(String::as_str)
+            .map(AsRef::as_ref)
             .ok_or_else(|| format!("Unknown component object: {element_id}"))
     }
 }
@@ -332,7 +401,7 @@ impl<'a> ReadContext<'a> {
     pub(crate) fn identity(self, local: &'a str) -> &'a str {
         self.image
             .and_then(|image| image.objects.get(local))
-            .map_or(local, String::as_str)
+            .map_or(local, AsRef::as_ref)
     }
     pub(crate) fn resource(self, local: &'a str) -> &'a str {
         self.image
@@ -375,6 +444,53 @@ struct MountedStore {
 }
 
 impl MountedStore {
+    fn validate_project(&self, require_lower_bounds: bool) -> StorageResult<()> {
+        // A project may contain a library object when no opposite prevents it.
+        // That changes global ownership/root membership, so retain the complete
+        // canonical audit for this uncommon case.
+        let mut external_containment = false;
+        for (_, id) in self.project.id_page(None, usize::MAX)? {
+            self.inspect(&id, &mut |object| {
+                for (name, field) in self.context.schema().features(object.class())? {
+                    if !field.containment {
+                        continue;
+                    }
+                    if let Some(value) = object.value(&name) {
+                        let value = value.to_json();
+                        let values = value
+                            .as_array()
+                            .map(Vec::as_slice)
+                            .unwrap_or(std::slice::from_ref(&value));
+                        external_containment |= values
+                            .iter()
+                            .any(|v| v.as_str().is_some_and(|id| id.starts_with(PREFIX)));
+                    }
+                }
+                Ok(())
+            })?;
+        }
+        let schema = self.context.schema();
+        if external_containment {
+            return self
+                .context
+                .validation
+                .validate_all(self, schema, require_lower_bounds);
+        }
+        // Images are closed and already checked. Only project resources and
+        // project containment can have changed. Target and opposite queries
+        // still see the complete mounted graph, including inverse overlays.
+        self.context
+            .validation
+            .validate_all(&ProjectRead(self), schema, require_lower_bounds)?;
+        // Overlays are restricted to non-containment reciprocal references and
+        // cannot remove base relationships. Recheck every affected object with
+        // the canonical validator (upper bounds, uniqueness, types, opposites).
+        let affected = self.overlays.keys().map(String::as_str).collect();
+        self.context
+            .validation
+            .validate_objects(self, schema, &affected)
+    }
+
     fn locate(&self, id: &str) -> Option<(&ComponentImage, &str)> {
         self.images.iter().find_map(|image| {
             image
@@ -524,6 +640,84 @@ impl MountedStore {
                 .insert(field.into(), value);
         }
         Ok(())
+    }
+}
+
+// Validation traversal is confined to the mutable partition; target inspection
+// is deliberately not confined. This adapter has no mutation capability.
+struct NativeComponentRead<'a>(&'a FrozenStore);
+impl ModelRead for NativeComponentRead<'_> {
+    fn revision(&self) -> StorageResult<String> {
+        self.0.revision()
+    }
+    fn resource_records(&self) -> StorageResult<BTreeMap<String, ResourceRecord>> {
+        self.0.resource_records()
+    }
+    fn inspect(
+        &self,
+        id: &str,
+        f: &mut dyn FnMut(ObjectView<'_>) -> StorageResult<()>,
+    ) -> StorageResult<bool> {
+        self.0.inspect_component_native(id, f)
+    }
+    fn get(&self, id: &str) -> StorageResult<Option<super::model::Element>> {
+        self.0.get(id)
+    }
+    fn class(&self, id: &str) -> StorageResult<Option<String>> {
+        self.0.class(id)
+    }
+    fn value(&self, id: &str, field: &str) -> StorageResult<Option<Value>> {
+        self.0.value(id, field)
+    }
+    fn id_page(&self, after: Option<u64>, limit: usize) -> StorageResult<Vec<(u64, String)>> {
+        self.0.id_page(after, limit)
+    }
+    fn page(&self, after: Option<u64>, limit: usize) -> StorageResult<Vec<Row>> {
+        self.0.page(after, limit)
+    }
+    fn query(&self, query: Query<'_>) -> StorageResult<Vec<String>> {
+        self.0.query(query)
+    }
+    fn matches(&self, id: &str, query: Query<'_>) -> StorageResult<bool> {
+        self.0.matches(id, query)
+    }
+}
+
+struct ProjectRead<'a>(&'a MountedStore);
+impl ModelRead for ProjectRead<'_> {
+    fn revision(&self) -> StorageResult<String> {
+        self.0.revision()
+    }
+    fn resource_records(&self) -> StorageResult<BTreeMap<String, ResourceRecord>> {
+        self.0.project.resource_records()
+    }
+    fn inspect(
+        &self,
+        id: &str,
+        f: &mut dyn FnMut(ObjectView<'_>) -> StorageResult<()>,
+    ) -> StorageResult<bool> {
+        self.0.inspect(id, f)
+    }
+    fn get(&self, id: &str) -> StorageResult<Option<super::model::Element>> {
+        self.0.get(id)
+    }
+    fn class(&self, id: &str) -> StorageResult<Option<String>> {
+        self.0.class(id)
+    }
+    fn value(&self, id: &str, field: &str) -> StorageResult<Option<Value>> {
+        self.0.value(id, field)
+    }
+    fn id_page(&self, after: Option<u64>, limit: usize) -> StorageResult<Vec<(u64, String)>> {
+        self.0.project.id_page(after, limit)
+    }
+    fn page(&self, after: Option<u64>, limit: usize) -> StorageResult<Vec<Row>> {
+        self.0.project.page(after, limit)
+    }
+    fn query(&self, query: Query<'_>) -> StorageResult<Vec<String>> {
+        self.0.query(query)
+    }
+    fn matches(&self, id: &str, query: Query<'_>) -> StorageResult<bool> {
+        self.0.matches(id, query)
     }
 }
 
@@ -819,11 +1013,9 @@ impl MountedModel {
                 handles: RefCell::new(HashMap::new()),
             },
         };
-        result
-            .store
-            .context
-            .validation
-            .validate_all(&result.store, result.schema(), false)?;
+        // Each private, closed image has passed canonical validation at
+        // preparation/restore. Disjoint qualified identities preserve that
+        // invariant; the new project arena has no objects or resources yet.
         Ok(result)
     }
 
@@ -868,10 +1060,7 @@ impl MountedModel {
         Ok(self.store.project.id_page(None, usize::MAX)?.len())
     }
     pub fn validate(&self) -> StorageResult<()> {
-        self.store
-            .context
-            .validation
-            .validate_all(&self.store, self.schema(), true)
+        self.store.validate_project(true)
     }
 
     pub fn create(&mut self, id: &str, class: &str, resource: &str) -> StorageResult<()> {
