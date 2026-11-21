@@ -2,7 +2,7 @@
 autotests = false
 name = "intersect-model"
 description = "Shared model APIs and Rcore execution without Xtext."
-version = "0.1.0-alpha.1"
+version = "0.1.0-alpha.2"
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
@@ -29,7 +29,7 @@ num-traits = { version = "=0.2.19", default-features = false }
 
 # Host-only: hashes the compiler sources into the crate's SOURCE_IDENTITY.
 [build-dependencies]
-intersect-build-support = { path = "../intersect-build-support", version = "0.1.0-alpha.1" }
+intersect-build-support = { path = "../intersect-build-support", version = "0.1.0-alpha.2" }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 rusqlite = { version = "0.32.1", features = ["bundled"], optional = true }

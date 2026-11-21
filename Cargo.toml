@@ -3,8 +3,13 @@
 "exclude" = ["tests/model-only"]
 "members" = ["crates/intersect-build-support", "crates/intersect-model", "crates/intersect-run", "crates/intersect-codegen", "crates/intersect-project-host", "crates/intersect-model-example-support", "crates/intersect-views", "tests/rust-bindings", "tests/model-acceptance", "tests/support", "tests/semantic-bindings"]
 "resolver" = "3"
-"package" = { "version" = "0.1.0-alpha.1", "edition" = "2024", "rust-version" = "1.88", "license" = "MIT", "repository" = "https://github.com/mercurio-labs/intersect-model", "publish" = false }
-"dependencies" = { "intersect-model" = { "path" = "crates/intersect-model", "version" = "0.1.0-alpha.1" }, "serde" = { "version" = "1.0.228", "features" = ["derive", "rc"] }, "serde_json" = { "version" = "1.0.149", "features" = ["raw_value"] }, "quick-xml" = "0.41.0", "sha2" = "0.10.9", "iri-string" = { "version" = "0.7.12", "default-features" = false, "features" = ["alloc"] } }
+"package" = { "version" = "0.1.0-alpha.2", "edition" = "2024", "rust-version" = "1.88", "license" = "MIT", "repository" = "https://github.com/mercurio-labs/intersect-model", "publish" = false }
+"dependencies" = { "intersect-model" = { "path" = "crates/intersect-model", "version" = "0.1.0-alpha.2" }, "serde" = { "version" = "1.0.228", "features" = ["derive", "rc"] }, "serde_json" = { "version" = "1.0.149", "features" = ["raw_value"] }, "quick-xml" = "0.41.0", "sha2" = "0.10.9", "iri-string" = { "version" = "0.7.12", "default-features" = false, "features" = ["alloc"] } }
 
 ["profile"]
 "test-fast" = { "inherits" = "dev", "opt-level" = 1, "debug" = 0, "incremental" = true, "package" = { "*" = { "opt-level" = 3 } } }
+
+# Registry-facing adapters resolve the same runtime as source workspace callers.
+[patch.crates-io]
+intersect-model = { path = "crates/intersect-model" }
+intersect-build-support = { path = "crates/intersect-build-support" }

@@ -9,7 +9,7 @@ license.workspace = true
 publish.workspace = true
 
 [dependencies]
-intersect-model = "=0.1.0-alpha.1"
+intersect-model = "=0.1.0-alpha.2"
 
 [[test]]
 name = "all"

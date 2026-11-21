@@ -8,5 +8,5 @@ license.workspace = true
 publish = false
 
 [dependencies]
-intersect-model = "=0.1.0-alpha.1"
+intersect-model = "=0.1.0-alpha.2"
 serde_json.workspace = true
