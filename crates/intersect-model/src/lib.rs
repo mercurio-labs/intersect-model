@@ -6,6 +6,13 @@
 //! or [`compile_rcore`] and [`RcorePackage`]. [`api`] provides reflective editing;
 //! [`resource_set`] and [`interchange`] provide resource and persistence services.
 //!
+//! # Prepared dependency components
+//! With the `components` feature, `components::ComponentImage` owns an admitted,
+//! immutable dependency. `components::MountedModel` combines it with writable
+//! project data under one compatible schema. Read references through the mounted
+//! model and use checked edits for project data. Hosts acquire dependency
+//! artifacts, and language packages own text parsing and linking.
+//!
 //! # Advanced extension contracts
 //! [`extensions`] describes provider, storage and execution integration. These
 //! contracts require explicit source identity, validation and work accounting;

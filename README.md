@@ -3,7 +3,8 @@
 **Define a modeling language, build models, and execute their behavior in Rust and WebAssembly.**
 
 [Try the browser Toolkit](https://mercurio-labs.github.io/intersect-lang-examples/toolkit/)
-· [Explore the examples](https://mercurio-labs.github.io/intersect-lang-examples/)
+· [Rust API reference](https://docs.rs/intersect-model/latest/intersect_model/)
+· [Model guide](docs/model-guide.md)
 
 Intersect Model was designed around the same conceptual ideas as the
 [Eclipse Modeling Framework (EMF)](https://eclipse.dev/emf/): define a metamodel,
@@ -167,16 +168,27 @@ supports binding generation, `intersect-project-host` defines host acquisition
 contracts, and `intersect-run` is a deterministic discrete-event kernel.
 `intersect-run` is a library, not a model-loading command-line application.
 
-## Status and documentation
+## API reference and release status
 
-The repositories are preparing their first release after the Model/Text split.
-Use the
-[current release plan](docs/release-plan.md) for the new scope and open gates.
-The registry release set is `intersect-build-support`, `intersect-model`, and
-`intersect-text`; the support crate runs only during builds. See the
-[package and API scope](docs/release-plan.md#package-count-and-public-api-decision).
-The [registry release procedure](docs/registry-release.md) explains standalone
-packages, retained upstream notices, and release verification.
+The published evaluation release is `0.1.0-alpha.1`. The API reference on
+[docs.rs](https://docs.rs/intersect-model/latest/intersect_model/) has a version
+selector for the release you installed. Start with `DynamicModel` for a schema
+defined in Rust, `compile_rcore` for authored definitions, and `api::ModelEdit`
+for checked reflective edits. The [crate entry point](crates/intersect-model/src/lib.rs)
+maps these application APIs and the advanced extension contracts.
+
+This development branch also has an experimental `components` feature. It
+mounts prepared, read-only model data alongside an editable project. See the
+[component guide](docs/component-proof.md) and its [runnable example](crates/intersect-model/examples/model_component_usage.rs).
+Generate the API reference for this checkout, including the opt-in component API:
+
+```sh
+cargo doc --locked --no-deps -p intersect-model --features components --open
+```
+
+The [evaluation alpha plan](docs/release-plan.md) records the package and API
+scope for `alpha.1`. The [registry release procedure](docs/registry-release.md)
+covers standalone packages, retained upstream notices, and verification.
 
 - [Architecture](docs/architecture.md) and [model guide](docs/model-guide.md)
 - [Rcore guide](docs/rcore-guide.md)

@@ -1,9 +1,11 @@
 # Model component proof
 
-This experimental M1 proof mounts a prepared library into independently editable
-models. It is language-neutral and requires the opt-in `components` feature.
-It does not download or prepare KPARs, run Text editing sessions, or provide a
-durable component cache. Those are later milestones in the component usage plan.
+The experimental `components` feature mounts a prepared library into independently
+editable models. Start with the [runnable Model example](../crates/intersect-model/examples/model_component_usage.rs)
+and the [`components` module](../crates/intersect-model/src/core/components.rs).
+Model owns immutable component images, mounted reads, checked edits and snapshot
+admission. Text owns editing sessions, and KerML and its hosts own KPAR acquisition,
+language-specific preparation and cache storage.
 
 ## Immutable component validation
 

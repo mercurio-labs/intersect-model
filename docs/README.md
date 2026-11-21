@@ -1,7 +1,8 @@
 # Model documentation
 
-Start with the [repository README](../README.md) for goals and runnable examples.
-This index and the five guides below are the maintained narrative documentation.
+Start with the [repository README](../README.md) for installation and runnable
+examples. Use the [Rust API reference](https://docs.rs/intersect-model/latest/intersect_model/)
+for the published crate or the README's `cargo doc` command for this checkout.
 
 - [Architecture](architecture.md)
 - [Model guide](model-guide.md)
