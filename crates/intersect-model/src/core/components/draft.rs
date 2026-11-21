@@ -433,6 +433,68 @@ struct ReadIndex<'a> {
     project_count: usize,
 }
 
+/// A checked, immutable mounted model and its containment index. Object values,
+/// references, and source coordinates are borrowed from the actual arenas.
+/// Object IDs are local to this read model.
+pub struct MountedReadModel {
+    model: MountedModel,
+    ids: Vec<Arc<str>>,
+    lookup: BTreeMap<Arc<str>, ObjId>,
+    parents: Vec<Option<ObjId>>,
+}
+
+impl MountedModel {
+    /// Retain the accepted project and its component images for indexed reads.
+    pub fn into_read_model(self) -> StorageResult<MountedReadModel> {
+        let ReadIndex {
+            ids, lookup, parents, ..
+        } = ReadIndex::new(&self.store)?;
+        Ok(MountedReadModel {
+            model: self,
+            ids,
+            lookup,
+            parents,
+        })
+    }
+}
+
+impl MountedReadModel {
+    pub fn model(&self) -> &MountedModel {
+        &self.model
+    }
+
+    pub fn metamodel(&self) -> &Metamodel {
+        &self.model.store.context.metamodel
+    }
+
+    pub fn identities(&self) -> impl ExactSizeIterator<Item = &str> {
+        self.ids.iter().map(AsRef::as_ref)
+    }
+
+    pub fn identity(&self, object: ObjId) -> Option<&str> {
+        self.ids.get(object.index()).map(AsRef::as_ref)
+    }
+
+    pub fn lookup(&self, identity: &str) -> Option<ObjId> {
+        self.lookup.get(identity).copied()
+    }
+
+    pub fn container(&self, object: ObjId) -> Option<ObjId> {
+        self.parents.get(object.index()).copied().flatten()
+    }
+
+    pub fn object(&self, object: ObjId) -> StorageResult<Option<crate::core::storage::ObjectView<'_>>> {
+        let Some(identity) = self.identity(object) else {
+            return Ok(None);
+        };
+        Ok(self
+            .model
+            .store
+            .borrow_object(identity)?
+            .map(ObjectView::frozen))
+    }
+}
+
 impl<'a> ReadIndex<'a> {
     fn new(store: &'a MountedStore) -> StorageResult<Self> {
         let mut ids: Vec<Arc<str>> = store
@@ -763,6 +825,17 @@ mod tests {
         compare_full_scan(&fork)?;
         compare_full_scan(&model)?;
         assert!(Arc::ptr_eq(&model.store.images[0], &fork.store.images[0]));
+        let accepted = model.into_read_model()?;
+        let mounted_id = first_image.object_id("first")?;
+        let mounted = accepted.lookup(mounted_id).ok_or("Missing component child")?;
+        let parent = accepted.container(mounted).ok_or("Missing component owner")?;
+        assert_eq!(accepted.identity(parent), Some(first_image.object_id("root")?));
+        let object = accepted.object(mounted)?.ok_or("Missing component object")?;
+        assert_eq!(object.id(), mounted_id);
+        assert_eq!(object.class(), fixture.node);
+        let child = accepted.lookup("child").ok_or("Missing project child")?;
+        assert_eq!(accepted.container(child), accepted.lookup("project"));
+        assert!(accepted.model().shares_component_with(&fork, "urn:tree:first"));
         // Parsing may introduce an invalid cross-boundary owner. Cached
         // topology must still expose the component child's existing owner.
         storage::atomic(&mut fork.store.project, |store| {

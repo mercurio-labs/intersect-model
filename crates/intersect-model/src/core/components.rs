@@ -31,7 +31,7 @@ const ROW_BITS: u32 = 32;
 const ROW_MASK: u64 = u32::MAX as u64;
 
 mod draft;
-pub use draft::MountedDraft;
+pub use draft::{MountedDraft, MountedReadModel};
 #[cfg(test)]
 mod validation_tests;
 
