@@ -46,3 +46,16 @@ are private. The root `logical_size!` macro remains a downstream accounting tool
 Specialized contracts retain their documented owning modules, without duplicate
 blanket re-exports. See
 [API boundaries](../../docs/model-guide.md#application-and-extension-boundaries).
+
+
+### Supplemental source reads
+
+`source_model_functions::SourceModelFunction` attaches explicitly selected
+read functions to the retained Rcore package or prepared definition. Use
+`from_rcore_many` or `from_prepared_many` to compile several entries together;
+results preserve selection order and share immutable definition sources.
+The existing single-entry constructors remain available. Every image is freshly
+verified and signature-checked against the exact retained schema. A failed batch
+returns no functions. Entry count and aggregate selector metadata are bounded
+before copying. `invoke_model` retains its caller's query budget and runtime
+refusal of construction; batch compilation installs no language semantics.

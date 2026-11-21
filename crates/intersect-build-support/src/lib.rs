@@ -1,10 +1,14 @@
 //! Host-only source identity support for independently distributed packages.
 //! Input bytes, enabled Cargo features and optional lock/manifest context are
 //! framed deterministically. Literal embedded inputs are scanned recursively;
-//! source trees of runtime dependencies are never located or scanned.
+//! Conservative emission scans owned inputs; scoped emission additionally uses
+//! checked Cargo-resolved package inputs, never mutable sibling-path discovery.
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
+
+mod scoped;
+pub use scoped::emit_scoped;
 
 #[cfg(test)]
 mod tests;
@@ -77,6 +81,9 @@ fn crate_inputs(digest: &mut Sha256, dir: &Path, workspace: &Path) -> Result<(),
     let mut sources = BTreeMap::new();
     collect(&src, workspace, &mut sources)?;
     let mut external = BTreeMap::new();
+    if build.is_file() {
+        external_files(&build, &src, workspace, &mut external)?;
+    }
     for path in sources.values() {
         if path.extension().is_some_and(|extension| extension == "rs") {
             external_files(path, &src, workspace, &mut external)?;
@@ -173,37 +180,141 @@ fn external_files(
         .map_err(|error| format!("source identity: {}: {error}", path.display()))?;
     let dir = path.parent().unwrap_or(src);
     let mut modules = Vec::new();
-    for marker in ["include_str!(", "include_bytes!(", "#[path"] {
-        let mut rest = text.as_str();
-        while let Some(at) = rest.find(marker) {
-            rest = &rest[at + marker.len()..];
-            let argument = if marker == "#[path" {
-                rest.trim_start()
-                    .strip_prefix('=')
-                    .and_then(|value| string_literal(value.trim_start()))
-            } else {
-                string_literal(rest.trim_start())
-            };
-            let literal = argument.ok_or_else(|| {
-                format!(
-                    "source identity: {}: `{marker}` without a string literal",
-                    path.display()
-                )
-            })?;
-            let target = canonical(&dir.join(&literal))?;
-            if target.starts_with(src) {
-                continue;
-            }
-            let name = label(&target, workspace)?;
-            if files.insert(name, target.clone()).is_none() && marker == "#[path" {
-                modules.push(target);
-            }
+    for (module, literal) in
+        embedded_calls(&text).map_err(|e| format!("source identity: {}: {e}", path.display()))?
+    {
+        let target = canonical(&dir.join(&literal))?;
+        if target.starts_with(src) {
+            continue;
+        }
+        let name = label(&target, workspace)?;
+        if files.insert(name, target.clone()).is_none() && module {
+            modules.push(target);
         }
     }
     for module in modules {
         external_files(&module, src, workspace, files)?;
     }
     Ok(())
+}
+
+// A small lexical pass, not a Rust semantic parser. Only real macro/attribute
+// tokens count: documentation and strings containing sample Rust must not become
+// file paths. Dynamic inputs still refuse, including inside macro definitions.
+fn embedded_calls(text: &str) -> Result<Vec<(bool, String)>, String> {
+    let mut calls = Vec::new();
+    let mut at = 0;
+    while at < text.len() {
+        let rest = &text[at..];
+        if rest.starts_with("//") {
+            at += rest.find('\n').unwrap_or(rest.len());
+            continue;
+        }
+        if rest.starts_with("/*") {
+            let mut depth = 1;
+            at += 2;
+            while depth > 0 && at < text.len() {
+                if text[at..].starts_with("/*") {
+                    depth += 1;
+                    at += 2;
+                } else if text[at..].starts_with("*/") {
+                    depth -= 1;
+                    at += 2;
+                } else {
+                    at += text[at..]
+                        .chars()
+                        .next()
+                        .ok_or("unterminated comment")?
+                        .len_utf8();
+                }
+            }
+            if depth != 0 {
+                return Err("unterminated block comment".into());
+            }
+            continue;
+        }
+        if let Some(end) = literal_end(rest) {
+            at += end;
+            continue;
+        }
+        if let Some(character) = rest.strip_prefix('\'') {
+            // Skip character literals; an unmatched quote is a lifetime token.
+            let mut chars = character.char_indices();
+            if let Some((_, first)) = chars.next() {
+                if first == '\\' {
+                    chars.next();
+                }
+                if let Some((end, '\'')) = chars.next() {
+                    at += end + 2;
+                    continue;
+                }
+            }
+        }
+        let mut argument = None;
+        let mut module = false;
+        if let Some(attribute) = rest
+            .strip_prefix('#')
+            .and_then(|s| s.trim_start().strip_prefix('['))
+        {
+            if let Some(value) = attribute
+                .trim_start()
+                .strip_prefix("path")
+                .and_then(|s| s.trim_start().strip_prefix('='))
+            {
+                argument = Some(value.trim_start());
+                module = true;
+            }
+        } else if rest.starts_with(|c: char| c.is_ascii_alphabetic() || c == '_') {
+            let end = rest
+                .find(|c: char| !c.is_ascii_alphanumeric() && c != '_')
+                .unwrap_or(rest.len());
+            let token = &rest[..end];
+            if matches!(token, "include_str" | "include_bytes") {
+                argument = rest[end..]
+                    .trim_start()
+                    .strip_prefix('!')
+                    .and_then(|s| s.trim_start().strip_prefix('('))
+                    .map(str::trim_start);
+            }
+            if argument.is_none() {
+                at += end;
+                continue;
+            }
+        }
+        if let Some(value) = argument {
+            let literal = string_literal(value).ok_or("embedded input without a string literal")?;
+            calls.push((module, literal));
+        }
+        at += rest.chars().next().ok_or("invalid Rust token")?.len_utf8();
+    }
+    Ok(calls)
+}
+
+fn literal_end(text: &str) -> Option<usize> {
+    if let Some(prefixed) = text.strip_prefix('b').or_else(|| text.strip_prefix('c'))
+        && prefixed.starts_with('r')
+    {
+        return literal_end(prefixed).map(|end| end + 1);
+    }
+    if let Some(raw) = text.strip_prefix('r') {
+        let hashes = raw.len() - raw.trim_start_matches('#').len();
+        if let Some(body) = raw[hashes..].strip_prefix('"') {
+            let close = format!("\"{}", "#".repeat(hashes));
+            return body.find(&close).map(|end| 2 + hashes + end + close.len());
+        }
+    }
+    let body = text.strip_prefix('"')?;
+    let mut escaped = false;
+    for (at, ch) in body.char_indices() {
+        if escaped {
+            escaped = false;
+        } else if ch == '\\' {
+            escaped = true;
+        } else if ch == '"' {
+            return Some(at + 2);
+        }
+    }
+    None
 }
 
 /// The value of a leading `"..."` or `r#"..."#` literal (simple escapes only).

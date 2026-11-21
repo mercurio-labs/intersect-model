@@ -198,6 +198,7 @@ dependencies = [
 name = "intersect-build-support"
 version = "0.1.0-alpha.1"
 dependencies = [
+ "serde_json",
  "sha2",
 ]
 

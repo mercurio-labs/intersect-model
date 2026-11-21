@@ -151,7 +151,7 @@ impl DerivedValues for SourceDerived<'_> {
         };
         let getter = &self.getters.entries[*index];
         let work = BorrowedBindingWork::bind(budget);
-        let reads = SourceModelReads::new(store, &self.package.schema);
+        let reads = SourceModelReads::for_invocation(store, &self.package.schema);
         let value = scope_runtime::evaluate_getter(
             getter,
             &ExecutionContext::new(self.bundle),

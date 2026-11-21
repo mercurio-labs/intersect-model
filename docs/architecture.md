@@ -46,8 +46,10 @@ identifies which public contracts need qualification before compatibility freeze
 ## Released runtime adapters
 
 Unpublished host/example adapters consume the exact released Model/Text crates.
-Model owns `intersect-project-host`, the language-neutral `intersect-views` wire
-contracts, and `intersect-model-example-support`. The last adapter compiles the
+Model owns `intersect-project-host` and `intersect-model-example-support`.
+Visualization contracts and the client moved to the independent local
+`intersect-views` repository in view-engine M10, after consumer qualification.
+The example adapter compiles the
 existing shared binding fixture sources against the registry Model types; it
 does not duplicate their implementations. Text Library/Web adapters likewise use
 registry runtime types. Source qualification harnesses retain their original

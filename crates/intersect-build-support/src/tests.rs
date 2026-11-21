@@ -1,9 +1,9 @@
 use super::*;
 use std::sync::atomic::{AtomicU64, Ordering};
 
-struct Fixture(PathBuf);
+pub(crate) struct Fixture(pub(crate) PathBuf);
 impl Fixture {
-    fn new() -> Result<Self, String> {
+    pub(crate) fn new() -> Result<Self, String> {
         static NEXT: AtomicU64 = AtomicU64::new(0);
         let path = std::env::temp_dir().join(format!(
             "intersect-identity-{}-{}",
@@ -13,7 +13,7 @@ impl Fixture {
         std::fs::create_dir(&path).map_err(|error| error.to_string())?;
         Ok(Self(path))
     }
-    fn write(&self, name: &str, value: &str) -> Result<(), String> {
+    pub(crate) fn write(&self, name: &str, value: &str) -> Result<(), String> {
         let path = self.0.join(name);
         let parent = path.parent().ok_or("Fixture has no parent")?;
         std::fs::create_dir_all(parent).map_err(|error| error.to_string())?;
@@ -79,5 +79,24 @@ fn relocation_does_not_change_owned_identity_and_dynamic_inputs_are_refused() ->
         "const DATA: &str = include_str!(concat!(\"a\", \"b\"));\n",
     )?;
     assert!(second.identity().is_err(), "dynamic input must be rejected");
+    Ok(())
+}
+
+#[test]
+fn scanner_distinguishes_embedded_inputs_from_rust_examples() -> Result<(), String> {
+    let text = r####"
+// include_str!("comment.txt")
+/* nested /* #[path = "missing.rs"] */ include_bytes!("also-missing") */
+const EXAMPLE: &str = "include_str!(\"sample.txt\")";
+const RAW: &str = r###"#[path = "example.rs"]"###;
+const CHAR: char = '\"';
+const ACTUAL: &str = include_str! ( "real.txt" );
+#[ path = "module.rs" ] mod external;
+"####;
+    assert_eq!(
+        embedded_calls(text)?,
+        vec![(false, "real.txt".into()), (true, "module.rs".into())]
+    );
+    assert!(embedded_calls("const DATA: &str = include_str!(concat!(\"a\", \"b\"));").is_err());
     Ok(())
 }

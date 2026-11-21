@@ -212,7 +212,7 @@ impl<'a> RcoreGetters<'a> {
         budget: &mut QueryBudget,
     ) -> Result<Value, String> {
         self.read_with(
-            &SourceModelReads::new(model, self.schema),
+            &SourceModelReads::for_invocation(model, self.schema),
             owner,
             feature,
             budget,

@@ -1,0 +1,45 @@
+{
+  "status": "Model core correction qualified; paired consumer/M14 qualification remains outstanding",
+  "approvedAt": "2026-11-19",
+  "baseline": "ef2b43fdc0963270b2c729bca4a8078d3b107551",
+  "commit": "the commit containing this record",
+  "publicApi": "unchanged; cache constructor is crate-private",
+  "formatsAndLimits": "unchanged",
+  "qualifiedPaths": [
+    "SourceModelFunction::invoke_model",
+    "SourceGetters read path",
+    "RcoreGetters::read_model"
+  ],
+  "publicReusableReader": "SourceModelReads::new and caller-provided invoke_with capabilities retain original preparation behavior",
+  "tests": {
+    "passed": 934,
+    "failed": 0,
+    "ignored": 21,
+    "binaries": 5,
+    "binaries_built_not_run": 0,
+    "binaries_done": 5,
+    "binaries_crashed": 0,
+    "test_seconds": 55.6,
+    "build_seconds": 136.4,
+    "crates_built": 49
+  },
+  "report": "model/20261119-070444",
+  "strictLint": "all targets, -D warnings passed",
+  "wasm": "wasm32-unknown-unknown library check passed",
+  "format": "cargo fmt and git diff --check passed",
+  "sources": {
+    "source_model_reads.rs": "a1ed9e2e241ea5d62b0eace932d00792cb5e2de5a40c0286524cb8df7c1e0495",
+    "source_model_reads_tests.rs": "7d9b49a1f8fb89c87051440c7d79da0c68a4ccbfd5102a0f8f9237ea8705ec35",
+    "source_model_functions.rs": "83f38f031af93583eb7f675764d5aaa25a22c4590d314d3a1bbcc941f550998e",
+    "source_getters.rs": "693e7abb39c70e9c19465bf768c33dd5558e69a80f856c0017c736a56659fb4d",
+    "rcore_getters.rs": "d8ab25e6daf7b5b70b8928f7b1d4425218e2de877a01d3ba2755570d06fad37c"
+  },
+  "retainedFailures": [
+    "Initial test-only compilation required avoiding Debug on ScopeValue and binding a borrowed class key.",
+    "Strict lint required equivalent collapse of a nested if in the adversarial test store; no production code changed after the passing quick tier."
+  ],
+  "limitations": [
+    "21 milestone tests ignored, not passing results",
+    "Actual corrected M14 native/WASM consumers and semantic G2 are not yet qualified"
+  ]
+}

@@ -4,16 +4,17 @@ use crate::{
     core::{query::QueryBudget, storage::ModelRead},
     definitions::{
         bundle::{DefinitionBundle, DefinitionSource, SourceKind},
+        conversion::InvocationContext,
         ecore::ParseLimits,
         preparation::PreparedModelDefinition,
         rcore_behavior::{
-            function_lowering::compile_function_with_source_limits,
+            function_lowering::{SchemaStores, compile_functions_with_schema_stores},
             ir,
             ir_v2::{
                 DataWire, EntrySelection, Limits, TypeId, TypeNode, ValueWire, VerifiedExecutable,
             },
         },
-        schema::Schema,
+        schema::{Schema, ScopeSchema},
     },
     rcore::RcorePackage,
     rcore_behavior_functions::{ExecutionContext, ExecutionLimits},
@@ -27,7 +28,7 @@ use crate::{
 /// behavior entry are preserved. Only the explicitly selected function executes.
 pub struct SourceModelFunction<'a> {
     schema: &'a Schema,
-    bundle: DefinitionBundle,
+    bundle: std::sync::Arc<DefinitionBundle>,
     executable: VerifiedExecutable,
     limits: ExecutionLimits,
 }
@@ -41,13 +42,15 @@ fn scalar_parameter(types: &[TypeNode], id: TypeId) -> bool {
         _ => false,
     }
 }
-fn check_signature(image: &VerifiedExecutable, schema: &Schema) -> Result<(), String> {
+fn check_signature(image: &VerifiedExecutable, schema: &ScopeSchema<'_>) -> Result<(), String> {
     let program = image.program();
     for ty in &program.types {
         if let TypeNode::Model(target) = ty {
-            schema.class_key_for_type(target).map_err(|error| {
-                format!("Source read model type is absent from its retained schema: {error}")
-            })?;
+            schema
+                .class_key_for_type_observed(target, &InvocationContext::default())
+                .map_err(|error| {
+                    format!("Source read model type is absent from its retained schema: {error}")
+                })?;
         }
     }
     let entry = program
@@ -145,6 +148,84 @@ impl<'a> SourceModelFunction<'a> {
         limits: ExecutionLimits,
         source_limits: ParseLimits,
     ) -> Result<Self, String> {
+        Self::compile_many(
+            schema,
+            original,
+            additional,
+            std::slice::from_ref(selection),
+            verification,
+            limits,
+            source_limits,
+        )?
+        .into_iter()
+        .next()
+        .ok_or_else(|| "Missing source read entry".into())
+    }
+    /// Compile supplemental reads together while preserving the prepared owner's
+    /// exact schema/source authority. Results retain the caller's selection order.
+    /// Every image is independently verified and signature-checked before any
+    /// function is returned; failure publishes no partial batch. Entry count is
+    /// bounded by max_functions and compiler work; aggregate selector metadata
+    /// is bounded by the scalar source-byte limit before any selector copy.
+    pub fn from_prepared_many(
+        definition: &'a PreparedModelDefinition<'_>,
+        additional: Vec<DefinitionSource>,
+        selections: &[EntrySelection],
+        verification: &Limits,
+        limits: ExecutionLimits,
+        source_limits: ParseLimits,
+    ) -> Result<Vec<Self>, String> {
+        Self::compile_many(
+            definition.schema(),
+            definition.sources(),
+            additional,
+            selections,
+            verification,
+            limits,
+            source_limits,
+        )
+    }
+    /// The Rcore-package counterpart of `from_prepared_many`.
+    pub fn from_rcore_many(
+        package: &'a RcorePackage,
+        additional: Vec<DefinitionSource>,
+        selections: &[EntrySelection],
+        verification: &Limits,
+        limits: ExecutionLimits,
+        source_limits: ParseLimits,
+    ) -> Result<Vec<Self>, String> {
+        Self::compile_many(
+            package.schema(),
+            package.sources(),
+            additional,
+            selections,
+            verification,
+            limits,
+            source_limits,
+        )
+    }
+    fn compile_many(
+        schema: &'a Schema,
+        original: &DefinitionBundle,
+        additional: Vec<DefinitionSource>,
+        selections: &[EntrySelection],
+        verification: &Limits,
+        limits: ExecutionLimits,
+        source_limits: ParseLimits,
+    ) -> Result<Vec<Self>, String> {
+        if selections.len() > verification.scalar.max_work
+            || selections.len() > verification.max_functions
+        {
+            return Err("Source read entry count exceeds compiler work limit".into());
+        }
+        for selection in selections {
+            crate::definitions::rcore_behavior::ir_v2::preflight_selection(selection, verification)
+                .map_err(|error| error.to_string())?;
+        }
+        crate::definitions::metadata_limits::serialized_size(
+            selections,
+            verification.scalar.max_source_bytes,
+        )?;
         ir::preflight_bundle(original, &verification.scalar).map_err(|error| error.to_string())?;
         if additional.len() > verification.scalar.max_work {
             return Err("Supplemental source count exceeds compiler work limit".into());
@@ -181,21 +262,61 @@ impl<'a> SourceModelFunction<'a> {
         bundle.sources.extend(additional.sources);
         ir::preflight_bundle(&bundle, &verification.scalar).map_err(|error| error.to_string())?;
         bundle.validate()?;
-        let executable = compile_function_with_source_limits(
-            &bundle,
-            &selection.symbol.source,
-            selection,
-            verification,
-            source_limits,
-        )
-        .map_err(|errors| format!("Source read compilation failed: {errors:?}"))?;
-        check_signature(&executable, schema)?;
-        Ok(Self {
-            schema,
-            bundle,
-            executable,
-            limits,
-        })
+        let bundle = std::sync::Arc::new(bundle);
+        let mut groups = std::collections::BTreeMap::new();
+        for (index, selection) in selections.iter().enumerate() {
+            groups
+                .entry(&selection.symbol.source)
+                .or_insert_with(Vec::new)
+                .push((index, selection));
+        }
+        // One checked proof borrows this exact immutable schema for the whole
+        // batch. Each model type still goes through the shared class selector;
+        // only repeated whole-schema validation is omitted.
+        let checked = if selections.is_empty() {
+            None
+        } else {
+            Some(ScopeSchema::prepare_observed(
+                schema,
+                &InvocationContext::default(),
+            )?)
+        };
+        let stores = SchemaStores::default();
+        let mut output: Vec<Option<Self>> = (0..selections.len()).map(|_| None).collect();
+        for (source, group) in groups {
+            let entries: Vec<_> = group
+                .iter()
+                .map(|(_, selection)| (*selection).clone())
+                .collect();
+            let images = compile_functions_with_schema_stores(
+                &bundle,
+                source,
+                &entries,
+                verification,
+                source_limits,
+                &stores,
+            )
+            .map_err(|errors| format!("Source read compilation failed: {errors:?}"))?;
+            if images.len() != group.len() {
+                return Err("Source read compiler returned an incomplete batch".into());
+            }
+            for ((index, _), executable) in group.into_iter().zip(images) {
+                check_signature(
+                    &executable,
+                    checked.as_ref().ok_or("Missing source read schema proof")?,
+                )?;
+                output[index] = Some(Self {
+                    schema,
+                    bundle: bundle.clone(),
+                    executable,
+                    limits: limits.clone(),
+                });
+            }
+        }
+        output
+            .into_iter()
+            .map(|function| function.ok_or_else(|| "Missing source read batch entry".into()))
+            .collect()
     }
     pub fn schema(&self) -> &'a Schema {
         self.schema
@@ -248,7 +369,7 @@ impl<'a> SourceModelFunction<'a> {
         budget: &mut QueryBudget,
     ) -> Result<ValueWire, String> {
         self.invoke_with(
-            &SourceModelReads::new(model, self.schema),
+            &SourceModelReads::for_invocation(model, self.schema),
             owner,
             arguments,
             budget,

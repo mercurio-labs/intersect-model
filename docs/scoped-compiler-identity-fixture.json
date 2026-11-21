@@ -1,0 +1,109 @@
+{
+  "kind": "actual-cargo-scoped-build",
+  "cases": [
+    {
+      "name": "lock",
+      "exit": 0,
+      "expected_success": true
+    },
+    {
+      "name": "baseline",
+      "exit": 0,
+      "expected_success": true,
+      "key": "797b82b2b38560abe09dfd8f0e369c7e4a33db9dd58286a2ef21545cc7facfdd"
+    },
+    {
+      "name": "view-source",
+      "exit": 0,
+      "expected_success": true,
+      "key": "797b82b2b38560abe09dfd8f0e369c7e4a33db9dd58286a2ef21545cc7facfdd"
+    },
+    {
+      "name": "workspace-manifest",
+      "exit": 0,
+      "expected_success": true,
+      "key": "797b82b2b38560abe09dfd8f0e369c7e4a33db9dd58286a2ef21545cc7facfdd"
+    },
+    {
+      "name": "unrelated-lock-update",
+      "exit": 0,
+      "expected_success": true
+    },
+    {
+      "name": "unrelated-lock",
+      "exit": 0,
+      "expected_success": true,
+      "key": "797b82b2b38560abe09dfd8f0e369c7e4a33db9dd58286a2ef21545cc7facfdd"
+    },
+    {
+      "name": "embedded-input",
+      "exit": 0,
+      "expected_success": true,
+      "key": "46765c53367524410425597e63e72af0a79c6a585507e1a8f094cf115d38b4c4"
+    },
+    {
+      "name": "restored-input",
+      "exit": 0,
+      "expected_success": true,
+      "key": "797b82b2b38560abe09dfd8f0e369c7e4a33db9dd58286a2ef21545cc7facfdd"
+    },
+    {
+      "name": "relevant-features",
+      "exit": 0,
+      "expected_success": true,
+      "key": "7d6e07b612762316894b9725a7120f23c6f1a0986962c810f33c8d68fdcf0ec1"
+    },
+    {
+      "name": "short-features",
+      "exit": 0,
+      "expected_success": true,
+      "key": "7d6e07b612762316894b9725a7120f23c6f1a0986962c810f33c8d68fdcf0ec1"
+    },
+    {
+      "name": "relocation",
+      "exit": 0,
+      "same_key": true
+    },
+    {
+      "name": "actual-wasm",
+      "exit": 0,
+      "expected_success": true
+    },
+    {
+      "name": "actual-clippy",
+      "exit": 0,
+      "expected_success": true
+    },
+    {
+      "name": "stale-refused",
+      "exit": 101,
+      "expected_success": false
+    },
+    {
+      "name": "missing-refused",
+      "exit": 101,
+      "expected_success": false
+    },
+    {
+      "name": "wrong-target-refused",
+      "exit": 101,
+      "expected_success": false
+    },
+    {
+      "name": "wrong-features-refused",
+      "exit": 101,
+      "expected_success": false
+    },
+    {
+      "name": "wrong-toolchain-refused",
+      "exit": 101,
+      "expected_success": false
+    },
+    {
+      "name": "incomplete-refused",
+      "exit": 101,
+      "expected_success": false
+    }
+  ],
+  "status": "passed"
+}

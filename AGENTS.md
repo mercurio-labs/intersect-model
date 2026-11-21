@@ -45,3 +45,22 @@ Read README.md, docs/architecture.md, and docs/release-plan.md before changing s
   documented in README.md.
 - Follow user-authorized scope. A starter, proposal, or metadata registration
   must not be described as a completed modeling framework.
+
+## Approved local loader/cache correction
+
+On 2026-11-18 the user approved the completed Views
+docs/loader-boundary-correction-spec.md. In this isolated correction worktree,
+add the host-only scoped build-support API and its fixtures; preserve Model
+runtime sources/APIs, the recorded 9ebf0d1 runtime baseline, original checkouts,
+M13/M14 work and newer develop work. Immutable local Git source pairing is the
+approved integration exception. No push, merge or publication is authorized.
+
+## Approved M14 read-preparation correction
+
+On 2026-11-19 the user explicitly approved Views
+docs/m14-read-boundary-correction-spec.md. This new isolated worktree may correct
+internal invocation-local checked member preparation on the qualified ef2b43f
+baseline, with unchanged public APIs and execution limits. Reuse the existing
+semantic implementation, preserve original and qualified worktrees, and qualify
+the required paired Text and isolated consumer pins. No unrelated runtime,
+installer, server, push, merge or publication work is authorized.

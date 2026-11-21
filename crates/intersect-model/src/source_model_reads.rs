@@ -12,13 +12,19 @@ use crate::{
     },
     scope_runtime::{ScopePage, ScopeRead, ScopeValue},
 };
-use std::cell::RefCell;
+use std::{cell::RefCell, collections::BTreeMap};
+
+type PreparedMembers<'a> = BTreeMap<String, BTreeMap<DeclarationId, &'a Feature>>;
 
 pub struct SourceModelReads<'a> {
     store: &'a dyn ModelRead,
     schema: &'a Schema,
     // One immutable source-function invocation only; dropped before linker writes.
     ownership: RefCell<Option<PendingContainmentIndex<'a>>>,
+    // Enabled only by crate-owned entry points that create and drop this reader
+    // around one invocation. Public reusable read capabilities keep their
+    // original preparation behavior; proofs never cross independent ledgers.
+    members: Option<RefCell<PreparedMembers<'a>>>,
 }
 
 impl<'a> SourceModelReads<'a> {
@@ -27,8 +33,74 @@ impl<'a> SourceModelReads<'a> {
             store,
             schema,
             ownership: RefCell::new(None),
+            members: None,
         }
     }
+    pub(crate) fn for_invocation(store: &'a dyn ModelRead, schema: &'a Schema) -> Self {
+        Self {
+            members: Some(RefCell::new(BTreeMap::new())),
+            ..Self::new(store, schema)
+        }
+    }
+    fn member(
+        &self,
+        actual: &str,
+        declaration: &DeclarationId,
+        many: bool,
+        observation: &InvocationContext<'_>,
+    ) -> Result<&'a Feature, String> {
+        if let Some(members) = &self.members {
+            let count = members
+                .try_borrow()
+                .map_err(|_| "Stored member cache is already borrowed")?
+                .len();
+            observation.work(
+                1usize
+                    .saturating_add(count)
+                    .saturating_add(actual.len().div_ceil(64))
+                    .saturating_add(declaration.path.len()),
+            )?;
+            if let Some(member) = members
+                .try_borrow()
+                .map_err(|_| "Stored member cache is already borrowed")?
+                .get(actual)
+                .and_then(|entries| entries.get(declaration))
+                .copied()
+            {
+                admitted_member(member, many)?;
+                observation.checkpoint()?;
+                return Ok(member);
+            }
+        }
+        let member = observed_member(self.schema, actual, declaration, observation)?;
+        admitted_member(member, many)?;
+        if let Some(members) = &self.members {
+            // Keep the existing checked preparation. Only its successful exact
+            // (class, source declaration) result is retained, never values or
+            // failed/pending reads. Precharge key copies and tree bookkeeping.
+            crate::definitions::retained_storage::reserve_serialized(declaration, observation)?;
+            observation.retain_storage(128usize.saturating_add(actual.len()))?;
+            observation.checkpoint()?;
+            members
+                .try_borrow_mut()
+                .map_err(|_| "Stored member cache is already borrowed")?
+                .entry(actual.to_owned())
+                .or_default()
+                .insert(declaration.clone(), member);
+        }
+        Ok(member)
+    }
+}
+
+fn admitted_member(member: &Feature, many: bool) -> Result<(), String> {
+    if (member.upper != 1) != many || member.derived || member.volatile {
+        return Err(if many {
+            "Rcore scope requires an admitted stored collection".into()
+        } else {
+            "Rcore scope requires an admitted singular stored feature".into()
+        });
+    }
+    Ok(())
 }
 
 fn singular(
@@ -144,10 +216,7 @@ impl ScopeRead for SourceModelReads<'_> {
         observation: &InvocationContext<'_>,
     ) -> Result<ScopeValue, String> {
         let actual = self.class(object, observation)?;
-        let member = observed_member(self.schema, &actual, declaration, observation)?;
-        if member.upper != 1 || member.derived || member.volatile {
-            return Err("Rcore scope requires an admitted singular stored feature".into());
-        }
+        let member = self.member(&actual, declaration, false, observation)?;
         let mut result = ScopeValue::Absent;
         let present = self.store.inspect_stored_value_observed(
             object,
@@ -174,10 +243,7 @@ impl ScopeRead for SourceModelReads<'_> {
         observation: &InvocationContext<'_>,
     ) -> Result<ScopePage, String> {
         let actual = self.class(object, observation)?;
-        let member = observed_member(self.schema, &actual, declaration, observation)?;
-        if member.upper == 1 || member.derived || member.volatile {
-            return Err("Rcore scope requires an admitted stored collection".into());
-        }
+        let member = self.member(&actual, declaration, true, observation)?;
         let mut result = ScopePage::End;
         let present = self.store.inspect_stored_value_observed(
             object,
@@ -208,3 +274,7 @@ impl ScopeRead for SourceModelReads<'_> {
         Ok(result)
     }
 }
+
+#[cfg(test)]
+#[path = "source_model_reads_tests.rs"]
+mod tests;
