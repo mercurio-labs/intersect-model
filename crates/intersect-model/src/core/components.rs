@@ -119,6 +119,20 @@ pub struct ComponentDescriptor {
     key: String,
 }
 
+impl ComponentDescriptor {
+    /// Derive the mounted spelling of a known local object identity. This does
+    /// not check that the object exists or admit the component.
+    pub fn mounted_object_id(&self, local: &str) -> String {
+        qualify(&self.key, "object", local)
+    }
+
+    /// Derive the mounted spelling of a known local resource URI. This does
+    /// not check that the resource exists or admit the component.
+    pub fn mounted_resource_uri(&self, local: &str) -> String {
+        qualify(&self.key, "resource", local)
+    }
+}
+
 impl ComponentImage {
     /// Consume a linked, validated closed model; preparation hashes its data once.
     /// The image retains the original arena, not a materialized duplicate.
