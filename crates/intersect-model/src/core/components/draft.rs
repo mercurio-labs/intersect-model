@@ -447,7 +447,10 @@ impl MountedModel {
     /// Retain the accepted project and its component images for indexed reads.
     pub fn into_read_model(self) -> StorageResult<MountedReadModel> {
         let ReadIndex {
-            ids, lookup, parents, ..
+            ids,
+            lookup,
+            parents,
+            ..
         } = ReadIndex::new(&self.store)?;
         Ok(MountedReadModel {
             model: self,
@@ -483,7 +486,10 @@ impl MountedReadModel {
         self.parents.get(object.index()).copied().flatten()
     }
 
-    pub fn object(&self, object: ObjId) -> StorageResult<Option<crate::core::storage::ObjectView<'_>>> {
+    pub fn object(
+        &self,
+        object: ObjId,
+    ) -> StorageResult<Option<crate::core::storage::ObjectView<'_>>> {
         let Some(identity) = self.identity(object) else {
             return Ok(None);
         };
@@ -827,15 +833,28 @@ mod tests {
         assert!(Arc::ptr_eq(&model.store.images[0], &fork.store.images[0]));
         let accepted = model.into_read_model()?;
         let mounted_id = first_image.object_id("first")?;
-        let mounted = accepted.lookup(mounted_id).ok_or("Missing component child")?;
-        let parent = accepted.container(mounted).ok_or("Missing component owner")?;
-        assert_eq!(accepted.identity(parent), Some(first_image.object_id("root")?));
-        let object = accepted.object(mounted)?.ok_or("Missing component object")?;
+        let mounted = accepted
+            .lookup(mounted_id)
+            .ok_or("Missing component child")?;
+        let parent = accepted
+            .container(mounted)
+            .ok_or("Missing component owner")?;
+        assert_eq!(
+            accepted.identity(parent),
+            Some(first_image.object_id("root")?)
+        );
+        let object = accepted
+            .object(mounted)?
+            .ok_or("Missing component object")?;
         assert_eq!(object.id(), mounted_id);
         assert_eq!(object.class(), fixture.node);
         let child = accepted.lookup("child").ok_or("Missing project child")?;
         assert_eq!(accepted.container(child), accepted.lookup("project"));
-        assert!(accepted.model().shares_component_with(&fork, "urn:tree:first"));
+        assert!(
+            accepted
+                .model()
+                .shares_component_with(&fork, "urn:tree:first")
+        );
         // Parsing may introduce an invalid cross-boundary owner. Cached
         // topology must still expose the component child's existing owner.
         storage::atomic(&mut fork.store.project, |store| {
