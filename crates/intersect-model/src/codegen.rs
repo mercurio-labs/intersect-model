@@ -7,6 +7,8 @@ use intersect_model::definitions::{
 use std::collections::BTreeSet;
 
 pub const GENERATOR_VERSION: &str = "7";
+#[path = "codegen_frozen.rs"]
+pub mod frozen;
 #[path = "codegen_semantic_bindings.rs"]
 pub mod semantic_bindings;
 pub type GenerationResult<T> = Result<T, String>;

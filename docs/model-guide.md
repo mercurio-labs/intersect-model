@@ -185,3 +185,29 @@ See the executable [binding declarations](../tests/support/src/bindings/checked_
 [dynamic example](../crates/intersect-model/examples/dynamic_library.rs).
 Use rustdoc for detailed provider signatures and the [release plan](release-plan.md)
 for the qualification boundary. Historical run counts stay with their source revisions.
+
+## Frozen Rust bindings
+
+Use `codegen::frozen::generate` with the checked metamodel used to load a
+frozen model. The generated module binds a `ModelView` to that metamodel and
+exposes typed getters, enum values, conversions to all ancestors, and
+operation declarations with typed argument and result signatures. Derived
+getters accept a provider. The frozen model API is read-only, and operation
+execution belongs to the language's semantic runtime.
+
+Generate bindings from the pinned SysML structure using its logical source URI:
+
+```sh
+cargo run --locked -p intersect-codegen -- --frozen \
+  https://www.omg.org/spec/SysML/20250201 org.omg.sysml/model/SysML.ecore.rcore \
+  /absolute/path/to/metamodel/SysML.ecore.rcore /tmp/sysml.rs
+```
+
+To generate, compile, and test the complete schema from a KerML checkout, pass
+that same source file to the Rust bindings suite:
+
+```sh
+INTERSECT_SYSML_RCORE=/absolute/path/to/metamodel/SysML.ecore.rcore \
+  python -B tools/test_report.py run -- --profile test-fast --locked \
+  -p intersect-rust-bindings-tests --lib sysml_tests
+```
