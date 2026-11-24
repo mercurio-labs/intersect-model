@@ -52,3 +52,11 @@ mod tests;
 pub mod state {
     include!(concat!(env!("OUT_DIR"), "/state.rs"));
 }
+
+#[cfg(intersect_sysml_bindings)]
+pub mod sysml {
+    include!(concat!(env!("OUT_DIR"), "/sysml.rs"));
+}
+
+#[cfg(all(test, intersect_sysml_bindings))]
+mod sysml_tests;
