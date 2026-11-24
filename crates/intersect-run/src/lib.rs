@@ -2,9 +2,11 @@
 pub mod analysis;
 pub mod coupled_ode;
 pub mod numerics;
+mod parametric;
 pub mod state_machine;
 mod trace;
 
+pub use parametric::{CaseError, CaseOutcome, Parameters, RunCase, RunCases, run_cases};
 pub use trace::{Observer, Trace, TraceEntry, TraceHeader, TraceKind, TraceMetadata, run_traced};
 
 use serde::{Deserialize, Serialize};
