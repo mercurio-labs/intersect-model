@@ -6,6 +6,7 @@
     ],
     "host": [
       "intersect-run",
+      "intersect-run-catalog",
       "intersect-project-host"
     ]
   },
