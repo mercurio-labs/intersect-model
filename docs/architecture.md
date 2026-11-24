@@ -35,8 +35,9 @@ See [repository development](repository-development.md) and the current
 Model's `core` and `definitions` are modules of one crate, not separate runtime
 packages. Their logical dependency direction still matters. `intersect-run` is a
 separate deterministic execution kernel. Execution hosts use
-`intersect-run-catalog` for versioned engine IDs and capabilities, declare
-which engines they install, and validate their language-specific bindings.
+`intersect-run-catalog` for versioned engine IDs and behavior capabilities.
+Each host registers the engines and request inputs it accepts and validates
+its own language-specific bindings.
 `intersect-build-support` runs on the build host to calculate compiler identities.
 
 The [model guide](model-guide.md) explains facade selection and atomicity. The

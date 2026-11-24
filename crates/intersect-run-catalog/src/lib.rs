@@ -1,10 +1,11 @@
 //! Versioned engine contracts shared by execution hosts.
 //!
-//! Each host supplies the engines it installs and validates its own model bindings.
+//! Engine contracts describe behavior. Each host registers the requests it
+//! accepts and validates its own model bindings.
 
 #![no_std]
 
-/// A behavior or request type supported by an engine contract.
+/// A behavior supported by an engine contract.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 #[non_exhaustive]
 pub enum Capability {
@@ -14,10 +15,6 @@ pub enum Capability {
     TimedTokenFlow,
     ScalarRootFinding,
     ScalarAffineSolving,
-    /// Override the authored scenario with events supplied in the request.
-    ScenarioEvents,
-    /// Override numeric parameters by case.
-    NumericCaseOverrides,
 }
 
 macro_rules! declare_engines {
@@ -50,18 +47,18 @@ macro_rules! declare_engines {
 }
 
 declare_engines! {
-    StateMachine => ("intersect.state-machine@1", [StateTransitions, ScenarioEvents]),
-    Ode => ("intersect.ode@1", [NumericalIntegration, NumericCaseOverrides]),
+    StateMachine => ("intersect.state-machine@1", [StateTransitions]),
+    Ode => ("intersect.ode@1", [NumericalIntegration]),
     CoupledOde => (
         "intersect.coupled-ode@1",
-        [StateTransitions, NumericalIntegration, ThresholdTransitions, NumericCaseOverrides]
+        [StateTransitions, NumericalIntegration, ThresholdTransitions]
     ),
     TimedTokenFlow => ("intersect.timed-token-flow@1", [TimedTokenFlow]),
     ScalarRoot => ("intersect.scalar-root@1", [ScalarRootFinding]),
     ScalarAffine => ("intersect.scalar-affine@1", [ScalarAffineSolving]),
     StateAffine => (
         "intersect.state-affine@1",
-        [StateTransitions, ScalarAffineSolving, ScenarioEvents]
+        [StateTransitions, ScalarAffineSolving]
     ),
 }
 
@@ -71,7 +68,7 @@ impl Engine {
         ENGINES.iter().copied().find(|engine| engine.id() == id)
     }
 
-    /// Resolve a contract supported by this host.
+    /// Resolve a contract from an engine-only list.
     pub fn select(id: &str, installed: &[Self]) -> Option<Self> {
         let engine = Self::from_id(id)?;
         installed.contains(&engine).then_some(engine)
@@ -79,6 +76,46 @@ impl Engine {
 
     pub fn supports(self, capability: Capability) -> bool {
         self.capabilities().contains(&capability)
+    }
+}
+
+/// An optional input accepted by a host for an installed engine.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[non_exhaustive]
+pub enum RequestCapability {
+    /// Accept a scenario event list supplied by the request.
+    ScenarioEvents,
+    /// Accept numeric parameter overrides grouped by case.
+    NumericCaseOverrides,
+}
+
+/// One engine installed by a host and the extra request inputs it accepts.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct HostEngine {
+    engine: Engine,
+    requests: &'static [RequestCapability],
+}
+
+impl HostEngine {
+    pub const fn new(engine: Engine, requests: &'static [RequestCapability]) -> Self {
+        Self { engine, requests }
+    }
+
+    pub const fn engine(self) -> Engine {
+        self.engine
+    }
+
+    pub fn accepts(self, request: RequestCapability) -> bool {
+        self.requests.contains(&request)
+    }
+
+    /// Select the first installed registration that matches the exact ID.
+    pub fn select(id: &str, installed: &[Self]) -> Option<Self> {
+        let engine = Engine::from_id(id)?;
+        installed
+            .iter()
+            .copied()
+            .find(|registration| registration.engine == engine)
     }
 }
 
@@ -133,19 +170,40 @@ mod tests {
     }
 
     #[test]
-    fn request_capabilities_describe_existing_contracts() {
-        for &engine in ENGINES {
-            assert_eq!(
-                engine.supports(Capability::ScenarioEvents),
-                matches!(engine, Engine::StateMachine | Engine::StateAffine)
-            );
-            assert_eq!(
-                engine.supports(Capability::NumericCaseOverrides),
-                matches!(engine, Engine::Ode | Engine::CoupledOde)
-            );
-        }
+    fn behavior_capabilities_belong_to_the_engine() {
+        assert_eq!(
+            Engine::StateMachine.capabilities(),
+            &[Capability::StateTransitions]
+        );
+        assert_eq!(
+            Engine::Ode.capabilities(),
+            &[Capability::NumericalIntegration]
+        );
         assert!(Engine::CoupledOde.supports(Capability::ThresholdTransitions));
         assert!(Engine::StateAffine.supports(Capability::ScalarAffineSolving));
+    }
+
+    #[test]
+    fn hosts_can_accept_different_requests_for_the_same_engine() {
+        const WITH_OVERRIDES: &[HostEngine] = &[HostEngine::new(
+            Engine::CoupledOde,
+            &[RequestCapability::NumericCaseOverrides],
+        )];
+        const AUTHORED_ONLY: &[HostEngine] = &[HostEngine::new(Engine::CoupledOde, &[])];
+
+        let id = "intersect.coupled-ode@1";
+        let with_overrides = HostEngine::select(id, WITH_OVERRIDES).unwrap();
+        let authored_only = HostEngine::select(id, AUTHORED_ONLY).unwrap();
+        assert_eq!(with_overrides.engine(), authored_only.engine());
+        assert!(with_overrides.accepts(RequestCapability::NumericCaseOverrides));
+        assert!(!authored_only.accepts(RequestCapability::NumericCaseOverrides));
+        assert!(!with_overrides.accepts(RequestCapability::ScenarioEvents));
+
+        assert_eq!(HostEngine::select("intersect.ode@1", WITH_OVERRIDES), None);
+        assert_eq!(
+            HostEngine::select("intersect.coupled-ode@2", WITH_OVERRIDES),
+            None
+        );
     }
 
     #[test]
