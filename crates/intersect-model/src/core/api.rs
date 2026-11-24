@@ -13,7 +13,14 @@ use intersect_model::definitions::{
 use serde_json::Value;
 
 pub use basic::BasicModel;
+pub use model_diff::{
+    FeatureChange, FeatureState, ModelDiff, ObjectChange, ResourceChange, StoredValue,
+};
+pub use snapshots::{SnapshotError, SnapshotIdentity, SnapshotLimits};
 pub use transactional::{EditSession, TransactionalModel};
+/// The same immutable state used by the optional version service. Capturing a
+/// standalone snapshot does not publish it or assign a durable host revision.
+pub use versioned::Snapshot as ModelSnapshot;
 pub use versioned::{ModelFork, Snapshot, VersionId, VersionedModel};
 
 /// Checked editing capability for reflective callers and domain-owned typed wrappers.
@@ -387,4 +394,6 @@ macro_rules! forward_reads {
 mod basic;
 mod transactional;
 
+mod model_diff;
+mod snapshots;
 mod versioned;
