@@ -1,4 +1,8 @@
 //! Handwritten language-neutral discrete-event execution kernel.
+pub mod analysis;
+pub mod coupled_ode;
+pub mod numerics;
+pub mod state_machine;
 mod trace;
 
 pub use trace::{Observer, Trace, TraceEntry, TraceHeader, TraceKind, TraceMetadata, run_traced};
