@@ -273,6 +273,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "intersect-run-catalog"
+version = "0.1.0-alpha.2"
+
+[[package]]
 name = "intersect-rust-bindings-tests"
 version = "0.1.0-alpha.2"
 dependencies = [
