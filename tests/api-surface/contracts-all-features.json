@@ -347,6 +347,8 @@
     "function intersect_model::api::VersionedModel::snapshot": "404bcb1b2953ef081ba7a60677f82dc92c4734d13fb3ecb4e26e4ca6cca2b8db",
     "function intersect_model::class_conversion::ClassConverter::new": "609ac7e558401a94562a72fb4485c5f38ac321d1eaf7713d356dd6860905cef9",
     "function intersect_model::class_conversion::ClassConverter::portable_core": "c43196f6325cb2576782918941b9b14c10f3612fecd55923cc367b8851cfac7d",
+    "function intersect_model::codegen::frozen::generate": "dc2acc06784c6888393caf6381af7796b6d90237b38e753d8fcfdbda5a57dec6",
+    "function intersect_model::codegen::frozen::generate_rcore": "487913d483cb45bcbd7a9e38ce8a08c7eecd5e1afc6147eb299930e93424d1aa",
     "function intersect_model::codegen::generate": "071e936b1e8aca3684064a0643ae6190de4a1063765a26db40698531bc35727e",
     "function intersect_model::codegen::generate_rcore": "392d68bc9c3973e72a30f23e773aa2a4c2b9c2bb8b4f5b5abd60efa6a2c243e5",
     "function intersect_model::codegen::semantic_bindings::generate": "0650a4e3a75c24021adbffa2f598dc6ac6314e187859493a657a5905d19e5d3d",
