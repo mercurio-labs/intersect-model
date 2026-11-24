@@ -1,4 +1,5 @@
-//! Handwritten optional, in-memory version service. No Git, I/O, or retained history.
+//! Handwritten immutable state and optional in-memory version service.
+//! Snapshot data codecs are separate; hosts own Git, I/O and retained history.
 use super::{BasicModel, ModelEdit};
 use crate::core::{
     frozen::FrozenStore,
@@ -66,6 +67,10 @@ macro_rules! edit_fork {
 }
 
 impl ModelFork {
+    /// Capture the current candidate without committing it to its owner.
+    pub fn snapshot(&self) -> StorageResult<Snapshot> {
+        snapshot_draft(self.base.0.store.schema.clone(), self.draft.fork_arena()?)
+    }
     pub fn base_version(&self) -> VersionId {
         self.base.version()
     }
@@ -146,6 +151,19 @@ impl ModelFork {
     ) -> StorageResult<T> {
         read(self.draft.as_ref())
     }
+}
+
+// Standalone captures reuse exactly the immutable storage and readers used by
+// versioned heads. Their VersionId is fresh and cannot impersonate an owner head.
+pub(super) fn snapshot_draft(schema: Arc<Schema>, store: FrozenStore) -> StorageResult<Snapshot> {
+    storage::validate_draft(&store, &schema)?;
+    let validation = Arc::new(storage::DraftValidationPlan::new(&schema)?);
+    Ok(VersionedModel::initial(CommittedStore {
+        schema,
+        validation,
+        arena: Arc::new(store),
+    })
+    .head)
 }
 
 impl ModelEdit for ModelFork {
